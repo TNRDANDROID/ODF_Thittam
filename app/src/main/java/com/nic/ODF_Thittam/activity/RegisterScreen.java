@@ -1,6 +1,7 @@
 package com.nic.ODF_Thittam.activity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -1143,6 +1144,7 @@ public class RegisterScreen extends AppCompatActivity implements View.OnClickLis
                 matrix, true);
     }
 
+    @SuppressLint("MissingSuperCall")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // if the result is capturing Image
@@ -1189,7 +1191,7 @@ public class RegisterScreen extends AppCompatActivity implements View.OnClickLis
 
     public void signUP() {
         try {
-            new ApiService(this).makeJSONObjectRequest("Register", Api.Method.POST, UrlGenerator.getMotivatorCategory(), dataTobeSavedJsonParams(), "not cache", this);
+            new ApiService(this).makeJSONObjectRequest("Register", Api.Method.POST, UrlGenerator.getRegistrationUrl(), dataTobeSavedJsonParams(), "not cache", this);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -1328,7 +1330,7 @@ public class RegisterScreen extends AppCompatActivity implements View.OnClickLis
                     motivator_branch_tv.setText("");
 
                 }
-                Log.d("BankBranchList", "" + responseObj.getJSONArray(AppConstant.JSON_DATA));
+                Log.d("BankBranchList", "" + responseObj.getJSONObject(AppConstant.JSON_DATA));
             }
 
 

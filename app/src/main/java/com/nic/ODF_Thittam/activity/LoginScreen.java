@@ -243,7 +243,7 @@ Log.d("params",""+params);
 
     public void getGenderList() {
         try {
-            new ApiService(this).makeJSONObjectRequest("Gender", Api.Method.POST, UrlGenerator.getMotivatorCategory(), genderParams(), "not cache", this);
+            new ApiService(this).makeJSONObjectRequest("Gender", Api.Method.POST, UrlGenerator.getRegistrationUrl(), genderParams(), "not cache", this);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -256,7 +256,7 @@ Log.d("params",""+params);
 
     public void getEducationalQualificationList() {
         try {
-            new ApiService(this).makeJSONObjectRequest("EducationalQualification", Api.Method.POST, UrlGenerator.getMotivatorCategory(), EducationalQualificationParams(), "not cache", this);
+            new ApiService(this).makeJSONObjectRequest("EducationalQualification", Api.Method.POST, UrlGenerator.getRegistrationUrl(), EducationalQualificationParams(), "not cache", this);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -268,7 +268,7 @@ Log.d("params",""+params);
     }
     public void getMotivatorCategoryList() {
         try {
-            new ApiService(this).makeJSONObjectRequest("MotivatorCategoryList", Api.Method.POST, UrlGenerator.getMotivatorCategory(), motivatorCategoryListJsonParams(), "not cache", this);
+            new ApiService(this).makeJSONObjectRequest("MotivatorCategoryList", Api.Method.POST, UrlGenerator.getRegistrationUrl(), motivatorCategoryListJsonParams(), "not cache", this);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -338,6 +338,14 @@ Log.d("params",""+params);
                         Log.d("userdata", "" + prefManager.getDistrictCode() + prefManager.getBlockCode() + prefManager.getPvCode() + prefManager.getDistrictName() + prefManager.getBlockName()+prefManager.getName());
                         prefManager.setUserPassKey(decryptedKey);
                         showHomeScreen();
+
+                       /* String result=jsonObject.getString("odf_test_qualified");
+                        if(result.equals("N")){
+                            Utils.showAlertResult(LoginScreen.this,"Attend The ODF Plus Qualifying Test");
+                        }else if(result.equals("Y")){
+                            showHomeScreen();
+                        }*/
+
                     } else {
                         if (response.equals("LOGIN_FAILED")) {
                             Utils.showAlert(this, "Invalid UserName Or Password");

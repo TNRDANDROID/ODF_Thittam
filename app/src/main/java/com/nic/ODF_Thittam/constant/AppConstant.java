@@ -59,7 +59,7 @@ public class AppConstant {
     public static String KEY_VILLAGE_LIST_DISTRICT_BLOCK_WISE = "village_list_district_block_wise";
     public static String KEY_BLOCK_LIST_DISTRICT_WISE = "block_list_district_wise";
 
-    public static String WORK_LIST_BASED_ON_FINYEAR_VILLAGE = "finyear_village_wise_work_list";
+    public static String WORK_LIST_BASED_ON_FINYEAR_VILLAGE = "motivator_wise_work_list";
     public static String WORK_ID = "work_id";
     public static String SCHEME_GROUP_ID = "scheme_group_id";
     public static String SCHEME_ID = "scheme_id";

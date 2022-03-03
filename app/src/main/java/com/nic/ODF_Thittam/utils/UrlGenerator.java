@@ -23,11 +23,11 @@ public class UrlGenerator {
         return NICApplication.getAppString(R.string.APP_MAIN_SERVICES_URL);
 //        return "http://10.163.19.140/rdweb/project/webservices_forms/work_monitoring/work_monitoring_services_test.php";
     }
-    public static String getMotivatorCategory() {
-        return NICApplication.getAppString(R.string.ODF_OPEN_SERVICES_URL);
-    }
     public static String getOpenUrl() {
         return NICApplication.getAppString(R.string.OPEN_SERVICES_URL);
+    }
+    public static String getRegistrationUrl() {
+        return NICApplication.getAppString(R.string.REGISTRATION_SERVICES_URL);
     }
 
 
