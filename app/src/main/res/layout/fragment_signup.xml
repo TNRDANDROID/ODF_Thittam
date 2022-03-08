@@ -100,14 +100,14 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profile_image_preview"
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_margin="@dimen/padding"
                     android:layout_gravity="center"
                     android:background="@drawable/profile_bg_circle"
                     app:civ_border_width="0dip"
                     app:civ_border_color="#01d1c1"
-                    android:src="@mipmap/avatar"/>
+                    android:src="@drawable/ic_new_avathar"/>
 
 
                 <RelativeLayout
@@ -143,7 +143,7 @@
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     android:text="பெயர் / Name"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/_15sdp"
+                    android:textSize="@dimen/_13sdp"
                     android:visibility="visible"
                     customfontdemo:fontName="@string/font_circular_medium" />
 
@@ -168,7 +168,7 @@
                         android:inputType="textPersonName"
                         android:singleLine="true"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_15sdp"
+                        android:textSize="@dimen/_13sdp"
                         android:hint=""
 
                         customfontdemo:fontName="@string/font_circular_book" />
@@ -194,7 +194,7 @@
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     android:text="மாவட்டம் / District"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/_15sdp"
+                    android:textSize="@dimen/_13sdp"
                     android:visibility="visible"
                     customfontdemo:fontName="@string/font_circular_medium" />
 
@@ -217,7 +217,7 @@
                         android:layout_marginLeft="15dp"
 
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_15sdp"
+                        android:textSize="@dimen/_13sdp"
                         android:visibility="visible"
                         customfontdemo:fontName="@string/font_circular_book" />
 
@@ -251,7 +251,7 @@
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     android:text="வட்டம் / Block"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/_15sdp"
+                    android:textSize="@dimen/_13sdp"
                     android:visibility="visible"
                     customfontdemo:fontName="@string/font_circular_medium" />
 
@@ -274,7 +274,7 @@
                         android:layout_marginLeft="15dp"
 
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_15sdp"
+                        android:textSize="@dimen/_13sdp"
                         android:visibility="visible"
                         customfontdemo:fontName="@string/font_circular_book" />
 
@@ -310,7 +310,7 @@
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     android:text="கிராமம் / Village"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/_15sdp"
+                    android:textSize="@dimen/_13sdp"
                     android:visibility="visible"
                     customfontdemo:fontName="@string/font_circular_medium" />
 
@@ -333,7 +333,7 @@
                         android:layout_marginLeft="15dp"
 
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_15sdp"
+                        android:textSize="@dimen/_13sdp"
                         android:visibility="visible"
                         customfontdemo:fontName="@string/font_circular_book" />
 
@@ -369,7 +369,7 @@
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     android:text="முகவரி / Address"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/_15sdp"
+                    android:textSize="@dimen/_13sdp"
                     android:visibility="visible"
                     customfontdemo:fontName="@string/font_circular_medium" />
 
@@ -416,7 +416,7 @@
                 android:layout_marginRight="@dimen/margin_left_20dp"
                 android:text="பிறந்த தேதி / Date Of birth"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/_15sdp"
+                android:textSize="@dimen/_13sdp"
                 android:visibility="visible"
                 customfontdemo:fontName="@string/font_circular_medium" />
 
@@ -448,7 +448,7 @@
                     android:focusableInTouchMode="true"
                     android:textAlignment="viewStart"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/_15sdp"
+                    android:textSize="@dimen/_13sdp"
                     customfontdemo:fontName="@string/font_circular_book" />
 
                 <com.nic.ODF_Thittam.support.MyCustomTextView
@@ -477,7 +477,7 @@
                 <!--android:background="@android:color/transparent"-->
                 <!--android:inputType="textPersonName"-->
                 <!--android:textColor="@android:color/black"-->
-                <!--android:textSize="@dimen/_15sdp"-->
+                <!--android:textSize="@dimen/_13sdp"-->
                 <!--android:visibility="visible"-->
                 <!--customfontdemo:fontName="@string/font_circular_book" />-->
 
@@ -502,7 +502,7 @@
                 android:layout_marginRight="@dimen/margin_left_20dp"
                 android:text="பாலினம் / Gender"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/_15sdp"
+                android:textSize="@dimen/_13sdp"
                 android:visibility="visible"
                 customfontdemo:fontName="@string/font_circular_medium" />
 
@@ -525,7 +525,7 @@
                     android:layout_marginLeft="15dp"
 
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/_15sdp"
+                    android:textSize="@dimen/_13sdp"
                     android:visibility="visible"
                     customfontdemo:fontName="@string/font_circular_book" />
 
@@ -559,7 +559,7 @@
                 android:layout_marginRight="@dimen/margin_left_20dp"
                 android:text="கல்வி தகுதி / Educational Qualification"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/_15sdp"
+                android:textSize="@dimen/_13sdp"
                 android:visibility="visible"
                 customfontdemo:fontName="@string/font_circular_medium" />
 
@@ -582,7 +582,7 @@
                     android:layout_marginLeft="15dp"
 
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/_15sdp"
+                    android:textSize="@dimen/_13sdp"
                     android:visibility="visible"
                     customfontdemo:fontName="@string/font_circular_book" />
 
@@ -615,7 +615,7 @@
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     android:text="கைபேசி எண் / Mobile No"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/_15sdp"
+                    android:textSize="@dimen/_13sdp"
                     android:visibility="visible"
                     customfontdemo:fontName="@string/font_circular_medium" />
 
@@ -643,7 +643,7 @@
                         android:scrollbars="vertical"
                         android:maxLength="10"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_15sdp"
+                        android:textSize="@dimen/_13sdp"
                         android:visibility="visible"
                         customfontdemo:fontName="@string/font_circular_book" />
 
@@ -667,7 +667,7 @@
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     android:text="மின்னஞ்சல் முகவரி / Email Id"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/_15sdp"
+                    android:textSize="@dimen/_13sdp"
                     android:visibility="visible"
                     customfontdemo:fontName="@string/font_circular_medium" />
 
@@ -694,7 +694,7 @@
                         android:inputType="textWebEmailAddress"
                         android:scrollbars="vertical"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_15sdp"
+                        android:textSize="@dimen/_13sdp"
                         android:visibility="visible"
                         customfontdemo:fontName="@string/font_circular_book" />
 
@@ -720,7 +720,7 @@
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     android:text="விண்ணப்பதாரர் ஊக்குவிப்பவரா/மற்றவரா என்பதை தேர்வு செய்யவும் / Select whether the applicant is motivator/others"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/_15sdp"
+                    android:textSize="@dimen/_13sdp"
                     android:visibility="visible"
                     customfontdemo:fontName="@string/font_circular_medium" />
 
@@ -819,7 +819,7 @@
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     android:text="வங்கி கணக்கு எண் / Bank Account NO"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/_15sdp"
+                    android:textSize="@dimen/_13sdp"
                     android:visibility="visible"
                     customfontdemo:fontName="@string/font_circular_medium" />
 
@@ -844,7 +844,7 @@
                         android:background="@android:color/transparent"
                         android:inputType="textPassword"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_15sdp"
+                        android:textSize="@dimen/_13sdp"
                         android:visibility="visible"
                         customfontdemo:fontName="@string/font_circular_book" />
 
@@ -867,7 +867,7 @@
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     android:text="உங்கள் வங்கி கணக்கு எண்ணை சரிபார்க்கவும் / Verify Your Account NO"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/_15sdp"
+                    android:textSize="@dimen/_13sdp"
                     android:visibility="visible"
                     customfontdemo:fontName="@string/font_circular_medium" />
 
@@ -893,7 +893,7 @@
                         android:background="@android:color/transparent"
                         android:inputType="textPassword"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_15sdp"
+                        android:textSize="@dimen/_13sdp"
                         android:visibility="visible"
                         customfontdemo:fontName="@string/font_circular_book" />
 
@@ -916,7 +916,7 @@
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     android:text="IFSC குறியீடு / IFSC Code"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/_15sdp"
+                    android:textSize="@dimen/_13sdp"
                     android:visibility="visible"
                     customfontdemo:fontName="@string/font_circular_medium" />
 
@@ -941,7 +941,7 @@
                         android:background="@android:color/transparent"
                         android:inputType="textPersonName"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_15sdp"
+                        android:textSize="@dimen/_13sdp"
                         android:imeOptions="actionDone"
                         android:visibility="visible"
                         customfontdemo:fontName="@string/font_circular_book" />
@@ -976,7 +976,7 @@
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     android:text="வங்கி பெயர் / Bank Name"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/_15sdp"
+                    android:textSize="@dimen/_13sdp"
                     android:visibility="visible"
                     customfontdemo:fontName="@string/font_circular_medium" />
 
@@ -1001,7 +1001,7 @@
                         android:background="@android:color/transparent"
                         android:inputType="textPersonName"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_15sdp"
+                        android:textSize="@dimen/_13sdp"
                         android:visibility="visible"
                         customfontdemo:fontName="@string/font_circular_book" />
 
@@ -1024,7 +1024,7 @@
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     android:text="வங்கி கிளை பெயர் / Bank Branch Name"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/_15sdp"
+                    android:textSize="@dimen/_13sdp"
                     android:visibility="visible"
                     customfontdemo:fontName="@string/font_circular_medium" />
 
@@ -1049,7 +1049,7 @@
                         android:background="@android:color/transparent"
                         android:inputType="textPersonName"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_15sdp"
+                        android:textSize="@dimen/_13sdp"
                         android:visibility="visible"
                         customfontdemo:fontName="@string/font_circular_book" />
 
@@ -1076,7 +1076,7 @@
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     android:text="கலந்துகொண்ட மாநில அளவிலான பயிற்சியின் எண்ணிக்கை / Number of State Level training Attended"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/_15sdp"
+                    android:textSize="@dimen/_13sdp"
                     android:visibility="visible"
                     customfontdemo:fontName="@string/font_circular_medium" />
 
@@ -1101,7 +1101,7 @@
                         android:background="@android:color/transparent"
                         android:inputType="number"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_15sdp"
+                        android:textSize="@dimen/_13sdp"
                         android:visibility="visible"
                         customfontdemo:fontName="@string/font_circular_book" />
 
@@ -1124,7 +1124,7 @@
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     android:text="கலந்து கொண்ட மாவட்ட அளவிலான பயிற்சியின் எண்ணிக்கை / Number of District Level training Attended"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/_15sdp"
+                    android:textSize="@dimen/_13sdp"
                     android:visibility="visible"
                     customfontdemo:fontName="@string/font_circular_medium" />
 
@@ -1149,7 +1149,7 @@
                         android:background="@android:color/transparent"
                         android:inputType="number"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_15sdp"
+                        android:textSize="@dimen/_13sdp"
                         android:visibility="visible"
                         customfontdemo:fontName="@string/font_circular_book" />
 
@@ -1172,7 +1172,7 @@
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     android:text="கலந்து கொண்ட தொகுதி அளவிலான பயிற்சியின் எண்ணிக்கை / Number of Block Level training Attended"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/_15sdp"
+                    android:textSize="@dimen/_13sdp"
                     android:visibility="visible"
                     customfontdemo:fontName="@string/font_circular_medium" />
 
@@ -1197,7 +1197,7 @@
                         android:background="@android:color/transparent"
                         android:inputType="number"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_15sdp"
+                        android:textSize="@dimen/_13sdp"
                         android:visibility="visible"
                         customfontdemo:fontName="@string/font_circular_book" />
 
@@ -1222,7 +1222,7 @@
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     android:text="வகை / Category"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/_15sdp"
+                    android:textSize="@dimen/_13sdp"
                     android:visibility="visible"
                     customfontdemo:fontName="@string/font_circular_medium" />
 
@@ -1245,7 +1245,7 @@
                         android:layout_marginLeft="15dp"
 
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_15sdp"
+                        android:textSize="@dimen/_13sdp"
                         android:visibility="visible"
                         customfontdemo:fontName="@string/font_circular_book" />
 
@@ -1280,7 +1280,7 @@
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     android:text="நிலை / Position"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/_15sdp"
+                    android:textSize="@dimen/_13sdp"
                     android:visibility="visible"
                     customfontdemo:fontName="@string/font_circular_medium" />
 
@@ -1305,7 +1305,7 @@
                         android:background="@android:color/transparent"
                         android:inputType="textPersonName"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_15sdp"
+                        android:textSize="@dimen/_13sdp"
                         android:visibility="visible"
                         customfontdemo:fontName="@string/font_circular_book" />
 

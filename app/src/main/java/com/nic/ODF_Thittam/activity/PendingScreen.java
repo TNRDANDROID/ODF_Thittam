@@ -153,10 +153,11 @@ public class PendingScreen extends AppCompatActivity implements Api.ServerRespon
         protected JSONObject doInBackground(ODF_Thittam... realTimeValue) {
             dbData.open();
             JSONArray track_data = new JSONArray();
+            JSONArray image_data = new JSONArray();
             ArrayList<ODF_Thittam> assets = dbData.getSavedWorkImage("upload",realTimeValue[0].getDistictCode(),realTimeValue[0].getBlockCode(),realTimeValue[0].getPvCode(),String.valueOf(realTimeValue[0].getWorkId()));
 
             if (assets.size() > 0) {
-                for (int i = 0; i < assets.size(); i++) {
+                for (int i = 0; i < 1; i++) {
                     JSONObject jsonObject = new JSONObject();
                     try {
                         String work_id = String.valueOf(assets.get(i).getWorkId());
@@ -179,20 +180,35 @@ public class PendingScreen extends AppCompatActivity implements Api.ServerRespon
                             prefManager.setTypeOfWork(AppConstant.MAIN_WORK);
                         }
                         jsonObject.put(AppConstant.WORK_STAGE_CODE,assets.get(i).getWorkStageCode());
-                        jsonObject.put(AppConstant.KEY_LATITUDE,assets.get(i).getLatitude());
-                        jsonObject.put(AppConstant.KEY_LONGITUDE,assets.get(i).getLongitude());
-                        jsonObject.put(AppConstant.KEY_CREATED_DATE,assets.get(i).getCreatedDate());
+                        for (int j = 0; j < assets.size(); j++) {
+                            JSONObject jsonObject1 = new JSONObject();
+                            jsonObject1.put("photo_captured_latitude",assets.get(j).getLatitude());
+                            jsonObject1.put("photo_captured_longitude",assets.get(j).getLongitude());
+                            jsonObject1.put(AppConstant.KEY_CREATED_DATE,assets.get(j).getCreatedDate());
 
-                        Bitmap bitmap = assets.get(i).getImage();
-                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, baos);
-                        byte[] imageInByte = baos.toByteArray();
-                        String image_str = Base64.encodeToString(imageInByte, Base64.DEFAULT);
+                            Bitmap bitmap = assets.get(i).getImage();
+                            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, baos);
+                            byte[] imageInByte = baos.toByteArray();
+                            String image_str = Base64.encodeToString(imageInByte, Base64.DEFAULT);
 
-                        jsonObject.put(AppConstant.KEY_IMAGES,image_str);
-                        jsonObject.put(AppConstant.KEY_IMAGE_REMARK,assets.get(i).getImageRemark());
+                            jsonObject1.put(AppConstant.KEY_IMAGES,image_str);
+                            jsonObject1.put(AppConstant.KEY_IMAGE_REMARK,assets.get(j).getImageRemark());
+                            image_data.put(jsonObject1);
+                        }
+
+                        jsonObject.put("images",image_data);
+
 
                         track_data.put(jsonObject);
+                        for(int k=0;k<track_data.length();k++){
+                            for(int l=k+1;l<track_data.length();l++){
+                                if (track_data.get(k) == track_data.get(l)) {
+                                    track_data.remove(l);
+                                    l--;
+                                }
+                            }
+                        }
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -266,19 +282,7 @@ public class PendingScreen extends AppCompatActivity implements Api.ServerRespon
                 }
                 else if (jsonObject.getString("STATUS").equalsIgnoreCase("OK") && jsonObject.getString("RESPONSE").equalsIgnoreCase("FAIL")) {
                     Utils.showAlert(this, jsonObject.getString("MESSAGE"));
-                    String type_of_work = prefManager.getTypeOfWork();
-                    /*dbData.open();
-                    if(type_of_work.equalsIgnoreCase(AppConstant.MAIN_WORK))
-                    {
-                        db.delete(DBHelper.SAVE_IMAGE, "dcode = ? and bcode = ? and pvcode = ? and work_id = ? and  type_of_work = ?", new String[]{prefManager.getDistrictCode(), prefManager.getBlockCode(), prefManager.getPvCode(), prefManager.getDeleteWorkId(),type_of_work});
-                        pendingScreenAdapter.removeSavedItem(prefManager.getDeleteAdapterPosition());
-                        pendingScreenAdapter.notifyDataSetChanged();
-                    }else if(type_of_work.equalsIgnoreCase(AppConstant.ADDITIONAL_WORK))
-                    {
-                        db.delete(DBHelper.SAVE_IMAGE, "dcode = ? and bcode = ? and pvcode = ? and work_id = ? and  type_of_work = ? and cd_work_no = ? and work_type_flag_le = ?", new String[]{prefManager.getDistrictCode(), prefManager.getBlockCode(), prefManager.getPvCode(), prefManager.getDeleteWorkId(),type_of_work,prefManager.getDeleteCdWorkNo(),prefManager.getDeleteCdWorkTypeFlag()});
-                        pendingScreenAdapter.removeSavedItem(prefManager.getDeleteAdapterPosition());
-                        pendingScreenAdapter.notifyDataSetChanged();
-                    }*/
+
                 }
                 Log.d("savedImage", "" + responseDecryptedBlockKey);
             }

@@ -149,5 +149,8 @@ public class AppConstant {
     public static String KEY_REGISTER_IFSC_CODE = "ifsccode";
     public static String KEY_REGISTER_MOTIVATOR_ID = "motivator_id";
     public static String KEY_MOTIVATOR_SCHEDULE_HISTORY = "motivator_schedule_history";
+    public static String KEY_MIN_NO_OF_PHOTOS = "min_no_of_photos";
+    public static String KEY_MAX_NO_OF_PHOTOS = "max_no_of_photos";
+
 
 }

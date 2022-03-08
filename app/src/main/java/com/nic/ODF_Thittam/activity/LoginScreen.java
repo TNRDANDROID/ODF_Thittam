@@ -162,6 +162,9 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
     }
 
     public void checkLoginScreen() {
+        loginScreenBinding.userName.setText("9655215865");
+        loginScreenBinding.password.setText("test123#$");
+
         final String username = loginScreenBinding.userName.getText().toString().trim();
         final String password = loginScreenBinding.password.getText().toString().trim();
         prefManager.setUserPassword(password);
@@ -315,6 +318,7 @@ Log.d("params",""+params);
             String status = responseObj.getString(AppConstant.KEY_STATUS);
             String response = responseObj.getString(AppConstant.KEY_RESPONSE);
 
+
             if ("LoginScreen".equals(urlType)) {
                 if (status.equalsIgnoreCase("OK")) {
                     if (response.equals("LOGIN_SUCCESS")) {
@@ -339,16 +343,17 @@ Log.d("params",""+params);
                         prefManager.setUserPassKey(decryptedKey);
                         showHomeScreen();
 
-                       /* String result=jsonObject.getString("odf_test_qualified");
+                        String result=jsonObject.getString("odf_test_qualified");
                         if(result.equals("N")){
                             Utils.showAlertResult(LoginScreen.this,"Attend The ODF Plus Qualifying Test");
                         }else if(result.equals("Y")){
                             showHomeScreen();
-                        }*/
+                        }
 
                     } else {
                         if (response.equals("LOGIN_FAILED")) {
-                            Utils.showAlert(this, "Invalid UserName Or Password");
+                            String message = responseObj.getString(AppConstant.KEY_MESSAGE);
+                            Utils.showAlert(this, message);
                         }
                     }
                 }

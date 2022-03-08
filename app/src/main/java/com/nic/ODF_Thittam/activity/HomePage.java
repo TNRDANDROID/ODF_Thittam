@@ -482,6 +482,8 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
                             stage.setWorkStageOrder(jsonArray.getJSONObject(i).getString(AppConstant.WORK_STAGE_ORDER));
                             stage.setWorkStageCode(jsonArray.getJSONObject(i).getString(AppConstant.WORK_STAGE_CODE));
                             stage.setWorkStageName(jsonArray.getJSONObject(i).getString(AppConstant.WORK_SATGE_NAME));
+                            stage.setMin_no_of_photos(jsonArray.getJSONObject(i).getString("min_photos"));
+                            stage.setMax_no_of_photos(jsonArray.getJSONObject(i).getString("max_photos"));
 
                             dbData.insertStage(stage);
                         } catch (JSONException e) {
@@ -546,7 +548,7 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
     }
 
     public void viewVillageList() {
-        Intent intent = new Intent(this, VillageListScreen.class);
+        Intent intent = new Intent(this, WorkListScreen.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
     }

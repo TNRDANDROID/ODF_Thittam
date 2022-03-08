@@ -73,6 +73,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 "work_type_id  INTEGER," +
                 "work_stage_order  INTEGER," +
                 "work_stage_code  INTEGER," +
+                "min_no_of_photos  TEXT," +
+                "max_no_of_photos  TEXT," +
                 "work_stage_name TEXT)");
 
         db.execSQL("CREATE TABLE " + ADDITIONAL_WORK_STAGE_TABLE + " ("

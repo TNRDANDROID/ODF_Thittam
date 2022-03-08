@@ -241,6 +241,9 @@ public class WorkListAdapter extends PagedListAdapter<ODF_Thittam,WorkListAdapte
         });
 
         final String work_id = String.valueOf(WorkListValuesFiltered.get(position).getWorkId());
+        final String dcode = String.valueOf(WorkListValuesFiltered.get(position).getDistictCode());
+        final String bcode = String.valueOf(WorkListValuesFiltered.get(position).getBlockCode());
+        final String pvcode = String.valueOf(WorkListValuesFiltered.get(position).getPvCode());
 
         ArrayList<ODF_Thittam> imageOffline = dbData.selectImage(dcode,bcode,pvcode,work_id,AppConstant.MAIN_WORK,"","");
 
@@ -254,7 +257,7 @@ public class WorkListAdapter extends PagedListAdapter<ODF_Thittam,WorkListAdapte
         holder.adapterWorkListBinding.viewOfflineImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                viewOfflineImages(work_id,AppConstant.MAIN_WORK,"Offline","","","");
+                viewOfflineImages(work_id,AppConstant.MAIN_WORK,"Offline",dcode,bcode,pvcode);
             }
         });
         if (WorkListValuesFiltered.get(position).getImageAvailable().equalsIgnoreCase("Y")) {
@@ -331,6 +334,9 @@ public class WorkListAdapter extends PagedListAdapter<ODF_Thittam,WorkListAdapte
         intent.putExtra(AppConstant.WORK_ID,String.valueOf(WorkListValuesFiltered.get(pos).getWorkId()));
         intent.putExtra(AppConstant.WORK_GROUP_ID,WorkListValuesFiltered.get(pos).getWorkGroupID());
         intent.putExtra(AppConstant.WORK_TYPE_ID,WorkListValuesFiltered.get(pos).getWorkTypeID());
+        intent.putExtra(AppConstant.DISTRICT_CODE,WorkListValuesFiltered.get(pos).getDistictCode());
+        intent.putExtra(AppConstant.BLOCK_CODE,WorkListValuesFiltered.get(pos).getBlockCode());
+        intent.putExtra(AppConstant.PV_CODE,WorkListValuesFiltered.get(pos).getPvCode());
         intent.putExtra(AppConstant.CURRENT_STAGE_OF_WORK,String.valueOf(WorkListValuesFiltered.get(pos).getCurrentStage()));
         activity.startActivity(intent);
         activity.overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
@@ -340,6 +346,9 @@ public class WorkListAdapter extends PagedListAdapter<ODF_Thittam,WorkListAdapte
         Activity activity = (Activity) context;
         Intent intent = new Intent(activity, AdditionalWorkScreen.class);
         intent.putExtra(AppConstant.WORK_ID,String.valueOf(WorkListValuesFiltered.get(pos).getWorkId()));
+        intent.putExtra(AppConstant.DISTRICT_CODE,WorkListValuesFiltered.get(pos).getDistictCode());
+        intent.putExtra(AppConstant.BLOCK_CODE,WorkListValuesFiltered.get(pos).getBlockCode());
+        intent.putExtra(AppConstant.PV_CODE,WorkListValuesFiltered.get(pos).getPvCode());
         activity.startActivity(intent);
         activity.overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
     }
@@ -357,6 +366,9 @@ public class WorkListAdapter extends PagedListAdapter<ODF_Thittam,WorkListAdapte
 
         if(OnOffType.equalsIgnoreCase("Offline")){
             intent.putExtra(AppConstant.TYPE_OF_WORK,type_of_work);
+            intent.putExtra(AppConstant.DISTRICT_CODE,dcode);
+            intent.putExtra(AppConstant.BLOCK_CODE,bcode);
+            intent.putExtra(AppConstant.PV_CODE,pvcode);
             activity.startActivity(intent);
         }
         else if(OnOffType.equalsIgnoreCase("Online")) {

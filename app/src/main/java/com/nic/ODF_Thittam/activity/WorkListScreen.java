@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.SearchView;
 
+import androidx.annotation.IntegerRes;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -72,7 +73,7 @@ public class WorkListScreen extends AppCompatActivity implements View.OnClickLis
             e.printStackTrace();
         }
         prefManager = new PrefManager(this);
-        prefManager.setPvCode(getIntent().getStringExtra(AppConstant.PV_CODE));
+       // prefManager.setPvCode(getIntent().getStringExtra(AppConstant.PV_CODE));
         setSupportActionBar(activityWorkListBinding.toolbar);
        initRecyclerView();
         workListAdapter = new WorkListAdapter(WorkListScreen.this, WorkList,dbData);
@@ -126,13 +127,21 @@ public class WorkListScreen extends AppCompatActivity implements View.OnClickLis
             }
         });
 
+        if(Utils.isOnline()){
+            getWorkList();
+        }
+        else {
+            // initRecyclerView();
+            new fetchScheduletask().execute();
+        }
+
     }
 
     private void initRecyclerView() {
         activityWorkListBinding.workList.setVisibility(View.VISIBLE);
         recyclerView = activityWorkListBinding.workList;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.addItemDecoration(new MyDividerItemDecoration(this, LinearLayoutManager.VERTICAL, 20));
+        recyclerView.addItemDecoration(new MyDividerItemDecoration(this, LinearLayoutManager.VERTICAL,0));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setNestedScrollingEnabled(false);
 
@@ -145,7 +154,7 @@ public class WorkListScreen extends AppCompatActivity implements View.OnClickLis
         protected ArrayList<ODF_Thittam> doInBackground(Void... params) {
             dbData.open();
             WorkList = new ArrayList<>();
-            WorkList = dbData.getAllWorkLIst("fetch",pref_finYear,prefManager.getDistrictCode(),prefManager.getBlockCode(),prefManager.getPvCode(),prefManager.getKeySpinnerSelectedSchemeSeqId());
+            WorkList = dbData.getAllWorkLIst("fetch");
             Log.d("WORKLIST_COUNT", String.valueOf(WorkList.size()));
             return WorkList;
         }
@@ -359,7 +368,7 @@ public class WorkListScreen extends AppCompatActivity implements View.OnClickLis
 //            if(Utils.isOnline()){
 //                dbData.deleteWorkListTable();
 //            }
-            ArrayList<ODF_Thittam> workList_count = dbData.getAllWorkLIst("insert",pref_finYear,prefManager.getDistrictCode(),prefManager.getBlockCode(),prefManager.getPvCode(),0);
+            ArrayList<ODF_Thittam> workList_count = dbData.getAllWorkLIst("insert");
            if (workList_count.size() <= 0) {
                 if (params.length > 0) {
                     JSONArray jsonArray = new JSONArray();
@@ -437,7 +446,7 @@ public class WorkListScreen extends AppCompatActivity implements View.OnClickLis
 //            if(Utils.isOnline()){
 //                dbData.deleteAdditionalListTable();
 //            }
-            ArrayList<ODF_Thittam> workList_count = dbData.getAllAdditionalWork("",pref_finYear,prefManager.getDistrictCode(),prefManager.getBlockCode(),prefManager.getPvCode(),prefManager.getKeySpinnerSelectedSchemeSeqId());
+            ArrayList<ODF_Thittam> workList_count = dbData.getAllAdditionalWork("","","","");
             if (workList_count.size() <= 0) {
                 if (params.length > 0) {
                     JSONArray jsonArray = new JSONArray();
@@ -449,21 +458,20 @@ public class WorkListScreen extends AppCompatActivity implements View.OnClickLis
                     for (int i = 0; i < jsonArray.length(); i++) {
                         ODF_Thittam additioanlList = new ODF_Thittam();
                         try {
-
-                            additioanlList.setDistictCode(prefManager.getDistrictCode());
-                            additioanlList.setBlockCode(prefManager.getBlockCode());
-                            additioanlList.setPvCode(prefManager.getPvCode());
+                            additioanlList.setDistictCode(jsonArray.getJSONObject(i).getString(AppConstant.DISTRICT_CODE));
+                            additioanlList.setBlockCode(jsonArray.getJSONObject(i).getString(AppConstant.BLOCK_CODE));
+                            additioanlList.setPvCode(jsonArray.getJSONObject(i).getString(AppConstant.PV_CODE));
                             additioanlList.setSchemeID(jsonArray.getJSONObject(i).getInt(AppConstant.SCHEME_ID));
                             additioanlList.setFinancialYear(jsonArray.getJSONObject(i).getString(AppConstant.FINANCIAL_YEAR));
-                            additioanlList.setWorkId(jsonArray.getJSONObject(i).getInt(AppConstant.WORK_ID));
+                            additioanlList.setWorkId(Utils.getValue(jsonArray.getJSONObject(i).getString(AppConstant.WORK_ID)));
                             additioanlList.setWorkGroupID(jsonArray.getJSONObject(i).getString(AppConstant.WORK_GROUP_ID));
                             additioanlList.setRoadName(jsonArray.getJSONObject(i).getString(AppConstant.ROAD_NAME));
-                            additioanlList.setCdWorkNo(jsonArray.getJSONObject(i).getInt(AppConstant.CD_WORK_NO));
-                            additioanlList.setCdCode(jsonArray.getJSONObject(i).getInt(AppConstant.CD_CODE));
+                            additioanlList.setCdWorkNo(Utils.getValue(jsonArray.getJSONObject(i).getString(AppConstant.CD_WORK_NO)));
+                            additioanlList.setCdCode(Utils.getValue(jsonArray.getJSONObject(i).getString(AppConstant.CD_CODE)));
                             additioanlList.setCdName(jsonArray.getJSONObject(i).getString(AppConstant.CD_NAME));
                             additioanlList.setChainageMeter(jsonArray.getJSONObject(i).getString(AppConstant.CHAINAGE_METER));
-                            additioanlList.setCurrentStage(jsonArray.getJSONObject(i).getInt(AppConstant.CURRENT_STAGE_OF_WORK));
-                            additioanlList.setCdTypeId(jsonArray.getJSONObject(i).getInt(AppConstant.CD_TYPE_ID));
+                            additioanlList.setCurrentStage(Utils.getValue(jsonArray.getJSONObject(i).getString(AppConstant.CURRENT_STAGE_OF_WORK)));
+                            additioanlList.setCdTypeId(Utils.getValue(jsonArray.getJSONObject(i).getString(AppConstant.CD_TYPE_ID)));
                             additioanlList.setWorkTypeFlagLe(jsonArray.getJSONObject(i).getString(AppConstant.WORK_TYPE_FLAG_LE));
                             additioanlList.setWorkStageName(jsonArray.getJSONObject(i).getString(AppConstant.WORK_SATGE_NAME));
                             additioanlList.setImageAvailable(jsonArray.getJSONObject(i).getString(AppConstant.KEY_IMAGE_AVAILABLE));

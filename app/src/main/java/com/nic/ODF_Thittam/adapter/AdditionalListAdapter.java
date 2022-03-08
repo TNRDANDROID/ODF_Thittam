@@ -222,6 +222,9 @@ public class AdditionalListAdapter extends PagedListAdapter<ODF_Thittam, Additio
         intent.putExtra(AppConstant.CURRENT_STAGE_OF_WORK,String.valueOf(AdditionalListValuesFiltered.get(pos).getCurrentStage()));
         intent.putExtra(AppConstant.CD_TYPE_ID,String.valueOf(AdditionalListValuesFiltered.get(pos).getCdTypeId()));
         intent.putExtra(AppConstant.WORK_TYPE_FLAG_LE,AdditionalListValuesFiltered.get(pos).getWorkTypeFlagLe());
+        intent.putExtra(AppConstant.DISTRICT_CODE,AdditionalListValuesFiltered.get(pos).getDistictCode());
+        intent.putExtra(AppConstant.BLOCK_CODE,AdditionalListValuesFiltered.get(pos).getBlockCode());
+        intent.putExtra(AppConstant.PV_CODE,AdditionalListValuesFiltered.get(pos).getPvCode());
         activity.startActivity(intent);
         activity.overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
     }

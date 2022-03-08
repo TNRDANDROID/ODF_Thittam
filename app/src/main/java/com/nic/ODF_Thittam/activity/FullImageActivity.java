@@ -78,9 +78,12 @@ public class FullImageActivity extends AppCompatActivity implements View.OnClick
         @Override
         protected ArrayList<ODF_Thittam> doInBackground(Void... params) {
 
-            final String dcode = prefManager.getDistrictCode();
+            /*final String dcode = prefManager.getDistrictCode();
             final String bcode = prefManager.getBlockCode();
-            final String pvcode = prefManager.getPvCode();
+            final String pvcode = prefManager.getPvCode();*/
+            final String dcode = getIntent().getStringExtra(AppConstant.DISTRICT_CODE);
+            final String bcode = getIntent().getStringExtra(AppConstant.BLOCK_CODE);
+            final String pvcode = getIntent().getStringExtra(AppConstant.PV_CODE);
             String type_of_work = "", cd_work_no = "", work_type_flag_le = "";
 
             if(OnOffType.equalsIgnoreCase("Offline")){

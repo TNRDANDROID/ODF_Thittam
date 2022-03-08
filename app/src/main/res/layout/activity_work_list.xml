@@ -84,7 +84,7 @@
                     android:text="Select Financial Year"
                     android:textColor="@android:color/holo_red_dark"
                     android:textSize="@dimen/_15sdp"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     customfontdemo:fontName="@string/font_circular_bold" />
 
                 <RelativeLayout
@@ -97,7 +97,7 @@
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     android:background="@drawable/rectangle_box"
                     android:orientation="vertical"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
                     <TextView
 
@@ -125,6 +125,7 @@
                 </RelativeLayout>
 
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/select_scheme_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -138,6 +139,7 @@
                     customfontdemo:fontName="@string/font_circular_bold" />
 
                 <RelativeLayout
+                    android:visibility="gone"
                     android:id="@+id/scheme_layout"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/header"

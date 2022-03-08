@@ -527,6 +527,25 @@ public class ODF_Thittam {
     private String imageAvailable;
     private String createdDate;
     private String workTypeCode;
+    private String min_no_of_photos;
+    private String max_no_of_photos;
+
+
+    public String getMin_no_of_photos() {
+        return min_no_of_photos;
+    }
+
+    public void setMin_no_of_photos(String min_no_of_photos) {
+        this.min_no_of_photos = min_no_of_photos;
+    }
+
+    public String getMax_no_of_photos() {
+        return max_no_of_photos;
+    }
+
+    public void setMax_no_of_photos(String max_no_of_photos) {
+        this.max_no_of_photos = max_no_of_photos;
+    }
 
     public String getWorkTypeCode() {
         return workTypeCode;

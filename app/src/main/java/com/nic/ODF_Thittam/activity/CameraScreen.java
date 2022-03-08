@@ -3,6 +3,7 @@ package com.nic.ODF_Thittam.activity;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -14,6 +15,7 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.media.ExifInterface;
@@ -23,10 +25,17 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -34,6 +43,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.VolleyError;
 import com.karumi.dexter.Dexter;
@@ -43,6 +54,7 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.nic.ODF_Thittam.R;
 import com.nic.ODF_Thittam.adapter.CommonAdapter;
+import com.nic.ODF_Thittam.adapter.CountAdapter;
 import com.nic.ODF_Thittam.api.Api;
 import com.nic.ODF_Thittam.api.ServerResponse;
 import com.nic.ODF_Thittam.constant.AppConstant;
@@ -54,7 +66,10 @@ import com.nic.ODF_Thittam.session.PrefManager;
 import com.nic.ODF_Thittam.support.MyEditTextView;
 import com.nic.ODF_Thittam.support.MyLocationListener;
 import com.nic.ODF_Thittam.utils.CameraUtils;
+import com.nic.ODF_Thittam.utils.FontCache;
 import com.nic.ODF_Thittam.utils.Utils;
+
+import org.json.JSONArray;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -99,6 +114,15 @@ public class CameraScreen extends AppCompatActivity implements View.OnClickListe
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     String type_of_work;
 
+    String no_of_photos="";
+    String min_no_of_photos="";
+    String max_no_of_photos="";
+    CountAdapter countAdapter;
+    ImageView imageView, image_view_preview;
+    TextView latitude_text, longtitude_text,text_start_end_middle;
+    EditText myEditTextView;
+    String back_flag="";
+
 
 
     @Override
@@ -128,11 +152,15 @@ public class CameraScreen extends AppCompatActivity implements View.OnClickListe
         cameraScreenBinding.homeImg.setOnClickListener(this);
         cameraScreenBinding.btnSave.setOnClickListener(this);
 
+        cameraScreenBinding.countRecycler.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
         cameraScreenBinding.stage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position > 0) {
                     pref_stage = StageList.get(position).getWorkStageName();
+                    min_no_of_photos = StageList.get(position).getMin_no_of_photos();
+                    max_no_of_photos = StageList.get(position).getMax_no_of_photos();
+                    loadRecycler();
                 }
                 else {
                     pref_stage="";
@@ -162,9 +190,9 @@ public class CameraScreen extends AppCompatActivity implements View.OnClickListe
         dbData.open();
         long id = 0; String whereClause = "";String[] whereArgs = null;
         String work_id = getIntent().getStringExtra(AppConstant.WORK_ID);
-        String dcode = prefManager.getDistrictCode();
-        String bcode = prefManager.getBlockCode();
-        String pvcode = prefManager.getPvCode();
+        String dcode = getIntent().getStringExtra(AppConstant.DISTRICT_CODE);
+        String bcode = getIntent().getStringExtra(AppConstant.BLOCK_CODE);
+        String pvcode = getIntent().getStringExtra(AppConstant.PV_CODE);
 //        BigImageView imageView = (BigImageView) findViewById(R.id.image_view);
         ImageView imageView = (ImageView) findViewById(R.id.image_view);
         byte[] imageInByte = new byte[0];
@@ -289,6 +317,8 @@ public class CameraScreen extends AppCompatActivity implements View.OnClickListe
                     String stage = Stage.getString(Stage.getColumnIndexOrThrow(AppConstant.WORK_SATGE_NAME));
                     stageList.setWorkStageName(stage);
                     stageList.setWorkStageCode(Stage.getString(Stage.getColumnIndexOrThrow(AppConstant.WORK_STAGE_CODE)));
+                    stageList.setMin_no_of_photos(Stage.getString(Stage.getColumnIndexOrThrow(AppConstant.KEY_MIN_NO_OF_PHOTOS)));
+                    stageList.setMax_no_of_photos(Stage.getString(Stage.getColumnIndexOrThrow(AppConstant.KEY_MAX_NO_OF_PHOTOS)));
                     StageList.add(stageList);
                 } while (Stage.moveToNext());
             }
@@ -451,6 +481,10 @@ public class CameraScreen extends AppCompatActivity implements View.OnClickListe
                     rotatedBitmap = bitmap;
             }
             cameraScreenBinding.imageView.setImageBitmap(rotatedBitmap);
+            image_view_preview.setVisibility(View.GONE);
+            imageView.setVisibility(View.VISIBLE);
+            latitude_text.setText(""+offlatTextValue);
+            longtitude_text.setText(""+offlongTextValue);
 //            cameraScreenBinding.imageView.showImage((getImageUri(rotatedBitmap)));
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -482,6 +516,11 @@ public class CameraScreen extends AppCompatActivity implements View.OnClickListe
                     cameraScreenBinding.imageView.setImageBitmap(photo);
                     cameraScreenBinding.imageViewPreview.setVisibility(View.GONE);
                     cameraScreenBinding.imageView.setVisibility(View.VISIBLE);
+                    imageView.setImageBitmap(photo);
+                    image_view_preview.setVisibility(View.GONE);
+                    imageView.setVisibility(View.VISIBLE);
+                    latitude_text.setText(""+offlatTextValue);
+                    longtitude_text.setText(""+offlongTextValue);
                 }
                 else {
                     // Refreshing the gallery
@@ -561,6 +600,307 @@ public class CameraScreen extends AppCompatActivity implements View.OnClickListe
         super.onBackPressed();
         setResult(Activity.RESULT_CANCELED);
         overridePendingTransition(R.anim.slide_enter, R.anim.slide_exit);
+    }
+
+
+    public void loadRecycler(){
+        if(min_no_of_photos.equals("")){
+            min_no_of_photos="1";
+        }
+        if(max_no_of_photos.equals("")){
+            max_no_of_photos="1";
+        }
+        try{
+            int count_size=Integer.parseInt(max_no_of_photos)-Integer.parseInt(min_no_of_photos);
+            int mini_size=Integer.parseInt(min_no_of_photos);
+            if(count_size==1){
+                count_size=2;
+            }
+            else if(count_size==0){
+                count_size=1;
+            }
+            countAdapter = new CountAdapter(this,count_size,mini_size);
+            cameraScreenBinding.countRecycler.setAdapter(countAdapter);
+        }catch (NumberFormatException e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void onClickedItems(String no_of_photos_){
+        no_of_photos=no_of_photos_;
+        imageWithDescription("",cameraScreenBinding.scrollView);
+    }
+
+    public void imageWithDescription(final String type, final ScrollView scrollView) {
+        //imageboolean = true;
+        //dataset = new JSONObject();
+
+        final Dialog dialog = new Dialog(this,
+                R.style.AppTheme);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.add_photo);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
+        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
+        lp.dimAmount = 0.7f;
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog.show();
+
+
+        final LinearLayout mobileNumberLayout = (LinearLayout) dialog.findViewById(R.id.mobile_number_layout);
+        TextView cancel = (TextView) dialog.findViewById(R.id.close);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        Button done = (Button) dialog.findViewById(R.id.btn_save_inspection);
+        TextView tv_create_asset_title = (TextView) dialog.findViewById(R.id.tv_create_asset_title);
+        tv_create_asset_title.setText("You Must Capture "+no_of_photos+" Photos");
+        done.setGravity(Gravity.CENTER);
+        done.setVisibility(View.VISIBLE);
+        done.setTypeface(FontCache.getInstance(this).getFont(FontCache.Font.HEAVY));
+
+        done.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if(viewArrayList.size()==Integer.parseInt(no_of_photos)) {
+                    JSONArray imageJson = new JSONArray();
+                    dbData.open();
+                    String work_id = getIntent().getStringExtra(AppConstant.WORK_ID);
+                    String dcode = getIntent().getStringExtra(AppConstant.DISTRICT_CODE);
+                    String bcode = getIntent().getStringExtra(AppConstant.BLOCK_CODE);
+                    String pvcode = getIntent().getStringExtra(AppConstant.PV_CODE);
+                    long rowInserted = 0;
+                    int childCount = mobileNumberLayout.getChildCount();
+                    int count = 0;
+                    int sl_no = 0;
+                    String whereClause = "";String[] whereArgs = null;
+                    if (childCount > 0) {
+                        for (int i = 0; i < childCount; i++) {
+                            JSONArray imageArray = new JSONArray();
+
+                            View vv = mobileNumberLayout.getChildAt(i);
+                            imageView = vv.findViewById(R.id.image_view);
+                            myEditTextView = vv.findViewById(R.id.description);
+                            latitude_text = vv.findViewById(R.id.latitude);
+                            longtitude_text = vv.findViewById(R.id.longtitude);
+
+
+                            if (imageView.getDrawable() != null) {
+                                //if (!myEditTextView.getText().toString().equals("")) {
+                                count = count + 1;
+                                sl_no = sl_no + 1;
+                                byte[] imageInByte = new byte[0];
+                                String image_str = "";
+                                String description = "";
+                                try {
+                                    description = myEditTextView.getText().toString();
+                                    Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+                                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                                    bitmap.compress(Bitmap.CompressFormat.JPEG, 90, baos);
+                                    imageInByte = baos.toByteArray();
+                                    image_str = Base64.encodeToString(imageInByte, Base64.DEFAULT);
+
+                                } catch (Exception e) {
+                                    //imageboolean = false;
+                                    Utils.showAlert(CameraScreen.this, getResources().getString(R.string.at_least_capture_one_photo));
+                                    //e.printStackTrace();
+                                }
+
+                                if (MyLocationListener.latitude > 0) {
+                                    offlatTextValue = MyLocationListener.latitude;
+                                    offlongTextValue = MyLocationListener.longitude;
+                                }
+
+                                // Toast.makeText(getApplicationContext(),str,Toast.LENGTH_LONG).show();
+                                ContentValues values = new ContentValues();
+                                values.put(AppConstant.WORK_ID, work_id);
+                                values.put(AppConstant.WORK_GROUP_ID, getIntent().getStringExtra(AppConstant.WORK_GROUP_ID));
+                                values.put(AppConstant.WORK_TYPE_ID, getIntent().getStringExtra(AppConstant.WORK_TYPE_ID));
+                                values.put(AppConstant.TYPE_OF_WORK, type_of_work);
+                                if (type_of_work.equalsIgnoreCase(AppConstant.ADDITIONAL_WORK)) {
+                                    values.put(AppConstant.CD_WORK_NO, getIntent().getStringExtra(AppConstant.CD_WORK_NO));
+                                    values.put(AppConstant.WORK_TYPE_FLAG_LE, getIntent().getStringExtra(AppConstant.WORK_TYPE_FLAG_LE));
+                                }
+                                values.put(AppConstant.DISTRICT_CODE, dcode);
+                                values.put(AppConstant.BLOCK_CODE, bcode);
+                                values.put(AppConstant.PV_CODE, pvcode);
+                                values.put(AppConstant.WORK_STAGE_CODE, StageList.get(cameraScreenBinding.stage.getSelectedItemPosition()).getWorkStageCode());
+                                values.put(AppConstant.WORK_SATGE_NAME, StageList.get(cameraScreenBinding.stage.getSelectedItemPosition()).getWorkStageName());
+                                values.put(AppConstant.KEY_LATITUDE, latitude_text.getText().toString());
+                                values.put(AppConstant.KEY_LONGITUDE, longtitude_text.getText().toString());
+                                values.put(AppConstant.KEY_IMAGES, image_str.trim());
+                                values.put(AppConstant.KEY_IMAGE_REMARK, description);
+                                values.put(AppConstant.KEY_CREATED_DATE, sdf.format(new Date()));
+
+
+                                if (type_of_work.equalsIgnoreCase(AppConstant.MAIN_WORK)) {
+                                    whereClause = "dcode = ? and bcode = ? and pvcode = ? and work_id = ? and type_of_work = ?";
+                                    whereArgs = new String[]{dcode, bcode, pvcode, work_id, type_of_work};
+                                    dbData.open();
+                                    ArrayList<ODF_Thittam> imageOffline = dbData.selectImage(dcode, bcode, pvcode, work_id, AppConstant.MAIN_WORK, "", "");
+
+                                    if (imageOffline.size() < 1) {
+                                        rowInserted = db.insert(DBHelper.SAVE_IMAGE, null, values);
+                                    } else {
+                                        rowInserted = db.update(DBHelper.SAVE_IMAGE, values, whereClause, whereArgs);
+                                    }
+                                }
+                                else if (type_of_work.equalsIgnoreCase(AppConstant.ADDITIONAL_WORK)) {
+
+                                    String cd_work_no = getIntent().getStringExtra(AppConstant.CD_WORK_NO);
+                                    String work_type_flag_le = getIntent().getStringExtra(AppConstant.WORK_TYPE_FLAG_LE);
+
+                                    whereClause = "dcode = ? and bcode = ? and pvcode = ? and work_id = ? and type_of_work = ? and cd_work_no = ?";
+                                    whereArgs = new String[]{dcode, bcode, pvcode, work_id, type_of_work, cd_work_no};
+
+                                    ArrayList<ODF_Thittam> imageOffline = dbData.selectImage(dcode, bcode, pvcode, work_id, AppConstant.ADDITIONAL_WORK, cd_work_no, work_type_flag_le);
+
+                                    if (imageOffline.size() < 1) {
+                                        rowInserted = db.insert(DBHelper.SAVE_IMAGE, null, values);
+                                    } else {
+                                        rowInserted = db.update(DBHelper.SAVE_IMAGE, values, whereClause, whereArgs);
+                                    }
+                                }
+
+
+                                Log.d("insIdsaveImageLatLong", String.valueOf(rowInserted));
+
+
+                                if (count == childCount) {
+                                    if (rowInserted > 0) {
+
+                                        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+                                        dialog.dismiss();
+                                        //Toast.makeText(TakePhotoScreen.this, getResources().getString(R.string.inserted_success), Toast.LENGTH_SHORT).show();
+                                        Toasty.success(CameraScreen.this, "Success!", Toast.LENGTH_LONG, true).show();
+                                        back_flag="yes";
+                                        //Toasty.success(TakePhotoScreen.this, getResources().getString(R.string.inserted_success), Toasty.LENGTH_SHORT);
+                                        onBackPressed();
+                                    }
+
+                                }
+
+                                /*}
+                            else {
+                                    Utils.showAlert(TakePhotoScreen.this, getResources().getString(R.string.please_enter_description));
+                                }*/
+                            }
+                            else {
+                                Utils.showAlert(CameraScreen.this, getResources().getString(R.string.please_capture_image));
+                            }
+
+
+                        }
+
+
+                    }
+
+                    focusOnView(scrollView);
+                }
+                else {
+                    Utils.showAlert(CameraScreen.this, "Take Required Number of Photos");
+                }
+
+            }
+        });
+        Button btnAddMobile = (Button) dialog.findViewById(R.id.btn_add);
+        btnAddMobile.setTypeface(FontCache.getInstance(this).getFont(FontCache.Font.MEDIUM));
+        viewArrayList.clear();
+        btnAddMobile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(viewArrayList.size()<Integer.parseInt(no_of_photos)) {
+                    if (imageView.getDrawable() != null && viewArrayList.size() > 0) {
+                        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+                        updateView(CameraScreen.this, mobileNumberLayout, "", type);
+                    } else {
+                        Utils.showAlert(CameraScreen.this, getResources().getString(R.string.first_capture_image_add_another));
+                    }
+                }
+                else {
+                    Utils.showAlert(CameraScreen.this, getResources().getString(R.string.maximum_photos_reached));
+
+                }
+            }
+        });
+        updateView(this, mobileNumberLayout, "", type);
+
+    }
+
+    private final void focusOnView(final ScrollView your_scrollview) {
+        your_scrollview.post(new Runnable() {
+            @Override
+            public void run() {
+                your_scrollview.fullScroll(View.FOCUS_DOWN);
+                //your_scrollview.scrollTo(0, your_EditBox.getY());
+            }
+        });
+    }
+    //Method for update single view based on email or mobile type
+    public View updateView(final Activity activity, final LinearLayout emailOrMobileLayout, final String values, final String type) {
+        final View hiddenInfo = activity.getLayoutInflater().inflate(R.layout.image_with_description_new, emailOrMobileLayout, false);
+        final ImageView imageView_close = (ImageView) hiddenInfo.findViewById(R.id.imageView_close);
+        imageView = (ImageView) hiddenInfo.findViewById(R.id.image_view);
+        image_view_preview = (ImageView) hiddenInfo.findViewById(R.id.image_view_preview);
+        myEditTextView = (EditText) hiddenInfo.findViewById(R.id.description);
+        latitude_text = hiddenInfo.findViewById(R.id.latitude);
+        longtitude_text = hiddenInfo.findViewById(R.id.longtitude);
+
+
+
+
+        imageView_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    imageView.setVisibility(View.VISIBLE);
+                    if (viewArrayList.size() != 1) {
+                        ((LinearLayout) hiddenInfo.getParent()).removeView(hiddenInfo);
+                        viewArrayList.remove(hiddenInfo);
+                    }
+
+                } catch (IndexOutOfBoundsException a) {
+                    a.printStackTrace();
+                }
+            }
+        });
+        image_view_preview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                getLatLong();
+
+
+
+
+
+
+            }
+        });
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                getLatLong();
+
+            }
+        });
+        emailOrMobileLayout.addView(hiddenInfo);
+
+        View vv = emailOrMobileLayout.getChildAt(viewArrayList.size());
+        EditText myEditTextView1 = (EditText) vv.findViewById(R.id.description);
+        //myEditTextView1.setSelection(myEditTextView1.length());
+        myEditTextView1.requestFocus();
+        viewArrayList.add(hiddenInfo);
+        return hiddenInfo;
     }
 
 

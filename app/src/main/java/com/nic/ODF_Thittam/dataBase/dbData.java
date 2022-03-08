@@ -320,6 +320,8 @@ public class dbData {
         values.put(AppConstant.WORK_STAGE_ORDER, ODF_Thittam.getWorkStageOrder());
         values.put(AppConstant.WORK_STAGE_CODE, ODF_Thittam.getWorkStageCode());
         values.put(AppConstant.WORK_SATGE_NAME, ODF_Thittam.getWorkStageName());
+        values.put(AppConstant.KEY_MIN_NO_OF_PHOTOS, ODF_Thittam.getMin_no_of_photos());
+        values.put(AppConstant.KEY_MAX_NO_OF_PHOTOS, ODF_Thittam.getMax_no_of_photos());
 
         long id = db.insert(DBHelper.WORK_STAGE_TABLE, null, values);
         Log.d("Inserted_id_Stage", String.valueOf(id));
@@ -350,6 +352,10 @@ public class dbData {
 
                     card.setWorkStageName(cursor.getString(cursor
                             .getColumnIndexOrThrow(AppConstant.WORK_SATGE_NAME)));
+                    card.setMin_no_of_photos(cursor.getString(cursor
+                            .getColumnIndexOrThrow(AppConstant.KEY_MIN_NO_OF_PHOTOS)));
+                    card.setMax_no_of_photos(cursor.getString(cursor
+                            .getColumnIndexOrThrow(AppConstant.KEY_MAX_NO_OF_PHOTOS)));
 
                     cards.add(card);
                 }
@@ -457,16 +463,18 @@ public class dbData {
         return ODF_Thittam;
     }
 
-    public ArrayList<ODF_Thittam> getAllWorkLIst(String purpose, String fin_year, String dcode, String bcode, String pvcode,Integer schemeSeqId) {
+    public ArrayList<ODF_Thittam> getAllWorkLIst(String purpose) {
 
         ArrayList<ODF_Thittam> cards = new ArrayList<>();
         Cursor cursor = null;
         String condition = "";
 
         if(purpose.equalsIgnoreCase("fetch")) {
-            condition = " where fin_year = '" + fin_year + "' and dcode = "+dcode+" and bcode = "+bcode+ " and pvcode = "+pvcode+ " and scheme_id = "+schemeSeqId+ " and current_stage_of_work != 10";
+            //condition = " where fin_year = '" + fin_year + "' and dcode = "+dcode+" and bcode = "+bcode+ " and pvcode = "+pvcode+ " and scheme_id = "+schemeSeqId+ " and current_stage_of_work != 10";
+            condition = " where current_stage_of_work != 10";
         }else{
-            condition = " where fin_year = '" + fin_year + "' and dcode = "+dcode+" and bcode = "+bcode+ " and pvcode = "+pvcode+ " and current_stage_of_work != 10";
+            //condition = " where fin_year = '" + fin_year + "' and dcode = "+dcode+" and bcode = "+bcode+ " and pvcode = "+pvcode+ " and current_stage_of_work != 10";
+            condition = " where current_stage_of_work != 10";
 
         }
 
@@ -551,7 +559,7 @@ public class dbData {
         return ODF_Thittam;
     }
 
-    public ArrayList<ODF_Thittam> getAllAdditionalWork(String work_id,String fin_year, String dcode, String bcode, String pvcode,Integer schemeSeqId) {
+    public ArrayList<ODF_Thittam> getAllAdditionalWork(String work_id,String dcode,String bcode,String pvcode) {
 
         ArrayList<ODF_Thittam> cards = new ArrayList<>();
         Cursor cursor = null;
@@ -559,9 +567,12 @@ public class dbData {
         String condition = "";
 
         if (work_id != "") {
-            condition = " where work_id = " + work_id + " and fin_year = '" + fin_year + "' and dcode = " + dcode + " and bcode = " + bcode + " and pvcode = " + pvcode+ " and scheme_id = " + schemeSeqId+ " and current_stage_of_work != 10";
+            //condition = " where work_id = " + work_id + " and fin_year = '" + fin_year + "' and dcode = " + dcode + " and bcode = " + bcode + " and pvcode = " + pvcode+ " and scheme_id = " + schemeSeqId+ " and current_stage_of_work != 10";
+            condition = " where work_id = " + work_id + " and dcode = " + dcode + " and bcode = " + bcode + " and pvcode = " + pvcode+ " and current_stage_of_work != 10";
+            //condition = "where work_id = " + work_id + " current_stage_of_work != 10";
         }else {
-            condition = " where fin_year = '" + fin_year + "' and dcode = " + dcode + " and bcode = " + bcode + " and pvcode = " + pvcode+ " and current_stage_of_work != 10";
+            //condition = " where fin_year = '" + fin_year + "' and dcode = " + dcode + " and bcode = " + bcode + " and pvcode = " + pvcode+ " and current_stage_of_work != 10";
+            condition = "where current_stage_of_work != 10";
         }
 
 

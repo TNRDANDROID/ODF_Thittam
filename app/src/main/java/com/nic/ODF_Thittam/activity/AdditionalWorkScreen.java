@@ -41,6 +41,9 @@ public class AdditionalWorkScreen extends AppCompatActivity implements View.OnCl
     private SQLiteDatabase db;
     public static DBHelper dbHelper;
     private String work_id;
+    private String dcode;
+    private String bcode;
+    private String pvcode;
     ArrayList<ODF_Thittam> additionalList = new ArrayList<>();
 
     @Override
@@ -55,6 +58,9 @@ public class AdditionalWorkScreen extends AppCompatActivity implements View.OnCl
 
     private void initRecyclerView() {
         work_id = getIntent().getStringExtra(AppConstant.WORK_ID);
+        dcode = getIntent().getStringExtra(AppConstant.DISTRICT_CODE);
+        bcode = getIntent().getStringExtra(AppConstant.BLOCK_CODE);
+        pvcode = getIntent().getStringExtra(AppConstant.PV_CODE);
         activityAdditionalListBinding.workList.setVisibility(View.VISIBLE);
         recyclerView = activityAdditionalListBinding.workList;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -81,7 +87,7 @@ public class AdditionalWorkScreen extends AppCompatActivity implements View.OnCl
         protected ArrayList<ODF_Thittam> doInBackground(Void... params) {
             dbData.open();
             additionalList = new ArrayList<>();
-            additionalList = dbData.getAllAdditionalWork(work_id,prefManager.getFinancialyearName(),prefManager.getDistrictCode(),prefManager.getBlockCode(),prefManager.getPvCode(),prefManager.getKeySpinnerSelectedSchemeSeqId());
+            additionalList = dbData.getAllAdditionalWork(work_id,dcode,bcode,pvcode);
             Log.d("ADDITIONAL_COUNT", String.valueOf(additionalList.size()));
             return additionalList;
         }

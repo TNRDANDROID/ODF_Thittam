@@ -1233,9 +1233,9 @@ public class Utils {
         prefManager = new PrefManager(activity);
         JSONObject dataSet = new JSONObject();
         dataSet.put(AppConstant.KEY_SERVICE_ID, AppConstant.WORK_LIST_BASED_ON_FINYEAR_VILLAGE);
-        dataSet.put(AppConstant.FINANCIAL_YEAR, prefManager.getFinancialyearName());
+        /*dataSet.put(AppConstant.FINANCIAL_YEAR, prefManager.getFinancialyearName());
         dataSet.put(AppConstant.SCHEME_ID, prefManager.getKeySpinnerSelectedSchemeSeqId());
-        dataSet.put(AppConstant.PV_CODE, prefManager.getPvCode());
+        dataSet.put(AppConstant.PV_CODE, prefManager.getPvCode());*/
         Log.d("objectworkLis", "" + dataSet);
         return dataSet;
     }
@@ -1293,5 +1293,15 @@ public class Utils {
         }
 
         return dir.delete();
+    }
+
+    public static Integer getValue(String  value) {
+        if(value.equalsIgnoreCase("")){
+            return 0;
+        }
+        else {
+            return Integer.parseInt(value);
+        }
+
     }
 }
