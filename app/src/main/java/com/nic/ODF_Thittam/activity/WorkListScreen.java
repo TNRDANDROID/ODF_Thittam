@@ -365,9 +365,9 @@ public class WorkListScreen extends AppCompatActivity implements View.OnClickLis
 
             dbData.open();
             /*In online Delete DB to fetch the Api data*/
-//            if(Utils.isOnline()){
-//                dbData.deleteWorkListTable();
-//            }
+            if(Utils.isOnline()){
+                dbData.deleteWorkListTable();
+           }
             ArrayList<ODF_Thittam> workList_count = dbData.getAllWorkLIst("insert");
            if (workList_count.size() <= 0) {
                 if (params.length > 0) {

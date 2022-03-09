@@ -122,7 +122,7 @@ public class PendingScreenAdapter extends PagedListAdapter<ODF_Thittam,PendingSc
                 prefManager.setDistrictCode(dcode);
                 prefManager.setBlockCode(bcode);
                 prefManager.setPvCode(pvcode);
-                viewOfflineImages(work_id,cd_work_no,work_type_flag_le,type_of_work,"Offline");
+                viewOfflineImages(dcode,bcode,pvcode,work_id,cd_work_no,work_type_flag_le,type_of_work,"Offline");
             }
         });
 
@@ -156,12 +156,15 @@ public class PendingScreenAdapter extends PagedListAdapter<ODF_Thittam,PendingSc
     }
 
 
-    public void viewOfflineImages(String work_id,String cd_work_no,String work_type_flag_le,String type_of_work,String OnOffType) {
+    public void viewOfflineImages(String dcode,String bcode,String pvcode,String work_id,String cd_work_no,String work_type_flag_le,String type_of_work,String OnOffType) {
         Activity activity = (Activity) context;
         Intent intent = new Intent(context, FullImageActivity.class);
         intent.putExtra(AppConstant.WORK_ID,work_id);
         intent.putExtra(AppConstant.CD_WORK_NO,cd_work_no);
         intent.putExtra(AppConstant.WORK_TYPE_FLAG_LE,work_type_flag_le);
+        intent.putExtra(AppConstant.DISTRICT_CODE,dcode);
+        intent.putExtra(AppConstant.BLOCK_CODE,bcode);
+        intent.putExtra(AppConstant.PV_CODE,pvcode);
         intent.putExtra("OnOffType",OnOffType);
         if(OnOffType.equalsIgnoreCase("Offline")){
             intent.putExtra(AppConstant.TYPE_OF_WORK,type_of_work);
