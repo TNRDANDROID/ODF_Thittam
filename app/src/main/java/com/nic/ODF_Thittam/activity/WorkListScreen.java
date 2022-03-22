@@ -1,5 +1,6 @@
 package com.nic.ODF_Thittam.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
@@ -19,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.VolleyError;
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
@@ -128,12 +130,38 @@ public class WorkListScreen extends AppCompatActivity implements View.OnClickLis
         });
 
         if(Utils.isOnline()){
-            getWorkList();
+            dbData.open();
+            ArrayList<ODF_Thittam> workList_count = dbData.getAllWorkLIst("insert");
+            if (workList_count.size() <= 0)
+            {
+                getWorkList();
+            }
+            else {
+                new fetchScheduletask().execute();
+            }
+
         }
         else {
             // initRecyclerView();
             new fetchScheduletask().execute();
         }
+
+        activityWorkListBinding.swipeRefresh.setRefreshing(false);
+        activityWorkListBinding.swipeRefresh.setColorSchemeColors(R.array.array_dot_active);
+        activityWorkListBinding.swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                if(Utils.isOnline()){
+                    getWorkList();
+                    activityWorkListBinding.swipeRefresh.setRefreshing(true);
+                }
+                else {
+                    // initRecyclerView();
+                    new fetchScheduletask().execute();
+                    activityWorkListBinding.swipeRefresh.setRefreshing(false);
+                }
+            }
+        });
 
     }
 
@@ -148,6 +176,7 @@ public class WorkListScreen extends AppCompatActivity implements View.OnClickLis
        // new fetchScheduletask().execute();
     }
 
+    @SuppressLint("StaticFieldLeak")
     public class fetchScheduletask extends AsyncTask<Void, Void,
             ArrayList<ODF_Thittam>> {
         @Override
@@ -185,6 +214,7 @@ public class WorkListScreen extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    @SuppressLint("Recycle")
     public void loadOfflineFinYearListDBValues() {
         FinYearList.clear();
         Cursor FinYear = null;
@@ -207,6 +237,7 @@ public class WorkListScreen extends AppCompatActivity implements View.OnClickLis
         activityWorkListBinding.finyearSpinner.setAdapter(new CommonAdapter(this, FinYearList, "FinYearList"));
     }
 
+    @SuppressLint("Recycle")
     public void loadOfflineSchemeListDBValues(String fin_year) {
         Cursor SchemeList = null;
         String Qury = "SELECT * FROM " + DBHelper.SCHEME_TABLE_NAME + " where fin_year = '" + fin_year + "'";
@@ -316,6 +347,7 @@ public class WorkListScreen extends AppCompatActivity implements View.OnClickLis
                         new InsertAdditioanlListTask().execute(jsonObject.getJSONObject(AppConstant.JSON_DATA));
                     }
                     new fetchScheduletask().execute();
+                    activityWorkListBinding.swipeRefresh.setRefreshing(false);
                 } else if(jsonObject.getString("STATUS").equalsIgnoreCase("OK") && jsonObject.getString("RESPONSE").equalsIgnoreCase("NO_RECORD")){
 //                    dbData.open();
 //                    if(Utils.isOnline()){
@@ -323,27 +355,30 @@ public class WorkListScreen extends AppCompatActivity implements View.OnClickLis
 //                    }
                     new fetchScheduletask().execute();
                     Utils.showAlert(this,"NO RECORD FOUND!");
+                    activityWorkListBinding.swipeRefresh.setRefreshing(false);
                 }
                 String authKey = responseDecryptedSchemeKey.toString();
                 int maxLogSize = 4000;
                 for(int i = 0; i <= authKey.length() / maxLogSize; i++) {
                     int start = i * maxLogSize;
                     int end = (i+1) * maxLogSize;
-                    end = end > authKey.length() ? authKey.length() : end;
+                    end = Math.min(end, authKey.length());
                     Log.v("to_send", authKey.substring(start, end));
                 }
                 Log.d("WorkListResp", "" + responseDecryptedSchemeKey);
             }
         } catch (JSONException e) {
+            activityWorkListBinding.swipeRefresh.setRefreshing(false);
             e.printStackTrace();
         }
     }
 
     @Override
     public void OnError(VolleyError volleyError) {
-
+        activityWorkListBinding.swipeRefresh.setRefreshing(false);
     }
 
+    @SuppressLint("StaticFieldLeak")
     public class InsertWorkListTask extends AsyncTask<JSONObject, Void, Void> {
 
         private  boolean running = true;
@@ -365,11 +400,12 @@ public class WorkListScreen extends AppCompatActivity implements View.OnClickLis
 
             dbData.open();
             /*In online Delete DB to fetch the Api data*/
-            if(Utils.isOnline()){
-                dbData.deleteWorkListTable();
-           }
+
             ArrayList<ODF_Thittam> workList_count = dbData.getAllWorkLIst("insert");
            if (workList_count.size() <= 0) {
+
+                   dbData.deleteWorkListTable();
+
                 if (params.length > 0) {
                     JSONArray jsonArray = new JSONArray();
                     try {
@@ -411,6 +447,7 @@ public class WorkListScreen extends AppCompatActivity implements View.OnClickLis
                             workList.setGender(jsonArray.getJSONObject(i).getString(AppConstant.GENDER));
                             workList.setLastVisitedDate(jsonArray.getJSONObject(i).getString(AppConstant.LAST_VISITED_DATE));
                             workList.setImageAvailable(jsonArray.getJSONObject(i).getString(AppConstant.KEY_IMAGE_AVAILABLE));
+                            workList.setHide_show_flag("Hide");
 
                             dbData.insertWorkList(workList);
 
@@ -437,6 +474,7 @@ public class WorkListScreen extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    @SuppressLint("StaticFieldLeak")
     public class InsertAdditioanlListTask extends AsyncTask<JSONObject, Void, Void> {
 
         @Override

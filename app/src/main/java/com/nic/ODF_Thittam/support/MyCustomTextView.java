@@ -12,7 +12,7 @@ import com.nic.ODF_Thittam.R;
 /**
  * Created by AchanthiSundar on 28-12-2018.
  */
-public class MyCustomTextView extends TextView {
+public class MyCustomTextView extends androidx.appcompat.widget.AppCompatTextView {
 
     public MyCustomTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);

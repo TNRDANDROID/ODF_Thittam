@@ -530,6 +530,16 @@ public class ODF_Thittam {
     private String min_no_of_photos;
     private String max_no_of_photos;
 
+    public String getHide_show_flag() {
+        return hide_show_flag;
+    }
+
+    public void setHide_show_flag(String hide_show_flag) {
+        this.hide_show_flag = hide_show_flag;
+    }
+
+    private String hide_show_flag;
+
 
     public String getMin_no_of_photos() {
         return min_no_of_photos;

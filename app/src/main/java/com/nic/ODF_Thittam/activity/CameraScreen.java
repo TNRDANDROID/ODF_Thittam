@@ -16,6 +16,7 @@ import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.location.Criteria;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.media.ExifInterface;
@@ -47,6 +48,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.VolleyError;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -164,6 +166,7 @@ public class CameraScreen extends AppCompatActivity implements View.OnClickListe
                 }
                 else {
                     pref_stage="";
+                    cameraScreenBinding.countRecycler.setAdapter(null);
                 }
             }
 
@@ -359,7 +362,19 @@ public class CameraScreen extends AppCompatActivity implements View.OnClickListe
     public void getLatLong() {
         mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         mlocListener = new MyLocationListener();
+        Criteria criteria = new Criteria();
+        criteria.setAccuracy(Criteria.ACCURACY_FINE);
+        criteria.setPowerRequirement(Criteria.POWER_HIGH);
+        criteria.setAltitudeRequired(false);
+        criteria.setSpeedRequired(false);
+        criteria.setCostAllowed(true);
+        criteria.setBearingRequired(false);
 
+//API level 9 and up
+        criteria.setHorizontalAccuracy(Criteria.ACCURACY_HIGH);
+        criteria.setVerticalAccuracy(Criteria.ACCURACY_HIGH);
+        Integer gpsFreqInMillis = 1000;
+        Integer gpsFreqInDistance = 1;
 
         // permission was granted, yay! Do the
         // location-related task you need to do.
@@ -368,7 +383,8 @@ public class CameraScreen extends AppCompatActivity implements View.OnClickListe
                 == PackageManager.PERMISSION_GRANTED) {
 
             //Request location updates:
-            mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, mlocListener);
+            //mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, mlocListener);
+            mlocManager.requestLocationUpdates(gpsFreqInMillis, gpsFreqInDistance, criteria, mlocListener, null);
 
         }
 
@@ -811,8 +827,8 @@ public class CameraScreen extends AppCompatActivity implements View.OnClickListe
 
             }
         });
-        Button btnAddMobile = (Button) dialog.findViewById(R.id.btn_add);
-        btnAddMobile.setTypeface(FontCache.getInstance(this).getFont(FontCache.Font.MEDIUM));
+        FloatingActionButton btnAddMobile = (FloatingActionButton) dialog.findViewById(R.id.btn_add);
+        //btnAddMobile.setTypeface(FontCache.getInstance(this).getFont(FontCache.Font.MEDIUM));
         viewArrayList.clear();
         btnAddMobile.setOnClickListener(new View.OnClickListener() {
             @Override

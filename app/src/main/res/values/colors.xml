@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#49BEFF</color>
+  <!--  <color name="colorPrimary">#49BEFF</color>
     <color name="colorPrimaryDark">#49BEFF</color>
+    <color name="colorAccent">#0D5D98</color>-->
+    <color name="colorPrimary">#313968</color>
+    <color name="colorPrimaryDark">#313968</color>
     <color name="colorAccent">#0D5D98</color>
+    <color name="d_grey">#E7E7EB</color>
+    <color name="d_grey1">#8F91A2</color>
+    <color name="d_grey2">#747474</color>
+    <color name="d_grey3">#746C7C</color>
+    <color name="d_grey4">#B8B8BA</color>
+
 
     <color name="address">#2F7092</color>
     <color name="followers">#0D5D98</color>
@@ -40,6 +49,8 @@
     <color name="dot_dark_screen4">#a854d4</color>
 
     <color name="full_transparent">#00FF0000</color>
+    <color name="primary_text_color">#2A4AFB</color>
+
 
     <!-- dots active colors -->
     <color name="dot_light_screen1">#f98da5</color>

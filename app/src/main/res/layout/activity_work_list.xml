@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -8,7 +8,7 @@
             type="com.nic.ODF_Thittam.activity.WorkListScreen" />
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:customfontdemo="http://schemas.android.com/tools"
         android:id="@+id/activity_main"
@@ -42,8 +42,9 @@
                         android:layout_centerInParent="true"
                         android:layout_gravity="start"
                         android:onClick="@{()-> activity.onBackPressed()}"
-
-                        android:src="@mipmap/back_arrow" />
+                        android:tint="@color/white"
+                        android:src="@mipmap/back_arrow"
+                        android:contentDescription="@string/back_icon" />
 
                     <TextView
                         android:id="@+id/title_tv"
@@ -51,8 +52,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text="Work List"
-                        android:textColor="@android:color/black"
+                        android:text="@string/work_list"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_15sdp" />
 
                 </RelativeLayout>
@@ -62,12 +63,17 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/swipe_refresh"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
         <androidx.core.widget.NestedScrollView
             android:id="@+id/scroll_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -81,7 +87,7 @@
                     android:layout_marginLeft="@dimen/margin_left_20dp"
                     android:layout_marginTop="@dimen/padding"
                     android:layout_marginRight="@dimen/margin_left_20dp"
-                    android:text="Select Financial Year"
+                    android:text="@string/select_financial_year"
                     android:textColor="@android:color/holo_red_dark"
                     android:textSize="@dimen/_15sdp"
                     android:visibility="gone"
@@ -105,12 +111,13 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_centerInParent="true"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
 
                         android:textColor="@android:color/black"
                         android:textSize="@dimen/_15sdp"
                         android:visibility="visible"
-                        customfontdemo:fontName="@string/font_normal" />
+                        customfontdemo:fontName="@string/font_normal"
+                        customfontdemo:ignore="RelativeOverlap" />
 
                     <Spinner
                         android:id="@+id/finyear_spinner"
@@ -133,7 +140,7 @@
                     android:layout_marginLeft="@dimen/margin_left_20dp"
                     android:layout_marginTop="@dimen/padding"
                     android:layout_marginRight="@dimen/margin_left_20dp"
-                    android:text="Select Scheme"
+                    android:text="@string/select_scheme"
                     android:textColor="@android:color/holo_red_dark"
                     android:textSize="@dimen/_15sdp"
                     customfontdemo:fontName="@string/font_circular_bold" />
@@ -156,11 +163,12 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_centerInParent="true"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
                         android:textColor="@android:color/black"
                         android:textSize="@dimen/_15sdp"
                         android:visibility="visible"
-                        customfontdemo:fontName="@string/font_normal" />
+                        customfontdemo:fontName="@string/font_normal"
+                        customfontdemo:ignore="RelativeOverlap" />
 
                     <Spinner
                         android:id="@+id/scheme_spinner"
@@ -184,7 +192,7 @@
                     android:layout_marginLeft="@dimen/margin_left_20dp"
                     android:layout_marginTop="@dimen/padding"
                     android:layout_marginRight="@dimen/margin_left_20dp"
-                    android:text="Habitation Name"
+                    android:text="@string/habitation_name"
                     android:textColor="@android:color/holo_red_dark"
                     android:textSize="@dimen/_15sdp"
                     android:visibility="gone"
@@ -208,14 +216,16 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginTop="@dimen/_230sdp"
-                    android:text="No Projects Found!"
+                    android:text="@string/no_projects_found"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_16sdp"
                     android:textStyle="bold"
                     android:visibility="gone" />
             </RelativeLayout>
+
         </androidx.core.widget.NestedScrollView>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -71,20 +71,20 @@
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
 
-    <LinearLayout
+        <LinearLayout
             android:id="@+id/child_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-        customfontdemo:ignore="ExtraText">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_100sdp"
-            android:id="@+id/header_img"
-            android:background="@drawable/bottom_curve_bg"
-            android:contentDescription="@string/header_icon" />
+            customfontdemo:ignore="ExtraText">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                android:id="@+id/header_img"
+                android:background="@drawable/bottom_curve_bg"
+                android:contentDescription="@string/header_icon" />
 
-        //Profile
+            //Profile
             <FrameLayout
                 android:layout_width="250dp"
                 android:layout_height="200dp"
@@ -134,7 +134,7 @@
 
             </FrameLayout>
 
-        //Name
+            //Name
             <LinearLayout
                 android:id="@+id/name_layout"
                 android:layout_width="match_parent"
@@ -166,37 +166,37 @@
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     customfontdemo:ignore="UnusedAttribute">
 
-                        <RelativeLayout
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/header"
+
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <com.nic.ODF_Thittam.support.MyEditTextView
+                            android:id="@+id/motivator_name"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/header"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginStart="15dp"
+                            android:background="@android:color/transparent"
+                            android:inputType="textPersonName"
+                            android:singleLine="true"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/_13sdp"
+                            android:hint=""
 
-                            android:orientation="vertical"
-                            android:visibility="visible">
-
-                            <com.nic.ODF_Thittam.support.MyEditTextView
-                                android:id="@+id/motivator_name"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentStart="true"
-                                android:layout_centerInParent="true"
-                                android:layout_marginStart="15dp"
-                                android:background="@android:color/transparent"
-                                android:inputType="textPersonName"
-                                android:singleLine="true"
-                                android:textColor="@android:color/black"
-                                android:textSize="@dimen/_13sdp"
-                                android:hint=""
-
-                                customfontdemo:fontName="@string/font_circular_book" />
+                            customfontdemo:fontName="@string/font_circular_book" />
 
 
-                        </RelativeLayout>
+                    </RelativeLayout>
 
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 
-        //District
+            //District
             <LinearLayout
                 android:id="@+id/District_layout"
                 android:layout_width="match_parent"
@@ -227,44 +227,44 @@
                     android:outlineAmbientShadowColor="@color/colorPrimaryDark"
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     customfontdemo:ignore="UnusedAttribute">
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/header"
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/header"
 
-                            android:orientation="vertical"
-                            android:visibility="visible">
+                        android:orientation="vertical"
+                        android:visibility="visible">
 
-                            <com.nic.ODF_Thittam.support.MyCustomTextView
+                        <com.nic.ODF_Thittam.support.MyCustomTextView
 
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentStart="true"
-                                android:layout_centerInParent="true"
-                                android:layout_marginStart="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginStart="15dp"
 
-                                android:textColor="@android:color/black"
-                                android:textSize="@dimen/_13sdp"
-                                android:visibility="visible"
-                                customfontdemo:fontName="@string/font_circular_book"
-                                customfontdemo:ignore="RelativeOverlap" />
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/_13sdp"
+                            android:visibility="visible"
+                            customfontdemo:fontName="@string/font_circular_book"
+                            customfontdemo:ignore="RelativeOverlap" />
 
-                            <Spinner
-                                android:id="@+id/district"
-                                android:layout_width="fill_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_centerInParent="true"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
-                                android:gravity="center" />
+                        <Spinner
+                            android:id="@+id/district"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:gravity="center" />
 
-                        </RelativeLayout>
+                    </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
 
             </LinearLayout>
 
-        //Block
+            //Block
             <LinearLayout
                 android:id="@+id/block_layout"
                 android:layout_width="match_parent"
@@ -295,44 +295,44 @@
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     customfontdemo:ignore="UnusedAttribute">
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/header"
-                            android:orientation="vertical"
-                            android:visibility="visible">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/header"
+                        android:orientation="vertical"
+                        android:visibility="visible">
 
-                            <com.nic.ODF_Thittam.support.MyCustomTextView
+                        <com.nic.ODF_Thittam.support.MyCustomTextView
 
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentStart="true"
-                                android:layout_centerInParent="true"
-                                android:layout_marginStart="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginStart="15dp"
 
-                                android:textColor="@android:color/black"
-                                android:textSize="@dimen/_13sdp"
-                                android:visibility="visible"
-                                customfontdemo:fontName="@string/font_circular_book" />
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/_13sdp"
+                            android:visibility="visible"
+                            customfontdemo:fontName="@string/font_circular_book" />
 
-                            <Spinner
-                                android:id="@+id/block"
-                                android:layout_width="fill_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_centerInParent="true"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
-                                android:clickable="false"
-                                android:visibility="gone"
-                                android:gravity="center" />
+                        <Spinner
+                            android:id="@+id/block"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:clickable="false"
+                            android:visibility="gone"
+                            android:gravity="center" />
 
-                        </RelativeLayout>
+                    </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
 
             </LinearLayout>
 
-        //Village
+            //Village
             <LinearLayout
                 android:id="@+id/village_layout"
                 android:layout_width="match_parent"
@@ -362,44 +362,44 @@
                     android:outlineAmbientShadowColor="@color/colorPrimaryDark"
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     customfontdemo:ignore="UnusedAttribute">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/header"
-                    android:orientation="vertical"
-                    android:visibility="visible">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/header"
+                        android:orientation="vertical"
+                        android:visibility="visible">
 
-                    <com.nic.ODF_Thittam.support.MyCustomTextView
+                        <com.nic.ODF_Thittam.support.MyCustomTextView
 
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerInParent="true"
-                        android:layout_marginStart="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginStart="15dp"
 
-                        android:textColor="@android:color/black"
-                        android:textSize="@dimen/_13sdp"
-                        android:visibility="visible"
-                        customfontdemo:fontName="@string/font_circular_book" />
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/_13sdp"
+                            android:visibility="visible"
+                            customfontdemo:fontName="@string/font_circular_book" />
 
-                    <Spinner
-                        android:id="@+id/village"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerInParent="true"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:clickable="false"
-                        android:visibility="gone"
-                        android:gravity="center" />
+                        <Spinner
+                            android:id="@+id/village"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:clickable="false"
+                            android:visibility="gone"
+                            android:gravity="center" />
 
-                </RelativeLayout>
+                    </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
 
             </LinearLayout>
 
-        //Address
+            //Address
             <LinearLayout
                 android:id="@+id/address_layout"
                 android:layout_width="match_parent"
@@ -429,50 +429,50 @@
                     android:outlineAmbientShadowColor="@color/colorPrimaryDark"
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     customfontdemo:ignore="UnusedAttribute">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="visible">
-
-                    <com.nic.ODF_Thittam.support.MyEditTextView
-                        android:id="@+id/motivator_address"
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint=""
-                        android:background="@android:color/transparent"
-                        android:gravity="top|left"
-                        android:inputType="textMultiLine"
-                        android:lines="5"
-                        android:maxLines="5"
-                        android:minLines="3"
-                        android:padding="10dp"
-                        android:scrollbars="vertical"
-                        customfontdemo:ignore="RtlHardcoded" />
+                        android:orientation="vertical"
+                        android:visibility="visible">
 
-                </RelativeLayout>
+                        <com.nic.ODF_Thittam.support.MyEditTextView
+                            android:id="@+id/motivator_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint=""
+                            android:background="@android:color/transparent"
+                            android:gravity="top|left"
+                            android:inputType="textMultiLine"
+                            android:lines="5"
+                            android:maxLines="5"
+                            android:minLines="3"
+                            android:padding="10dp"
+                            android:scrollbars="vertical"
+                            customfontdemo:ignore="RtlHardcoded" />
+
+                    </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
 
             </LinearLayout>
 
-        //DOB
+            //DOB
             <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <com.nic.ODF_Thittam.support.MyCustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_left_20dp"
-                android:layout_marginTop="@dimen/padding"
-                android:layout_marginRight="@dimen/margin_left_20dp"
-                android:text="@string/date_of_birth"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/_13sdp"
-                android:visibility="visible"
-                customfontdemo:fontName="@string/font_circular_medium" />
+                android:orientation="vertical">
+
+                <com.nic.ODF_Thittam.support.MyCustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_left_20dp"
+                    android:layout_marginTop="@dimen/padding"
+                    android:layout_marginRight="@dimen/margin_left_20dp"
+                    android:text="@string/date_of_birth"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_13sdp"
+                    android:visibility="visible"
+                    customfontdemo:fontName="@string/font_circular_medium" />
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -486,88 +486,88 @@
                     android:outlineAmbientShadowColor="@color/colorPrimaryDark"
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     customfontdemo:ignore="UnusedAttribute">
-                        <RelativeLayout
-                            android:id="@+id/dob_layout"
+                    <RelativeLayout
+                        android:id="@+id/dob_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/header"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+
+                        <com.nic.ODF_Thittam.support.MyCustomTextView
+                            android:id="@+id/motivator_dob_tv"
+                            style="@style/Toolbar.TitleText"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/header"
-                            android:orientation="vertical"
-                            android:visibility="visible">
+                            android:layout_height="wrap_content"
+                            android:hint=""
+                            android:layout_alignParentStart="true"
+                            android:layout_centerInParent="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginStart="15dp"
+                            android:layout_toStartOf="@+id/calendar_icon"
+                            android:ellipsize="marquee"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:textAlignment="viewStart"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/_13sdp"
+                            customfontdemo:fontName="@string/font_circular_book" />
+
+                        <com.nic.ODF_Thittam.support.MyCustomTextView
+                            android:id="@+id/calendar_icon"
+                            style="@style/Toolbar.TitleText"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerInParent="true"
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center"
+                            android:background="@drawable/datepicker_icon"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+
+                            android:layout_marginEnd="@dimen/_6sdp"/>
 
 
-                            <com.nic.ODF_Thittam.support.MyCustomTextView
-                                android:id="@+id/motivator_dob_tv"
-                                style="@style/Toolbar.TitleText"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint=""
-                                android:layout_alignParentStart="true"
-                                android:layout_centerInParent="true"
-                                android:layout_centerHorizontal="true"
-                                android:layout_marginStart="15dp"
-                                android:layout_toStartOf="@+id/calendar_icon"
-                                android:ellipsize="marquee"
-                                android:focusable="true"
-                                android:focusableInTouchMode="true"
-                                android:textAlignment="viewStart"
-                                android:textColor="@android:color/black"
-                                android:textSize="@dimen/_13sdp"
-                                customfontdemo:fontName="@string/font_circular_book" />
-
-                            <com.nic.ODF_Thittam.support.MyCustomTextView
-                                android:id="@+id/calendar_icon"
-                                style="@style/Toolbar.TitleText"
-                                android:layout_width="35dp"
-                                android:layout_height="35dp"
-                                android:layout_alignParentEnd="true"
-                                android:layout_centerInParent="true"
-                                android:layout_centerHorizontal="true"
-                                android:gravity="center"
-                                android:background="@drawable/datepicker_icon"
-                                android:focusable="true"
-                                android:focusableInTouchMode="true"
-
-                                android:layout_marginEnd="@dimen/_6sdp"/>
+                        <!--<com.nic.ODF_Thittam.support.MyCustomTextView-->
+                        <!--android:id="@+id/motivator_dob_tv"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_alignParentStart="true"-->
+                        <!--android:layout_centerInParent="true"-->
+                        <!--android:layout_marginLeft="15dp"-->
+                        <!--android:background="@android:color/transparent"-->
+                        <!--android:inputType="textPersonName"-->
+                        <!--android:textColor="@android:color/black"-->
+                        <!--android:textSize="@dimen/_13sdp"-->
+                        <!--android:visibility="visible"-->
+                        <!--customfontdemo:fontName="@string/font_circular_book" />-->
 
 
-                            <!--<com.nic.ODF_Thittam.support.MyCustomTextView-->
-                            <!--android:id="@+id/motivator_dob_tv"-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:layout_alignParentStart="true"-->
-                            <!--android:layout_centerInParent="true"-->
-                            <!--android:layout_marginLeft="15dp"-->
-                            <!--android:background="@android:color/transparent"-->
-                            <!--android:inputType="textPersonName"-->
-                            <!--android:textColor="@android:color/black"-->
-                            <!--android:textSize="@dimen/_13sdp"-->
-                            <!--android:visibility="visible"-->
-                            <!--customfontdemo:fontName="@string/font_circular_book" />-->
-
-
-            </RelativeLayout>
+                    </RelativeLayout>
 
                 </androidx.cardview.widget.CardView>
 
-        </LinearLayout>
+            </LinearLayout>
 
-        //Gender
+            //Gender
             <LinearLayout
-            android:id="@+id/gender_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <com.nic.ODF_Thittam.support.MyCustomTextView
+                android:id="@+id/gender_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_left_20dp"
-                android:layout_marginTop="@dimen/padding"
-                android:layout_marginRight="@dimen/margin_left_20dp"
-                android:text="@string/gender"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/_13sdp"
-                android:visibility="visible"
-                customfontdemo:fontName="@string/font_circular_medium" />
+                android:orientation="vertical">
+
+                <com.nic.ODF_Thittam.support.MyCustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_left_20dp"
+                    android:layout_marginTop="@dimen/padding"
+                    android:layout_marginRight="@dimen/margin_left_20dp"
+                    android:text="@string/gender"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_13sdp"
+                    android:visibility="visible"
+                    customfontdemo:fontName="@string/font_circular_medium" />
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -582,59 +582,59 @@
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     customfontdemo:ignore="UnusedAttribute">
 
-            <RelativeLayout
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/header"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <com.nic.ODF_Thittam.support.MyCustomTextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginStart="15dp"
+
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/_13sdp"
+                            android:visibility="visible"
+                            customfontdemo:fontName="@string/font_circular_book"
+                            customfontdemo:ignore="RelativeOverlap" />
+
+                        <Spinner
+                            android:id="@+id/gender_spinner"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:gravity="center" />
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            //Educational Qualification
+            <LinearLayout
+                android:id="@+id/educational_qualification_layout"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/header"
-                android:orientation="vertical"
-                android:visibility="visible">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <com.nic.ODF_Thittam.support.MyCustomTextView
-
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginStart="15dp"
-
+                    android:layout_marginLeft="@dimen/margin_left_20dp"
+                    android:layout_marginTop="@dimen/padding"
+                    android:layout_marginRight="@dimen/margin_left_20dp"
+                    android:text="@string/educational_qualification"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_13sdp"
                     android:visibility="visible"
-                    customfontdemo:fontName="@string/font_circular_book"
-                    customfontdemo:ignore="RelativeOverlap" />
-
-                <Spinner
-                    android:id="@+id/gender_spinner"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center" />
-
-            </RelativeLayout>
-
-                </androidx.cardview.widget.CardView>
-        </LinearLayout>
-
-        //Educational Qualification
-            <LinearLayout
-            android:id="@+id/educational_qualification_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <com.nic.ODF_Thittam.support.MyCustomTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_left_20dp"
-                android:layout_marginTop="@dimen/padding"
-                android:layout_marginRight="@dimen/margin_left_20dp"
-                android:text="@string/educational_qualification"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/_13sdp"
-                android:visibility="visible"
-                customfontdemo:fontName="@string/font_circular_medium" />
+                    customfontdemo:fontName="@string/font_circular_medium" />
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -648,43 +648,43 @@
                     android:outlineAmbientShadowColor="@color/colorPrimaryDark"
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     customfontdemo:ignore="UnusedAttribute">
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/header"
-                android:orientation="vertical"
-                android:visibility="visible">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/header"
+                        android:orientation="vertical"
+                        android:visibility="visible">
 
-                <com.nic.ODF_Thittam.support.MyCustomTextView
+                        <com.nic.ODF_Thittam.support.MyCustomTextView
 
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginStart="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginStart="15dp"
 
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/_13sdp"
-                    android:visibility="visible"
-                    customfontdemo:fontName="@string/font_circular_book"
-                    customfontdemo:ignore="RelativeOverlap" />
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/_13sdp"
+                            android:visibility="visible"
+                            customfontdemo:fontName="@string/font_circular_book"
+                            customfontdemo:ignore="RelativeOverlap" />
 
-                <Spinner
-                    android:id="@+id/educational_qualification_spinner"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center" />
+                        <Spinner
+                            android:id="@+id/educational_qualification_spinner"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:gravity="center" />
 
-            </RelativeLayout>
+                    </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
 
-        </LinearLayout>
+            </LinearLayout>
 
-        //Mobile Number
+            //Mobile Number
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -715,38 +715,38 @@
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     customfontdemo:ignore="UnusedAttribute">
 
-                <RelativeLayout
-                    android:id="@+id/phone_no_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/header"
-                    android:orientation="vertical"
-                    android:visibility="visible">
-
-                    <com.nic.ODF_Thittam.support.MyEditTextView
-                        android:id="@+id/motivator_mobile_no"
+                    <RelativeLayout
+                        android:id="@+id/phone_no_layout"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint=""
-                        android:layout_alignParentStart="true"
-                        android:layout_centerInParent="true"
-                        android:layout_marginStart="15dp"
-                        android:background="@android:color/transparent"
-                        android:inputType="number"
-                        android:scrollbars="vertical"
-                        android:maxLength="10"
-                        android:textColor="@android:color/black"
-                        android:textSize="@dimen/_13sdp"
-                        android:visibility="visible"
-                        customfontdemo:fontName="@string/font_circular_book" />
+                        android:layout_height="@dimen/header"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <com.nic.ODF_Thittam.support.MyEditTextView
+                            android:id="@+id/motivator_mobile_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint=""
+                            android:layout_alignParentStart="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginStart="15dp"
+                            android:background="@android:color/transparent"
+                            android:inputType="number"
+                            android:scrollbars="vertical"
+                            android:maxLength="10"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/_13sdp"
+                            android:visibility="visible"
+                            customfontdemo:fontName="@string/font_circular_book" />
 
 
-                </RelativeLayout>
+                    </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
 
             </LinearLayout>
 
-        //Email Id
+            //Email Id
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -777,36 +777,36 @@
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     customfontdemo:ignore="UnusedAttribute">
 
-                <RelativeLayout
-                    android:id="@+id/email_id_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/header"
-                    android:orientation="vertical"
-                    android:visibility="visible">
-
-                    <com.nic.ODF_Thittam.support.MyEditTextView
-                        android:id="@+id/motivator_email_id"
+                    <RelativeLayout
+                        android:id="@+id/email_id_layout"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint=""
-                        android:layout_alignParentStart="true"
-                        android:layout_centerInParent="true"
-                        android:layout_marginStart="15dp"
-                        android:background="@android:color/transparent"
-                        android:inputType="textWebEmailAddress"
-                        android:scrollbars="vertical"
-                        android:textColor="@android:color/black"
-                        android:textSize="@dimen/_13sdp"
-                        android:visibility="visible"
-                        customfontdemo:fontName="@string/font_circular_book" />
+                        android:layout_height="@dimen/header"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <com.nic.ODF_Thittam.support.MyEditTextView
+                            android:id="@+id/motivator_email_id"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint=""
+                            android:layout_alignParentStart="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginStart="15dp"
+                            android:background="@android:color/transparent"
+                            android:inputType="textWebEmailAddress"
+                            android:scrollbars="vertical"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/_13sdp"
+                            android:visibility="visible"
+                            customfontdemo:fontName="@string/font_circular_book" />
 
 
-                </RelativeLayout>
+                    </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 
-        //Motivator or Others
+            //Motivator or Others
             <LinearLayout
                 android:visibility="gone"
                 android:id="@+id/motivator_others_layout"
@@ -838,86 +838,86 @@
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     customfontdemo:ignore="UnusedAttribute">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
-
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2 "
-                        android:gravity="center"
-
-
-                        android:orientation="vertical">
-
-                        <RelativeLayout
-
-                            android:layout_width="100dp"
-                            android:layout_height="@dimen/header"
-                            android:layout_gravity="center"
-
-                            android:orientation="horizontal"
-                            customfontdemo:ignore="UselessParent">
-
-
-                            <RadioButton
-                                android:id="@+id/motivator"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentStart="true"
-                                android:layout_centerInParent="true"
-                                android:checked="false"
-
-                                android:text="@string/motivator"
-
-                                android:textColor="@android:color/black"
-                                android:textSize="13sp" />
-
-
-                        </RelativeLayout>
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:gravity="right"
-                        android:orientation="vertical"
-                        customfontdemo:ignore="RtlHardcoded">
+                        android:orientation="horizontal"
+                        android:baselineAligned="false">
 
-                        <RelativeLayout
-
-                            android:layout_width="100dp"
-                            android:layout_height="@dimen/header"
-                            android:layout_gravity="center"
-
-                            android:layout_marginEnd="@dimen/_5sdp"
-                            android:orientation="horizontal"
-                            customfontdemo:ignore="TooManyViews,UselessParent">
-
-                            <RadioButton
-                                android:id="@+id/others"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentStart="true"
-                                android:layout_centerInParent="true"
-                                android:text="@string/others"
-                                android:textColor="@android:color/black"
-                                android:textSize="13sp" />
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2 "
+                            android:gravity="center"
 
 
-                        </RelativeLayout>
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+
+                                android:layout_width="100dp"
+                                android:layout_height="@dimen/header"
+                                android:layout_gravity="center"
+
+                                android:orientation="horizontal"
+                                customfontdemo:ignore="UselessParent">
+
+
+                                <RadioButton
+                                    android:id="@+id/motivator"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_centerInParent="true"
+                                    android:checked="false"
+
+                                    android:text="@string/motivator"
+
+                                    android:textColor="@android:color/black"
+                                    android:textSize="13sp" />
+
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:gravity="right"
+                            android:orientation="vertical"
+                            customfontdemo:ignore="RtlHardcoded">
+
+                            <RelativeLayout
+
+                                android:layout_width="100dp"
+                                android:layout_height="@dimen/header"
+                                android:layout_gravity="center"
+
+                                android:layout_marginEnd="@dimen/_5sdp"
+                                android:orientation="horizontal"
+                                customfontdemo:ignore="TooManyViews,UselessParent">
+
+                                <RadioButton
+                                    android:id="@+id/others"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_centerInParent="true"
+                                    android:text="@string/others"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="13sp" />
+
+
+                            </RelativeLayout>
+                        </LinearLayout>
                     </LinearLayout>
-                </LinearLayout>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
 
-        //Bank Details
+            //Bank Details
             <LinearLayout
                 android:id="@+id/account_layout"
                 android:layout_width="match_parent"
@@ -948,29 +948,29 @@
                     android:outlineAmbientShadowColor="@color/colorPrimaryDark"
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     customfontdemo:ignore="UnusedAttribute">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/header"
-                    android:orientation="vertical"
-                    android:visibility="visible">
-
-                    <com.nic.ODF_Thittam.support.MyEditTextView
-                        android:id="@+id/motivator_account_tv"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint=""
-                        android:layout_alignParentStart="true"
-                        android:layout_centerInParent="true"
-                        android:layout_marginStart="15dp"
-                        android:background="@android:color/transparent"
-                        android:inputType="textPassword"
-                        android:textColor="@android:color/black"
-                        android:textSize="@dimen/_13sdp"
-                        android:visibility="visible"
-                        customfontdemo:fontName="@string/font_circular_book" />
+                        android:layout_height="@dimen/header"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <com.nic.ODF_Thittam.support.MyEditTextView
+                            android:id="@+id/motivator_account_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint=""
+                            android:layout_alignParentStart="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginStart="15dp"
+                            android:background="@android:color/transparent"
+                            android:inputType="textPassword"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/_13sdp"
+                            android:visibility="visible"
+                            customfontdemo:fontName="@string/font_circular_book" />
 
 
-                </RelativeLayout>
+                    </RelativeLayout>
 
                 </androidx.cardview.widget.CardView>
 
@@ -1006,31 +1006,31 @@
                     android:outlineAmbientShadowColor="@color/colorPrimaryDark"
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     customfontdemo:ignore="UnusedAttribute">
-                <RelativeLayout
-                    android:id="@+id/verify_account_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/header"
-
-                    android:orientation="vertical"
-                    android:visibility="visible">
-
-                    <com.nic.ODF_Thittam.support.MyEditTextView
-                        android:id="@+id/verify_motivator_account_tv"
+                    <RelativeLayout
+                        android:id="@+id/verify_account_layout"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint=""
-                        android:layout_alignParentStart="true"
-                        android:layout_centerInParent="true"
-                        android:layout_marginStart="15dp"
-                        android:background="@android:color/transparent"
-                        android:inputType="textPassword"
-                        android:textColor="@android:color/black"
-                        android:textSize="@dimen/_13sdp"
-                        android:visibility="visible"
-                        customfontdemo:fontName="@string/font_circular_book" />
+                        android:layout_height="@dimen/header"
+
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <com.nic.ODF_Thittam.support.MyEditTextView
+                            android:id="@+id/verify_motivator_account_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint=""
+                            android:layout_alignParentStart="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginStart="15dp"
+                            android:background="@android:color/transparent"
+                            android:inputType="textPassword"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/_13sdp"
+                            android:visibility="visible"
+                            customfontdemo:fontName="@string/font_circular_book" />
 
 
-                </RelativeLayout>
+                    </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>
@@ -1064,42 +1064,42 @@
                     android:outlineAmbientShadowColor="@color/colorPrimaryDark"
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     customfontdemo:ignore="UnusedAttribute">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/header"
-                    android:orientation="vertical"
-                    android:visibility="visible">
-
-                    <com.nic.ODF_Thittam.support.MyEditTextView
-                        android:id="@+id/motivator_ifsc_tv"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint=""
-                        android:layout_alignParentStart="true"
-                        android:layout_centerInParent="true"
-                        android:layout_marginStart="15dp"
-                        android:background="@android:color/transparent"
-                        android:inputType="textPersonName"
-                        android:textColor="@android:color/black"
-                        android:textSize="@dimen/_13sdp"
-                        android:imeOptions="actionDone"
-                        android:visibility="visible"
-                        customfontdemo:fontName="@string/font_circular_book" />
+                        android:layout_height="@dimen/header"
+                        android:orientation="vertical"
+                        android:visibility="visible">
 
-                    <ImageView
-                        android:id="@+id/tick"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_gravity="center"
-                        android:layout_margin="@dimen/_5sdp"
-                        android:background="@mipmap/tick"
-                        android:focusable="true"
-                        android:visibility="gone"
-                        android:contentDescription="@string/tick_icon" />
+                        <com.nic.ODF_Thittam.support.MyEditTextView
+                            android:id="@+id/motivator_ifsc_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint=""
+                            android:layout_alignParentStart="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginStart="15dp"
+                            android:background="@android:color/transparent"
+                            android:inputType="textPersonName"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/_13sdp"
+                            android:imeOptions="actionDone"
+                            android:visibility="visible"
+                            customfontdemo:fontName="@string/font_circular_book" />
 
-                </RelativeLayout>
+                        <ImageView
+                            android:id="@+id/tick"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_gravity="center"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:background="@mipmap/tick"
+                            android:focusable="true"
+                            android:visibility="gone"
+                            android:contentDescription="@string/tick_icon" />
+
+                    </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
 
@@ -1134,29 +1134,29 @@
                     android:outlineAmbientShadowColor="@color/colorPrimaryDark"
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     customfontdemo:ignore="UnusedAttribute">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/header"
-                    android:orientation="vertical"
-                    android:visibility="visible">
-
-                    <com.nic.ODF_Thittam.support.MyCustomTextView
-                        android:id="@+id/motivator_bank_tv"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint=""
-                        android:layout_alignParentStart="true"
-                        android:layout_centerInParent="true"
-                        android:layout_marginStart="15dp"
-                        android:background="@android:color/transparent"
-                        android:inputType="textPersonName"
-                        android:textColor="@android:color/black"
-                        android:textSize="@dimen/_13sdp"
-                        android:visibility="visible"
-                        customfontdemo:fontName="@string/font_circular_book" />
+                        android:layout_height="@dimen/header"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <com.nic.ODF_Thittam.support.MyCustomTextView
+                            android:id="@+id/motivator_bank_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint=""
+                            android:layout_alignParentStart="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginStart="15dp"
+                            android:background="@android:color/transparent"
+                            android:inputType="textPersonName"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/_13sdp"
+                            android:visibility="visible"
+                            customfontdemo:fontName="@string/font_circular_book" />
 
 
-                </RelativeLayout>
+                    </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>
@@ -1190,29 +1190,29 @@
                     android:outlineAmbientShadowColor="@color/colorPrimaryDark"
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     customfontdemo:ignore="UnusedAttribute">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/header"
-                    android:orientation="vertical"
-                    android:visibility="visible">
-
-                    <com.nic.ODF_Thittam.support.MyCustomTextView
-                        android:id="@+id/motivator_branch_tv"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint=""
-                        android:layout_alignParentStart="true"
-                        android:layout_centerInParent="true"
-                        android:layout_marginStart="15dp"
-                        android:background="@android:color/transparent"
-                        android:inputType="textPersonName"
-                        android:textColor="@android:color/black"
-                        android:textSize="@dimen/_13sdp"
-                        android:visibility="visible"
-                        customfontdemo:fontName="@string/font_circular_book" />
+                        android:layout_height="@dimen/header"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <com.nic.ODF_Thittam.support.MyCustomTextView
+                            android:id="@+id/motivator_branch_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint=""
+                            android:layout_alignParentStart="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginStart="15dp"
+                            android:background="@android:color/transparent"
+                            android:inputType="textPersonName"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/_13sdp"
+                            android:visibility="visible"
+                            customfontdemo:fontName="@string/font_circular_book" />
 
 
-                </RelativeLayout>
+                    </RelativeLayout>
 
                 </androidx.cardview.widget.CardView>
 
@@ -1220,7 +1220,7 @@
 
 
 
-        //Participation Level
+            //Participation Level
             <LinearLayout
                 android:id="@+id/state_level_layout"
                 android:layout_width="match_parent"
@@ -1251,29 +1251,29 @@
                     android:outlineAmbientShadowColor="@color/colorPrimaryDark"
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     customfontdemo:ignore="UnusedAttribute">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/header"
-                    android:orientation="vertical"
-                    android:visibility="visible">
-
-                    <com.nic.ODF_Thittam.support.MyEditTextView
-                        android:id="@+id/motivator_state_level_tv"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint=""
-                        android:layout_alignParentStart="true"
-                        android:layout_centerInParent="true"
-                        android:layout_marginStart="15dp"
-                        android:background="@android:color/transparent"
-                        android:inputType="number"
-                        android:textColor="@android:color/black"
-                        android:textSize="@dimen/_13sdp"
-                        android:visibility="visible"
-                        customfontdemo:fontName="@string/font_circular_book" />
+                        android:layout_height="@dimen/header"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <com.nic.ODF_Thittam.support.MyEditTextView
+                            android:id="@+id/motivator_state_level_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint=""
+                            android:layout_alignParentStart="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginStart="15dp"
+                            android:background="@android:color/transparent"
+                            android:inputType="number"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/_13sdp"
+                            android:visibility="visible"
+                            customfontdemo:fontName="@string/font_circular_book" />
 
 
-                </RelativeLayout>
+                    </RelativeLayout>
 
                 </androidx.cardview.widget.CardView>
 
@@ -1308,29 +1308,29 @@
                     android:outlineAmbientShadowColor="@color/colorPrimaryDark"
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     customfontdemo:ignore="UnusedAttribute">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/header"
-                    android:orientation="vertical"
-                    android:visibility="visible">
-
-                    <com.nic.ODF_Thittam.support.MyEditTextView
-                        android:id="@+id/motivator_district_level_tv"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint=""
-                        android:layout_alignParentStart="true"
-                        android:layout_centerInParent="true"
-                        android:layout_marginStart="15dp"
-                        android:background="@android:color/transparent"
-                        android:inputType="number"
-                        android:textColor="@android:color/black"
-                        android:textSize="@dimen/_13sdp"
-                        android:visibility="visible"
-                        customfontdemo:fontName="@string/font_circular_book" />
+                        android:layout_height="@dimen/header"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <com.nic.ODF_Thittam.support.MyEditTextView
+                            android:id="@+id/motivator_district_level_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint=""
+                            android:layout_alignParentStart="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginStart="15dp"
+                            android:background="@android:color/transparent"
+                            android:inputType="number"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/_13sdp"
+                            android:visibility="visible"
+                            customfontdemo:fontName="@string/font_circular_book" />
 
 
-                </RelativeLayout>
+                    </RelativeLayout>
 
                 </androidx.cardview.widget.CardView>
 
@@ -1365,35 +1365,35 @@
                     android:outlineAmbientShadowColor="@color/colorPrimaryDark"
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     customfontdemo:ignore="UnusedAttribute">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/header"
-                    android:orientation="vertical"
-                    android:visibility="visible">
-
-                    <com.nic.ODF_Thittam.support.MyEditTextView
-                        android:id="@+id/motivator_block_level_tv"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint=""
-                        android:layout_alignParentStart="true"
-                        android:layout_centerInParent="true"
-                        android:layout_marginStart="15dp"
-                        android:background="@android:color/transparent"
-                        android:inputType="number"
-                        android:textColor="@android:color/black"
-                        android:textSize="@dimen/_13sdp"
-                        android:visibility="visible"
-                        customfontdemo:fontName="@string/font_circular_book" />
+                        android:layout_height="@dimen/header"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <com.nic.ODF_Thittam.support.MyEditTextView
+                            android:id="@+id/motivator_block_level_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint=""
+                            android:layout_alignParentStart="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginStart="15dp"
+                            android:background="@android:color/transparent"
+                            android:inputType="number"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/_13sdp"
+                            android:visibility="visible"
+                            customfontdemo:fontName="@string/font_circular_book" />
 
 
-                </RelativeLayout>
+                    </RelativeLayout>
 
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 
-        //Category
+            //Category
             <LinearLayout
                 android:id="@+id/category_layout"
                 android:layout_width="match_parent"
@@ -1424,37 +1424,37 @@
                     android:outlineAmbientShadowColor="@color/colorPrimaryDark"
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     customfontdemo:ignore="UnusedAttribute">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/header"
-                    android:orientation="vertical"
-                    android:visibility="visible">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/header"
+                        android:orientation="vertical"
+                        android:visibility="visible">
 
-                    <com.nic.ODF_Thittam.support.MyCustomTextView
+                        <com.nic.ODF_Thittam.support.MyCustomTextView
 
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerInParent="true"
-                        android:layout_marginStart="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginStart="15dp"
 
-                        android:textColor="@android:color/black"
-                        android:textSize="@dimen/_13sdp"
-                        android:visibility="visible"
-                        customfontdemo:fontName="@string/font_circular_book"
-                        customfontdemo:ignore="RelativeOverlap" />
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/_13sdp"
+                            android:visibility="visible"
+                            customfontdemo:fontName="@string/font_circular_book"
+                            customfontdemo:ignore="RelativeOverlap" />
 
-                    <Spinner
-                        android:id="@+id/category"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerInParent="true"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:gravity="center" />
+                        <Spinner
+                            android:id="@+id/category"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:gravity="center" />
 
-                </RelativeLayout>
+                    </RelativeLayout>
 
                 </androidx.cardview.widget.CardView>
 
@@ -1492,29 +1492,29 @@
                     android:outlineAmbientShadowColor="@color/colorPrimaryDark"
                     android:layout_marginRight="@dimen/margin_left_20dp"
                     customfontdemo:ignore="UnusedAttribute">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/header"
-                    android:orientation="vertical"
-                    android:visibility="visible">
-
-                    <com.nic.ODF_Thittam.support.MyEditTextView
-                        android:id="@+id/motivator_position_tv"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint=""
-                        android:layout_alignParentStart="true"
-                        android:layout_centerInParent="true"
-                        android:layout_marginStart="15dp"
-                        android:background="@android:color/transparent"
-                        android:inputType="textPersonName"
-                        android:textColor="@android:color/black"
-                        android:textSize="@dimen/_13sdp"
-                        android:visibility="visible"
-                        customfontdemo:fontName="@string/font_circular_book" />
+                        android:layout_height="@dimen/header"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <com.nic.ODF_Thittam.support.MyEditTextView
+                            android:id="@+id/motivator_position_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint=""
+                            android:layout_alignParentStart="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginStart="15dp"
+                            android:background="@android:color/transparent"
+                            android:inputType="textPersonName"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/_13sdp"
+                            android:visibility="visible"
+                            customfontdemo:fontName="@string/font_circular_book" />
 
 
-                </RelativeLayout>
+                    </RelativeLayout>
 
                 </androidx.cardview.widget.CardView>
 

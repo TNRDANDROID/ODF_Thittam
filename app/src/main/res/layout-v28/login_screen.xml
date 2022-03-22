@@ -22,7 +22,6 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:visibility="gone"
                 android:layout_width="@dimen/_80sdp"
                 android:layout_height="@dimen/_80sdp"
                 android:layout_marginTop="@dimen/_15sdp"
@@ -51,7 +50,7 @@
                 android:src="@drawable/log_in_bg_circle_shadow"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="-45dp"
-                android:layout_marginStart="-35dp"
+                android:layout_marginStart="35dp"
                 android:contentDescription="@string/design_icon" />
             <ImageView
                 android:layout_alignParentBottom="true"
@@ -59,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/log_in_bg_circle_color"
                 android:layout_marginBottom="-55dp"
-                android:layout_marginStart="-35dp"
+                android:layout_marginStart="35dp"
                 android:contentDescription="@string/design_icon" />
 
         </RelativeLayout>
@@ -94,13 +93,16 @@
                 <androidx.cardview.widget.CardView
                     android:layout_below="@+id/login_title"
                     android:layout_marginTop="@dimen/_10sdp"
-                    customfontdemo:cardCornerRadius="@dimen/_7sdp"
                     android:id="@+id/input_layout_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     customfontdemo:cardBackgroundColor="@color/white"
                     customfontdemo:cardElevation="@dimen/_7sdp">
-
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/full_transparent"
+                        >
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_40sdp"
@@ -133,17 +135,21 @@
                                 android:importantForAutofill="no" />
                         </RelativeLayout>
 
+                    </com.google.android.material.textfield.TextInputLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_marginTop="@dimen/_10sdp"
-                    customfontdemo:cardCornerRadius="@dimen/_7sdp"
                     android:layout_height="wrap_content"
                     customfontdemo:cardBackgroundColor="@color/white"
                     customfontdemo:cardElevation="@dimen/_10sdp"
                     android:layout_below="@+id/input_layout_email"
                     android:id="@+id/input_layout_password">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -183,13 +189,15 @@
                                 android:layout_alignParentEnd="true"
                                 android:layout_gravity="center"
                                 android:layout_centerVertical="true"
-                                android:layout_marginEnd="@dimen/_10sdp"
+                                android:layout_margin="@dimen/_5sdp"
                                 android:background="@drawable/ic_baseline_visibility_24px"
                                 android:onClick="@{()-> activity.showPassword()}"
                                 android:contentDescription="@string/visible_icon" />
 
                         </RelativeLayout>
 
+
+                    </com.google.android.material.textfield.TextInputLayout>
                 </androidx.cardview.widget.CardView>
 
                 <Button

@@ -114,105 +114,120 @@ public class WorkListAdapter extends PagedListAdapter<ODF_Thittam,WorkListAdapte
         holder.adapterWorkListBinding.workid.setText(WorkListValuesFiltered.get(position).getWorkId() + beneficary_name);
         if(WorkListValuesFiltered.get(position).getSchemeGroupName().isEmpty()){
             holder.adapterWorkListBinding.tvSchemeGroupNameLayout.setVisibility(View.GONE);
-        }else {
+        }
+        else {
             holder.adapterWorkListBinding.tvSchemeGroupNameLayout.setVisibility(View.VISIBLE);
             holder.adapterWorkListBinding.tvSchemeGroupName.setText(WorkListValuesFiltered.get(position).getSchemeGroupName());
         }
 
         if(WorkListValuesFiltered.get(position).getSchemeName().isEmpty()){
             holder.adapterWorkListBinding.tvSchemeLayout.setVisibility(View.GONE);
-        }else {
+        }
+        else {
             holder.adapterWorkListBinding.tvSchemeLayout.setVisibility(View.VISIBLE);
             holder.adapterWorkListBinding.tvScheme.setText(WorkListValuesFiltered.get(position).getSchemeName());
         }
 
         if(WorkListValuesFiltered.get(position).getFinancialYear().isEmpty()){
             holder.adapterWorkListBinding.tvFinancialYearLayout.setVisibility(View.GONE);
-        }else {
+        }
+        else {
             holder.adapterWorkListBinding.tvFinancialYearLayout.setVisibility(View.VISIBLE);
             holder.adapterWorkListBinding.tvFinancialYear.setText(WorkListValuesFiltered.get(position).getFinancialYear());
         }
 
         if(WorkListValuesFiltered.get(position).getAgencyName().isEmpty()){
             holder.adapterWorkListBinding.tvAgencyNameLayout.setVisibility(View.GONE);
-        }else {
+        }
+        else {
             holder.adapterWorkListBinding.tvAgencyNameLayout.setVisibility(View.VISIBLE);
             holder.adapterWorkListBinding.tvAgencyName.setText(WorkListValuesFiltered.get(position).getAgencyName());
         }
 
         if(WorkListValuesFiltered.get(position).getWorkGroupNmae().isEmpty()){
             holder.adapterWorkListBinding.tvWorkGroupNameLayout.setVisibility(View.GONE);
-        }else {
+        }
+        else {
             holder.adapterWorkListBinding.tvWorkGroupNameLayout.setVisibility(View.VISIBLE);
             holder.adapterWorkListBinding.tvWorkGroupName.setText(WorkListValuesFiltered.get(position).getWorkGroupNmae());
         }
 
         if(WorkListValuesFiltered.get(position).getWorkName().isEmpty()){
             holder.adapterWorkListBinding.tvWorkNameLayout.setVisibility(View.GONE);
-        }else {
+        }
+        else {
             holder.adapterWorkListBinding.tvWorkNameLayout.setVisibility(View.VISIBLE);
             holder.adapterWorkListBinding.tvWorkName.setText(WorkListValuesFiltered.get(position).getWorkName());
         }
 
         if(WorkListValuesFiltered.get(position).getBlockName().isEmpty()){
             holder.adapterWorkListBinding.tvBlockLayout.setVisibility(View.GONE);
-        }else {
+        }
+        else {
             holder.adapterWorkListBinding.tvBlockLayout.setVisibility(View.VISIBLE);
             holder.adapterWorkListBinding.tvBlock.setText(WorkListValuesFiltered.get(position).getBlockName());
         }
 
         if(WorkListValuesFiltered.get(position).getPvName().isEmpty()){
             holder.adapterWorkListBinding.tvVillageLayout.setVisibility(View.GONE);
-        }else {
+        }
+        else {
             holder.adapterWorkListBinding.tvVillageLayout.setVisibility(View.VISIBLE);
             holder.adapterWorkListBinding.tvVillage.setText(WorkListValuesFiltered.get(position).getPvName());
         }
 
         if(WorkListValuesFiltered.get(position).getStageName().isEmpty()){
             holder.adapterWorkListBinding.tvCurrentStageLayout.setVisibility(View.GONE);
-        }else {
+        }
+        else {
             holder.adapterWorkListBinding.tvCurrentStageLayout.setVisibility(View.VISIBLE);
             holder.adapterWorkListBinding.tvCurrentStage.setText(WorkListValuesFiltered.get(position).getStageName());
         }
 
         if(WorkListValuesFiltered.get(position).getBeneficiaryFatherName().isEmpty()){
             holder.adapterWorkListBinding.tvBeneficiaryFatherNameLayout.setVisibility(View.GONE);
-        }else {
+        }
+        else {
             holder.adapterWorkListBinding.tvBeneficiaryFatherNameLayout.setVisibility(View.VISIBLE);
             holder.adapterWorkListBinding.tvBeneficiaryFatherName.setText(WorkListValuesFiltered.get(position).getBeneficiaryFatherName());
         }
 
         if(WorkListValuesFiltered.get(position).getGender().isEmpty()){
             holder.adapterWorkListBinding.tvGenderLayout.setVisibility(View.GONE);
-        }else {
+        }
+        else {
             holder.adapterWorkListBinding.tvGenderLayout.setVisibility(View.VISIBLE);
             holder.adapterWorkListBinding.tvGender.setText(WorkListValuesFiltered.get(position).getGender());
         }
 
         if(WorkListValuesFiltered.get(position).getCommunity().isEmpty()){
             holder.adapterWorkListBinding.tvCommunityLayout.setVisibility(View.GONE);
-        }else {
+        }
+        else {
             holder.adapterWorkListBinding.tvCommunityLayout.setVisibility(View.VISIBLE);
             holder.adapterWorkListBinding.tvCommunity.setText(WorkListValuesFiltered.get(position).getCommunity());
         }
 
         if(WorkListValuesFiltered.get(position).getIntialAmount() == null){
             holder.adapterWorkListBinding.tvInitialAmountLayout.setVisibility(View.GONE);
-        }else {
+        }
+        else {
             holder.adapterWorkListBinding.tvInitialAmountLayout.setVisibility(View.VISIBLE);
             holder.adapterWorkListBinding.tvInitialAmount.setText(WorkListValuesFiltered.get(position).getIntialAmount());
         }
 
         if(WorkListValuesFiltered.get(position).getAmountSpendSoFar().isEmpty()){
             holder.adapterWorkListBinding.tvAmountSpentSoFarLayout.setVisibility(View.GONE);
-        }else {
+        }
+        else {
             holder.adapterWorkListBinding.tvAmountSpentSoFarLayout.setVisibility(View.VISIBLE);
             holder.adapterWorkListBinding.tvAmountSpentSoFar.setText(WorkListValuesFiltered.get(position).getAmountSpendSoFar());
         }
 
         if(WorkListValuesFiltered.get(position).getLastVisitedDate().isEmpty()){
             holder.adapterWorkListBinding.tvLastVisitedDateLayout.setVisibility(View.GONE);
-        }else {
+        }
+        else {
             holder.adapterWorkListBinding.tvLastVisitedDateLayout.setVisibility(View.VISIBLE);
             holder.adapterWorkListBinding.tvLastVisitedDate.setText(Utils.formatDateReverse(WorkListValuesFiltered.get(position).getLastVisitedDate()));
 
@@ -221,10 +236,19 @@ public class WorkListAdapter extends PagedListAdapter<ODF_Thittam,WorkListAdapte
 
         if(WorkListValuesFiltered.get(position).getCdProtWorkYn().equalsIgnoreCase("Y")){
             holder.adapterWorkListBinding.viewAdditionalWorks.setVisibility(View.VISIBLE);
-        }else {
+        }
+        else {
             holder.adapterWorkListBinding.viewAdditionalWorks.setVisibility(View.GONE);
         }
 
+        if(WorkListValuesFiltered.get(position).getHide_show_flag().equals("Hide")){
+            holder.adapterWorkListBinding.hideDataLayout.setVisibility(View.GONE);
+            holder.adapterWorkListBinding.lessDataShowIcon.setRotation(180);
+        }
+        else {
+            holder.adapterWorkListBinding.hideDataLayout.setVisibility(View.VISIBLE);
+            holder.adapterWorkListBinding.lessDataShowIcon.setRotation(0);
+        }
 
         holder.adapterWorkListBinding.takePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -237,6 +261,20 @@ public class WorkListAdapter extends PagedListAdapter<ODF_Thittam,WorkListAdapte
             @Override
             public void onClick(View view) {
                 openAdditionalWorkList(position);
+            }
+        });
+
+        holder.adapterWorkListBinding.lessDataShowIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(v.getRotation()==0){
+                    WorkListValuesFiltered.get(position).setHide_show_flag("Hide");
+                    notifyItemChanged(position);
+                }
+                else {
+                    WorkListValuesFiltered.get(position).setHide_show_flag("Show");
+                    notifyItemChanged(position);
+                }
             }
         });
 

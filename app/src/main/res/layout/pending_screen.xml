@@ -37,6 +37,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerInParent="true"
                         android:layout_gravity="start"
+                        android:tint="@color/white"
                         android:onClick="@{()-> activity.onBackPressed()}"
                         android:src="@mipmap/back_arrow" />
 
@@ -46,8 +47,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text="Pending List"
-                        android:textColor="@android:color/black"
+                        android:text="@string/pending_list"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_15sdp" />
 
 
@@ -59,7 +60,7 @@
                         android:visibility="gone"
                         android:layout_centerHorizontal="true"
                         android:layout_gravity="start"
-                        android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
                         android:layout_marginBottom="0dp"
                         android:src="@mipmap/home_img" />
 

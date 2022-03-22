@@ -48,8 +48,8 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
         homeScreenBinding = DataBindingUtil.setContentView(this, R.layout.home_screen);
         homeScreenBinding.setActivity(this);
         prefManager = new PrefManager(this);
-        homeScreenBinding.tvName.setText(prefManager.getDesignation());
-        homeScreenBinding.designation.setText(prefManager.getDesignation());
+        homeScreenBinding.tvName.setText(prefManager.getDistrictName());
+        homeScreenBinding.designation.setText(prefManager.getBlockName());
         Bundle bundle = this.getIntent().getExtras();
         if (bundle != null) {
             isHome = bundle.getString("Home");
@@ -62,13 +62,13 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
 
 
     public void fetchAllResponseFromApi() {
-        getSchemeList();
-        getVillageList();
+        //getSchemeList();
+        //getVillageList();
 //        getDistrictList();
 //        getBlockList();
         getStageList();
         getAdditionalWorkStageList();
-        getFinYearList();
+        //getFinYearList();
     }
 
     public void syncButtonVisibility() {
@@ -580,9 +580,9 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
     @Override
     public void onButtonClick(AlertDialog alertDialog, String type) {
         alertDialog.dismiss();
-        if ("Exit".equalsIgnoreCase(type)) {
+       /* if ("Exit".equalsIgnoreCase(type)) {
             onBackPressed();
-        } else {
+        } else {*/
 
             Intent intent = new Intent(getApplicationContext(), LoginScreen.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -590,7 +590,7 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
             startActivity(intent);
             finish();
             overridePendingTransition(R.anim.slide_enter, R.anim.slide_exit);
-        }
+        //}
     }
     public void logout() {
         dbData.open();

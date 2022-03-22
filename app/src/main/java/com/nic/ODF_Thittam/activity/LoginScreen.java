@@ -1,5 +1,6 @@
 package com.nic.ODF_Thittam.activity;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -84,11 +85,11 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         loginScreenBinding.btnSignIn.setOnClickListener(this);
 
         loginScreenBinding.password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        loginScreenBinding.inputLayoutEmail.setTypeface(FontCache.getInstance(this).getFont(FontCache.Font.REGULAR));
-        loginScreenBinding.inputLayoutPassword.setTypeface(FontCache.getInstance(this).getFont(FontCache.Font.REGULAR));
+        //loginScreenBinding.inputLayoutEmail.setTypeface(FontCache.getInstance(this).getFont(FontCache.Font.REGULAR));
+        //loginScreenBinding.inputLayoutPassword.setTypeface(FontCache.getInstance(this).getFont(FontCache.Font.REGULAR));
         loginScreenBinding.btnSignIn.setTypeface(FontCache.getInstance(this).getFont(FontCache.Font.MEDIUM));
-        loginScreenBinding.inputLayoutEmail.setHintTextAppearance(R.style.InActive);
-        loginScreenBinding.inputLayoutPassword.setHintTextAppearance(R.style.InActive);
+        //loginScreenBinding.inputLayoutEmail.setHintTextAppearance(R.style.InActive);
+        //loginScreenBinding.inputLayoutPassword.setHintTextAppearance(R.style.InActive);
 
         loginScreenBinding.password.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -105,7 +106,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         try {
             String versionName = getPackageManager()
                     .getPackageInfo(getPackageName(), 0).versionName;
-            loginScreenBinding.tvVersionNumber.setText("Version" + " " + versionName);
+            loginScreenBinding.tvVersionNumber.setText(getResources().getString(R.string.version) + " " + versionName);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -138,10 +139,10 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
+        /*switch (v.getId()) {
 
 
-        }
+        }*/
     }
 
     public boolean validate() {
@@ -163,7 +164,9 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
     public void checkLoginScreen() {
         loginScreenBinding.userName.setText("9655215865");
-        loginScreenBinding.password.setText("test123#$");
+        loginScreenBinding.password.setText("test123#$");//loc
+        /*loginScreenBinding.userName.setText("9843368346");
+        loginScreenBinding.password.setText("odf61#$");//live*/
 
         final String username = loginScreenBinding.userName.getText().toString().trim();
         final String password = loginScreenBinding.password.getText().toString().trim();
@@ -415,6 +418,7 @@ Log.d("params",""+params);
         }
     }
 
+    @SuppressLint("StaticFieldLeak")
     public class InsertDistrictTask extends AsyncTask<JSONArray ,Void ,Void> {
 
         @Override
@@ -445,6 +449,7 @@ Log.d("params",""+params);
 
     }
 
+    @SuppressLint("StaticFieldLeak")
     public class InsertBlockTask extends AsyncTask<JSONArray ,Void ,Void> {
         @Override
         protected void onPreExecute() {
@@ -490,6 +495,7 @@ Log.d("params",""+params);
         }
     }
 
+    @SuppressLint("StaticFieldLeak")
     public class MotivatorCategoryList extends AsyncTask<JSONArray, Void, Void> {
 
         @Override

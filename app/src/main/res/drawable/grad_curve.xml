@@ -13,8 +13,8 @@
 
 
             <gradient   android:angle="45"
-                android:endColor="@color/gradEnd"
-                android:startColor="@color/gradStart"/>
+                android:endColor="@color/colorPrimaryDark"
+                android:startColor="@color/d_grey3"/>
 
         </shape>
     </item>

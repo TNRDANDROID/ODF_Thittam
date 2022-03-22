@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
         <variable
             name="activity"
             type="com.nic.ODF_Thittam.activity.VillageListScreen" />
     </data>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -40,17 +40,19 @@
                     android:layout_alignParentStart="true"
                     android:layout_centerInParent="true"
                     android:layout_gravity="start"
+                    android:tint="@color/white"
                     android:onClick="@{()-> activity.onBackPressed()}"
 
-                    android:src="@mipmap/back_arrow" />
+                    android:src="@mipmap/back_arrow"
+                    android:contentDescription="@string/back_icon" />
 
                 <TextView
                     android:id="@+id/title_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="Village List"
-                    android:textColor="@android:color/black"
+                    android:text="@string/village_list"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/_15sdp" />
 
             </RelativeLayout>
@@ -96,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_marginTop="@dimen/_230sdp"
-                android:text="No Projects Found!"
+                android:text="@string/no_projects_found"
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/_16sdp"

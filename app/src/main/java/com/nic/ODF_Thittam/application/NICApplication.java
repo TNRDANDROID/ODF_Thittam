@@ -87,6 +87,7 @@ public class NICApplication extends Application {
             } else {
                 mRequestQueue = Volley.newRequestQueue(getApplicationContext());
             }
+            //mRequestQueue = Volley.newRequestQueue(getApplicationContext());
         }
 
         return mRequestQueue;

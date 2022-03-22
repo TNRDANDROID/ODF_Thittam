@@ -1,19 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_margin="@dimen/_15sdp"
     android:layout_height="wrap_content"
-    android:padding="@dimen/_10sdp"
-    android:background="@drawable/log_in_new_curved_bg">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="@dimen/_10sdp"
+    android:layout_marginRight="@dimen/_10sdp"
+    android:layout_marginTop="@dimen/_10sdp"
+    android:layout_marginBottom="@dimen/_10sdp"
+    app:cardCornerRadius="@dimen/_10sdp"
+    android:outlineAmbientShadowColor="@color/d_grey1"
+    android:outlineSpotShadowColor="@color/colorPrimaryDark"
+    app:cardBackgroundColor="@color/white"
+    app:cardElevation="@dimen/_7sdp"
+    tools:ignore="UnusedAttribute">
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_10sdp"
+        android:layout_gravity="center">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/spinner_list_value"
-        android:textColor="@color/white"
-        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:textColor="@color/black"
         android:textSize="@dimen/_13sdp"
         android:textAlignment="center"/>
 
-</RelativeLayout>
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

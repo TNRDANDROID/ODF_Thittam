@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable
             name="adapter"
             type="com.nic.ODF_Thittam.adapter.WorkListAdapter" />
     </data>
 <androidx.cardview.widget.CardView
-    android:layout_marginLeft="@dimen/_5sdp"
-    android:layout_marginTop="@dimen/_5sdp"
-    android:layout_marginBottom="@dimen/_5sdp"
-    android:layout_marginRight="@dimen/_5sdp"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" >
@@ -35,9 +31,8 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="5dip"
-            android:text="1234567(Achanthi Sundar)"
             android:textColor="#FF4500"
             android:textSize="@dimen/_11sdp"
             android:textStyle="bold" />
@@ -45,22 +40,16 @@
 
         </RelativeLayout>
 
-        <TextView
+        <ImageView
             android:id="@+id/view_offline_Image"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
             android:layout_gravity="end"
-            android:background="#f8f8f8"
             android:gravity="center"
-            android:paddingLeft="@dimen/_5sdp"
-            android:paddingRight="@dimen/_5sdp"
-            android:text="View Offline Image"
-            android:textAlignment="center"
-            android:textAllCaps="true"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/_10sdp"
-            android:textStyle="bold"
-            android:visibility="visible" />
+            android:src="@drawable/ic_gallery_icon"
+            android:visibility="visible"
+            android:contentDescription="@string/view_offline_image" />
+
         <LinearLayout
             android:id="@+id/tv_schemeGroupName_layout"
             android:layout_width="match_parent"
@@ -72,9 +61,9 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_weight="2.5"
-                android:text="Scheme Group Name"
+                android:text="@string/scheme_group_name"
                 android:textColor="#000000"
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold" />
@@ -86,11 +75,9 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="4.5"
-                android:text="TextView"
                 android:textColor="#000000"
                 android:textSize="@dimen/_10sdp" />
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_marginTop="@dimen/_3sdp"
@@ -105,9 +92,9 @@
                 android:id="@+id/tv_scheme_label"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_weight="3.5"
-                android:text="Scheme Name"
+                android:text="@string/scheme_name"
                 android:textColor="#000000"
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold" />
@@ -118,9 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-
                 android:layout_weight="6.5"
-                android:text="TextView"
                 android:textColor="#000000"
                 android:textSize="@dimen/_10sdp" />
         </LinearLayout>
@@ -138,9 +123,9 @@
                 android:id="@+id/tv_financialYear_label"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_weight="3.5"
-                android:text="Financial Year"
+                android:text="@string/financial_year"
                 android:textColor="#000000"
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold" />
@@ -151,9 +136,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-
                 android:layout_weight="6.5"
-                android:text="TextView"
                 android:textColor="#000000"
                 android:textSize="@dimen/_10sdp" />
         </LinearLayout>
@@ -171,9 +154,9 @@
                 android:id="@+id/tv_agencyName_label"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_weight="3.5"
-                android:text="Agency Name"
+                android:text="@string/agency_name"
                 android:textColor="#000000"
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold" />
@@ -185,8 +168,6 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="6.5"
-
-                android:text="TextView"
                 android:textColor="#000000"
                 android:textSize="@dimen/_10sdp" />
         </LinearLayout>
@@ -204,9 +185,9 @@
                 android:id="@+id/tv_workGroupName_label"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_weight="3.5"
-                android:text="Work Group Name"
+                android:text="@string/work_group_name"
                 android:textColor="#000000"
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold" />
@@ -217,9 +198,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-
                 android:layout_weight="6.5"
-                android:text="TextView"
                 android:textColor="#000000"
                 android:textSize="@dimen/_10sdp" />
         </LinearLayout>
@@ -237,9 +216,9 @@
                 android:id="@+id/tv_workName_label"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_weight="3.5"
-                android:text="Work Name"
+                android:text="@string/work_name"
                 android:textColor="#000000"
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold" />
@@ -250,16 +229,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-
                 android:layout_weight="6.5"
-                android:text="TextView"
                 android:textColor="#000000"
                 android:textSize="@dimen/_10sdp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_marginTop="@dimen/_3sdp"
-            android:id="@+id/tv_block_layout"
+            android:id="@+id/tv_beneficiaryFatherName_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -267,56 +244,21 @@
             android:weightSum="10">
 
             <TextView
-                android:id="@+id/tv_block_label"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_weight="3.5"
-                android:text="Block"
+                android:text="@string/beneficiary_nname"
                 android:textColor="#000000"
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tv_block"
+                android:id="@+id/tv_beneficiaryFatherName"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-
+                android:layout_marginStart="6dp"
                 android:layout_weight="6.5"
-                android:text="TextView"
-                android:textColor="#000000"
-                android:textSize="@dimen/_10sdp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="@dimen/_3sdp"
-            android:id="@+id/tv_village_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:weightSum="10">
-
-            <TextView
-                android:id="@+id/tv_village_label"
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="3.5"
-                android:text="Village"
-                android:textColor="#000000"
-                android:textSize="@dimen/_11sdp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv_village"
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:layout_weight="6.5"
-                android:text="TextView"
                 android:textColor="#000000"
                 android:textSize="@dimen/_10sdp" />
         </LinearLayout>
@@ -334,9 +276,9 @@
                 android:id="@+id/tv_currentStage_label"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_weight="3.5"
-                android:text="Current Stage"
+                android:text="@string/current_stage"
                 android:textColor="#000000"
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold" />
@@ -345,17 +287,21 @@
                 android:id="@+id/tv_currentStage"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-
+                android:layout_marginStart="6dp"
                 android:layout_weight="6.5"
-                android:text="TextView"
                 android:textColor="#000000"
                 android:textSize="@dimen/_10sdp" />
         </LinearLayout>
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/hide_data_layout">
+
+        <LinearLayout
             android:layout_marginTop="@dimen/_3sdp"
-            android:id="@+id/tv_beneficiaryFatherName_layout"
+            android:id="@+id/tv_block_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -363,23 +309,53 @@
             android:weightSum="10">
 
             <TextView
+                android:id="@+id/tv_block_label"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_weight="3.5"
-                android:text="Beneficiary \nName"
+                android:text="@string/block_en"
                 android:textColor="#000000"
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tv_beneficiaryFatherName"
+                android:id="@+id/tv_block"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_weight="6.5"
+                android:textColor="#000000"
+                android:textSize="@dimen/_10sdp" />
+        </LinearLayout>
 
-                android:text="BeneficiaryFatherName"
+        <LinearLayout
+            android:layout_marginTop="@dimen/_3sdp"
+            android:id="@+id/tv_village_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <TextView
+                android:id="@+id/tv_village_label"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="3.5"
+                android:text="@string/village_en"
+                android:textColor="#000000"
+                android:textSize="@dimen/_11sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_village"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_weight="6.5"
                 android:textColor="#000000"
                 android:textSize="@dimen/_10sdp" />
         </LinearLayout>
@@ -396,9 +372,9 @@
             <TextView
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_weight="3.5"
-                android:text="Gender"
+                android:text="@string/gender_en"
                 android:textColor="#000000"
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold" />
@@ -407,10 +383,8 @@
                 android:id="@+id/tv_gender"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
+                android:layout_marginStart="6dp"
                 android:layout_weight="6.5"
-
-                android:text="MAle"
                 android:textColor="#000000"
                 android:textSize="@dimen/_10sdp" />
         </LinearLayout>
@@ -427,9 +401,9 @@
             <TextView
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dip"
+                android:layout_marginStart="10dip"
                 android:layout_weight="3.5"
-                android:text="Community"
+                android:text="@string/community"
                 android:textColor="#000000"
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold" />
@@ -438,10 +412,8 @@
                 android:id="@+id/tv_community"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
+                android:layout_marginStart="6dp"
                 android:layout_weight="6.5"
-
-                android:text="OBC"
                 android:textColor="#000000"
                 android:textSize="@dimen/_10sdp" />
         </LinearLayout>
@@ -459,9 +431,9 @@
                 android:id="@+id/initialAmount"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dip"
+                android:layout_marginStart="10dip"
                 android:layout_weight="3.5"
-                android:text="Initial Amount"
+                android:text="@string/initial_amount"
                 android:textColor="#000000"
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold" />
@@ -470,10 +442,8 @@
                 android:id="@+id/tv_initialAmount"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
+                android:layout_marginStart="6dp"
                 android:layout_weight="6.5"
-
-                android:text="10000"
                 android:textColor="#000000"
                 android:textSize="@dimen/_10sdp" />
         </LinearLayout>
@@ -491,9 +461,9 @@
                 android:id="@+id/amountSpentSoFar"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_weight="3.5"
-                android:text="Amount Spent So Far"
+                android:text="@string/amount_spent_so_far"
                 android:textColor="#000000"
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold" />
@@ -502,10 +472,8 @@
                 android:id="@+id/tv_amountSpentSoFar"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
+                android:layout_marginStart="6dp"
                 android:layout_weight="6.5"
-                android:text="10000"
-
                 android:textColor="#000000"
                 android:textSize="@dimen/_10sdp" />
         </LinearLayout>
@@ -522,9 +490,9 @@
             <TextView
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_weight="3.5"
-                android:text="Last Visited Date"
+                android:text="@string/last_visited_date"
                 android:textColor="#000000"
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold" />
@@ -533,26 +501,25 @@
                 android:id="@+id/tv_last_visited_date"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
+                android:layout_marginStart="6dp"
                 android:layout_weight="6.5"
-                android:text="Date"
-
                 android:textColor="#000000"
                 android:textSize="@dimen/_10sdp" />
+        </LinearLayout>
+
         </LinearLayout>
 </LinearLayout>
 
     <ImageView
         android:id="@+id/take_photo"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_centerInParent="true"
+        android:layout_width="@dimen/_25sdp"
+        android:layout_height="@dimen/_25sdp"
         android:layout_marginBottom="@dimen/_5sdp"
         android:layout_gravity="end"
-        android:layout_marginRight="@dimen/_18sdp"
+        android:layout_marginEnd="@dimen/_18sdp"
         android:gravity="end"
-        android:src="@drawable/camera_icon"
-        android:text="Take Photo" />
+        android:src="@drawable/ic_camera_photo_picture_icon"
+        android:contentDescription="@string/camera_icon" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -566,35 +533,47 @@
             android:gravity="center"
             android:paddingLeft="@dimen/_5sdp"
             android:paddingRight="@dimen/_5sdp"
-            android:text="View Online Image"
-            android:background="@drawable/view_image"
-            android:layout_marginLeft="@dimen/_10sdp"
+            android:text="@string/view_online_image"
+            android:background="@drawable/new_bg_color_"
+            android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginBottom="@dimen/_10sdp"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textColor="@android:color/black"
+            android:textColor="@color/white"
             android:textSize="@dimen/_10sdp"
             android:textStyle="bold"
-            />
+            tools:ignore="RelativeOverlap" />
 
     <TextView
         android:id="@+id/view_additional_works"
         android:layout_width="120dp"
         android:layout_height="35dp"
-        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
         android:layout_marginBottom="@dimen/_10sdp"
-        android:background="@drawable/view_image"
+        android:background="@drawable/new_bg_color_"
         android:layout_centerVertical="true"
         android:layout_gravity="end"
         android:layout_alignParentEnd="true"
         android:gravity="center"
-        android:text="View CD Works"
+        android:text="@string/view_cd_works"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:textColor="@android:color/black"
+        android:textColor="@color/white"
         android:textSize="@dimen/_10sdp"
         android:textStyle="bold" />
     </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/less_data_show_icon"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_gravity="end"
+            android:layout_marginEnd="@dimen/_18sdp"
+            android:gravity="end"
+            android:src="@drawable/ic_up_triangle"
+            android:contentDescription="@string/hide_show_icon" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>
 </layout>

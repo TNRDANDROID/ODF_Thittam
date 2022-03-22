@@ -37,7 +37,7 @@ public class dbData {
     }
 
     /****** DISTRICT TABLE *****/
-    public ODF_Thittam insertDistrict(ODF_Thittam ODF_Thittam) {
+    public void insertDistrict(ODF_Thittam ODF_Thittam) {
 
         ContentValues values = new ContentValues();
         values.put(AppConstant.DISTRICT_CODE, ODF_Thittam.getDistictCode());
@@ -46,21 +46,18 @@ public class dbData {
         long id = db.insert(DBHelper.DISTRICT_TABLE_NAME,null,values);
         Log.d("Inserted_id_district", String.valueOf(id));
 
-        return ODF_Thittam;
     }
 
     public ArrayList<ODF_Thittam > getAll_District() {
 
         ArrayList<ODF_Thittam > cards = new ArrayList<>();
-        Cursor cursor = null;
 
-        try {
-            cursor = db.rawQuery("select * from "+DBHelper.DISTRICT_TABLE_NAME,null);
+        try (Cursor cursor = db.rawQuery("select * from " + DBHelper.DISTRICT_TABLE_NAME, null)) {
             // cursor = db.query(CardsDBHelper.TABLE_CARDS,
             //       COLUMNS, null, null, null, null, null);
             if (cursor.getCount() > 0) {
                 while (cursor.moveToNext()) {
-                    ODF_Thittam  card = new ODF_Thittam ();
+                    ODF_Thittam card = new ODF_Thittam();
                     card.setDistictCode(cursor.getString(cursor
                             .getColumnIndexOrThrow(AppConstant.DISTRICT_CODE)));
                     card.setDistrictName(cursor.getString(cursor
@@ -69,18 +66,14 @@ public class dbData {
                     cards.add(card);
                 }
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             //   Log.d(DEBUG_TAG, "Exception raised with a value of " + e);
-        } finally{
-            if (cursor != null) {
-                cursor.close();
-            }
         }
         return cards;
     }
 
     /****** BLOCKTABLE *****/
-    public ODF_Thittam insertBlock(ODF_Thittam ODF_Thittam) {
+    public void insertBlock(ODF_Thittam ODF_Thittam) {
 
         ContentValues values = new ContentValues();
         values.put(AppConstant.DISTRICT_CODE, ODF_Thittam.getDistictCode());
@@ -90,9 +83,8 @@ public class dbData {
         long id = db.insert(DBHelper.BLOCK_TABLE_NAME,null,values);
         Log.d("Inserted_id_block", String.valueOf(id));
 
-        return ODF_Thittam;
     }
-    public ODF_Thittam insertCategoryList(ODF_Thittam odfMonitoringListValue) {
+    public void insertCategoryList(ODF_Thittam odfMonitoringListValue) {
 
         ContentValues values = new ContentValues();
         values.put(AppConstant.KEY_MOTIVATOR_CATEGORY_ID,odfMonitoringListValue.getMotivatorCategoryId());
@@ -101,16 +93,13 @@ public class dbData {
         long id = db.insert(DBHelper.MOTIVATOR_CATEGORY_LIST_TABLE_NAME,null,values);
         Log.d("Inserted_idCategoryList",String.valueOf(id));
 
-        return odfMonitoringListValue;
     }
 
     public ArrayList<ODF_Thittam> getAllCategoryList() {
 
         ArrayList<ODF_Thittam> cards = new ArrayList<>();
-        Cursor cursor = null;
 
-        try {
-            cursor = db.rawQuery("select * from "+DBHelper.MOTIVATOR_CATEGORY_LIST_TABLE_NAME,null);
+        try (Cursor cursor = db.rawQuery("select * from " + DBHelper.MOTIVATOR_CATEGORY_LIST_TABLE_NAME, null)) {
             // cursor = db.query(CardsDBHelper.TABLE_CARDS,
             //       COLUMNS, null, null, null, null, null);
             if (cursor.getCount() > 0) {
@@ -126,12 +115,8 @@ public class dbData {
                     cards.add(categoryList);
                 }
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             //   Log.d(DEBUG_TAG, "Exception raised with a value of " + e);
-        } finally{
-            if (cursor != null) {
-                cursor.close();
-            }
         }
         return cards;
     }
@@ -139,15 +124,13 @@ public class dbData {
     public ArrayList<ODF_Thittam > getAll_Block() {
 
         ArrayList<ODF_Thittam > cards = new ArrayList<>();
-        Cursor cursor = null;
 
-        try {
-            cursor = db.rawQuery("select * from "+DBHelper.BLOCK_TABLE_NAME,null);
+        try (Cursor cursor = db.rawQuery("select * from " + DBHelper.BLOCK_TABLE_NAME, null)) {
             // cursor = db.query(CardsDBHelper.TABLE_CARDS,
             //       COLUMNS, null, null, null, null, null);
             if (cursor.getCount() > 0) {
                 while (cursor.moveToNext()) {
-                    ODF_Thittam  card = new ODF_Thittam ();
+                    ODF_Thittam card = new ODF_Thittam();
                     card.setDistictCode(cursor.getString(cursor
                             .getColumnIndexOrThrow(AppConstant.DISTRICT_CODE)));
                     card.setBlockCode(cursor.getString(cursor
@@ -158,16 +141,12 @@ public class dbData {
                     cards.add(card);
                 }
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             //   Log.d(DEBUG_TAG, "Exception raised with a value of " + e);
-        } finally{
-            if (cursor != null) {
-                cursor.close();
-            }
         }
         return cards;
     }
-    public ODF_Thittam insertBankName(ODF_Thittam odfMonitoringListValue) {
+    public void insertBankName(ODF_Thittam odfMonitoringListValue) {
 
         ContentValues values = new ContentValues();
         values.put(AppConstant.BANK_ID,odfMonitoringListValue.getBank_Id());
@@ -176,12 +155,10 @@ public class dbData {
 
         long id = db.insert(DBHelper.BANKLIST_TABLE_NAME,null,values);
         Log.d("Inserted_id_bankname",String.valueOf(id));
-
-        return odfMonitoringListValue;
     }
 
     /****** VILLAGE TABLE *****/
-    public ODF_Thittam insertVillage(ODF_Thittam ODF_Thittam) {
+    public void insertVillage(ODF_Thittam ODF_Thittam) {
 
         ContentValues values = new ContentValues();
         values.put(AppConstant.DISTRICT_CODE, ODF_Thittam.getDistictCode());
@@ -192,21 +169,18 @@ public class dbData {
         long id = db.insert(DBHelper.VILLAGE_TABLE_NAME,null,values);
         Log.d("Inserted_id_village", String.valueOf(id));
 
-        return ODF_Thittam;
     }
 
     public ArrayList<ODF_Thittam > getAll_Village() {
 
         ArrayList<ODF_Thittam > cards = new ArrayList<>();
-        Cursor cursor = null;
 
-        try {
-            cursor = db.rawQuery("select * from "+DBHelper.VILLAGE_TABLE_NAME+" order by pvname asc",null);
+        try (Cursor cursor = db.rawQuery("select * from " + DBHelper.VILLAGE_TABLE_NAME + " order by pvname asc", null)) {
             // cursor = db.query(CardsDBHelper.TABLE_CARDS,
             //       COLUMNS, null, null, null, null, null);
             if (cursor.getCount() > 0) {
                 while (cursor.moveToNext()) {
-                    ODF_Thittam  card = new ODF_Thittam ();
+                    ODF_Thittam card = new ODF_Thittam();
                     card.setDistictCode(cursor.getString(cursor
                             .getColumnIndexOrThrow(AppConstant.DISTRICT_CODE)));
                     card.setBlockCode(cursor.getString(cursor
@@ -219,17 +193,13 @@ public class dbData {
                     cards.add(card);
                 }
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             //   Log.d(DEBUG_TAG, "Exception raised with a value of " + e);
-        } finally{
-            if (cursor != null) {
-                cursor.close();
-            }
         }
         return cards;
     }
 
-    public ODF_Thittam insertScheme(ODF_Thittam ODF_Thittam) {
+    public void insertScheme(ODF_Thittam ODF_Thittam) {
 
         ContentValues values = new ContentValues();
         values.put(AppConstant.KEY_SCHEME_SEQUENTIAL_ID, ODF_Thittam.getSchemeSequentialID());
@@ -239,16 +209,13 @@ public class dbData {
         long id = db.insert(DBHelper.SCHEME_TABLE_NAME, null, values);
         Log.d("Inserted_id_Stage", String.valueOf(id));
 
-        return ODF_Thittam;
     }
 
     public ArrayList<ODF_Thittam> getAll_Scheme() {
 
         ArrayList<ODF_Thittam> cards = new ArrayList<>();
-        Cursor cursor = null;
 
-        try {
-            cursor = db.rawQuery("select * from " + DBHelper.SCHEME_TABLE_NAME, null);
+        try (Cursor cursor = db.rawQuery("select * from " + DBHelper.SCHEME_TABLE_NAME, null)) {
             // cursor = db.query(CardsDBHelper.TABLE_CARDS,
             //       COLUMNS, null, null, null, null, null);
             if (cursor.getCount() > 0) {
@@ -265,15 +232,11 @@ public class dbData {
             }
         } catch (Exception e) {
             //   Log.d(DEBUG_TAG, "Exception raised with a value of " + e);
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
         }
         return cards;
     }
 
-    public ODF_Thittam insertFinYear(ODF_Thittam ODF_Thittam) {
+    public void insertFinYear(ODF_Thittam ODF_Thittam) {
 
         ContentValues values = new ContentValues();
         values.put(AppConstant.FINANCIAL_YEAR, ODF_Thittam.getFinancialYear());
@@ -281,16 +244,13 @@ public class dbData {
         long id = db.insert(DBHelper.FINANCIAL_YEAR_TABLE_NAME, null, values);
         Log.d("Inserted_id_FinYear", String.valueOf(id));
 
-        return ODF_Thittam;
     }
 
     public ArrayList<ODF_Thittam> getAll_FinYear() {
 
         ArrayList<ODF_Thittam> cards = new ArrayList<>();
-        Cursor cursor = null;
 
-        try {
-            cursor = db.rawQuery("select * from " + DBHelper.FINANCIAL_YEAR_TABLE_NAME, null);
+        try (Cursor cursor = db.rawQuery("select * from " + DBHelper.FINANCIAL_YEAR_TABLE_NAME, null)) {
             // cursor = db.query(CardsDBHelper.TABLE_CARDS,
             //       COLUMNS, null, null, null, null, null);
             if (cursor.getCount() > 0) {
@@ -304,15 +264,11 @@ public class dbData {
             }
         } catch (Exception e) {
             //   Log.d(DEBUG_TAG, "Exception raised with a value of " + e);
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
         }
         return cards;
     }
 
-    public ODF_Thittam insertStage(ODF_Thittam ODF_Thittam) {
+    public void insertStage(ODF_Thittam ODF_Thittam) {
 
         ContentValues values = new ContentValues();
         values.put(AppConstant.WORK_GROUP_ID, ODF_Thittam.getWorkGroupID());
@@ -326,16 +282,13 @@ public class dbData {
         long id = db.insert(DBHelper.WORK_STAGE_TABLE, null, values);
         Log.d("Inserted_id_Stage", String.valueOf(id));
 
-        return ODF_Thittam;
     }
 
     public ArrayList<ODF_Thittam> getAll_Stage() {
 
         ArrayList<ODF_Thittam> cards = new ArrayList<>();
-        Cursor cursor = null;
 
-        try {
-            cursor = db.rawQuery("select * from " + DBHelper.WORK_STAGE_TABLE, null);
+        try (Cursor cursor = db.rawQuery("select * from " + DBHelper.WORK_STAGE_TABLE, null)) {
             // cursor = db.query(CardsDBHelper.TABLE_CARDS,
             //       COLUMNS, null, null, null, null, null);
             if (cursor.getCount() > 0) {
@@ -362,15 +315,11 @@ public class dbData {
             }
         } catch (Exception e) {
             //   Log.d(DEBUG_TAG, "Exception raised with a value of " + e);
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
         }
         return cards;
     }
 
-    public ODF_Thittam insertAdditionalStage(ODF_Thittam ODF_Thittam) {
+    public void insertAdditionalStage(ODF_Thittam ODF_Thittam) {
 
         ContentValues values = new ContentValues();
         values.put(AppConstant.WORK_TYPE_CODE, ODF_Thittam.getWorkTypeCode());
@@ -382,23 +331,21 @@ public class dbData {
         long id = db.insert(DBHelper.ADDITIONAL_WORK_STAGE_TABLE, null, values);
         Log.d("Inserted_id_Add_Stage", String.valueOf(id));
 
-        return ODF_Thittam;
     }
 
     public ArrayList<ODF_Thittam> getAdditionalStage() {
 
         ArrayList<ODF_Thittam> cards = new ArrayList<>();
-        Cursor cursor = null;
 
-        try {
-            cursor = db.rawQuery("select * from " + DBHelper.ADDITIONAL_WORK_STAGE_TABLE, null);
+        try (Cursor cursor = db.rawQuery("select * from " + DBHelper.ADDITIONAL_WORK_STAGE_TABLE, null)) {
             // cursor = db.query(CardsDBHelper.TABLE_CARDS,
             //       COLUMNS, null, null, null, null, null);
             if (cursor.getCount() > 0) {
                 while (cursor.moveToNext()) {
                     ODF_Thittam card = new ODF_Thittam();
                     card.setWorkTypeCode(cursor.getString(cursor
-                            .getColumnIndexOrThrow(AppConstant.WORK_TYPE_CODE)));;
+                            .getColumnIndexOrThrow(AppConstant.WORK_TYPE_CODE)));
+
                     card.setWorkStageOrder(cursor.getString(cursor
                             .getColumnIndexOrThrow(AppConstant.WORK_STAGE_ORDER)));
                     card.setWorkStageCode(cursor.getString(cursor
@@ -414,15 +361,11 @@ public class dbData {
             }
         } catch (Exception e) {
             //   Log.d(DEBUG_TAG, "Exception raised with a value of " + e);
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
         }
         return cards;
     }
 
-    public ODF_Thittam insertWorkList(ODF_Thittam ODF_Thittam) {
+    public void insertWorkList(ODF_Thittam ODF_Thittam) {
 
         ContentValues values = new ContentValues();
         values.put(AppConstant.DISTRICT_CODE, ODF_Thittam.getDistictCode());
@@ -456,18 +399,18 @@ public class dbData {
         values.put(AppConstant.GENDER, ODF_Thittam.getGender());
         values.put(AppConstant.LAST_VISITED_DATE, ODF_Thittam.getLastVisitedDate());
         values.put(AppConstant.KEY_IMAGE_AVAILABLE, ODF_Thittam.getImageAvailable());
+        values.put(AppConstant.KEY_SHOW_HIDE_FLAG, ODF_Thittam.getHide_show_flag());
 
         long id = db.insert(DBHelper.WORK_LIST_TABLE_BASED_ON_FINYEAR_VIlLAGE, null, values);
         Log.d("Inserted_id_Worklist", String.valueOf(id));
 
-        return ODF_Thittam;
     }
 
     public ArrayList<ODF_Thittam> getAllWorkLIst(String purpose) {
 
         ArrayList<ODF_Thittam> cards = new ArrayList<>();
         Cursor cursor = null;
-        String condition = "";
+        String condition;
 
         if(purpose.equalsIgnoreCase("fetch")) {
             //condition = " where fin_year = '" + fin_year + "' and dcode = "+dcode+" and bcode = "+bcode+ " and pvcode = "+pvcode+ " and scheme_id = "+schemeSeqId+ " and current_stage_of_work != 10";
@@ -516,6 +459,7 @@ public class dbData {
                     card.setGender(cursor.getString(cursor.getColumnIndexOrThrow(AppConstant.GENDER)));
                     card.setLastVisitedDate(cursor.getString(cursor.getColumnIndexOrThrow(AppConstant.LAST_VISITED_DATE)));
                     card.setImageAvailable(cursor.getString(cursor.getColumnIndexOrThrow(AppConstant.KEY_IMAGE_AVAILABLE)));
+                    card.setHide_show_flag(cursor.getString(cursor.getColumnIndexOrThrow(AppConstant.KEY_SHOW_HIDE_FLAG)));
 
                     cards.add(card);
                 }
@@ -531,7 +475,7 @@ public class dbData {
         return cards;
     }
 
-    public ODF_Thittam insertAdditionalWorkList(ODF_Thittam ODF_Thittam) {
+    public void insertAdditionalWorkList(ODF_Thittam ODF_Thittam) {
 
         ContentValues values = new ContentValues();
         values.put(AppConstant.DISTRICT_CODE, ODF_Thittam.getDistictCode());
@@ -556,7 +500,6 @@ public class dbData {
         long id = db.insert(DBHelper.ADDITIONAL_WORK_LIST, null, values);
         Log.d("Inserted_id_Additional", String.valueOf(id));
 
-        return ODF_Thittam;
     }
 
     public ArrayList<ODF_Thittam> getAllAdditionalWork(String work_id,String dcode,String bcode,String pvcode) {
@@ -564,15 +507,15 @@ public class dbData {
         ArrayList<ODF_Thittam> cards = new ArrayList<>();
         Cursor cursor = null;
 
-        String condition = "";
+        String condition;
 
-        if (work_id != "") {
+        if (!work_id.equals("")) {
             //condition = " where work_id = " + work_id + " and fin_year = '" + fin_year + "' and dcode = " + dcode + " and bcode = " + bcode + " and pvcode = " + pvcode+ " and scheme_id = " + schemeSeqId+ " and current_stage_of_work != 10";
             condition = " where work_id = " + work_id + " and dcode = " + dcode + " and bcode = " + bcode + " and pvcode = " + pvcode+ " and current_stage_of_work != 10";
             //condition = "where work_id = " + work_id + " current_stage_of_work != 10";
         }else {
             //condition = " where fin_year = '" + fin_year + "' and dcode = " + dcode + " and bcode = " + bcode + " and pvcode = " + pvcode+ " and current_stage_of_work != 10";
-            condition = "where current_stage_of_work != 10";
+            condition = " where current_stage_of_work != 10";
         }
 
 
@@ -619,11 +562,11 @@ public class dbData {
 
         ArrayList<ODF_Thittam> cards = new ArrayList<>();
         Cursor cursor = null;
-        String selection = "server_flag = ? ";
+        String selection = " server_flag = ? ";
         String[] selectionArgs = new String[]{"0"};
 
         if(purpose.equalsIgnoreCase("upload")) {
-            selection = "server_flag = ? and dcode = ? and bcode = ? and pvcode = ? and work_id = ?";
+            selection = " server_flag = ? and dcode = ? and bcode = ? and pvcode = ? and work_id = ?";
             selectionArgs = new String[]{"0",dcode,bcode,pvcode,work_id};
         }
 
@@ -691,10 +634,10 @@ public class dbData {
         String selection = null;
         String[] selectionArgs = null;
         if (type_of_work.equalsIgnoreCase(AppConstant.ADDITIONAL_WORK)) {
-            selection = "dcode = ? and bcode = ? and pvcode = ? and work_id = ? and type_of_work = ? and cd_work_no = ? and work_type_flag_le = ?";
+            selection = " dcode = ? and bcode = ? and pvcode = ? and work_id = ? and type_of_work = ? and cd_work_no = ? and work_type_flag_le = ?";
             selectionArgs = new String[]{dcode,bcode,pvcode,work_id,type_of_work,cd_work_no,work_type_flag_le};
         }else {
-            selection = "dcode = ? and bcode = ? and pvcode = ? and work_id = ? and type_of_work = ?";
+            selection = " dcode = ? and bcode = ? and pvcode = ? and work_id = ? and type_of_work = ?";
             selectionArgs = new String[]{dcode,bcode,pvcode,work_id,type_of_work};
         }
 

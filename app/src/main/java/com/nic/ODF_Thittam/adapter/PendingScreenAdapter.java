@@ -88,16 +88,16 @@ public class PendingScreenAdapter extends PagedListAdapter<ODF_Thittam,PendingSc
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
-      holder.pendingScreenAdapterBinding.workId.setText(String.valueOf(pendingListFiltered.get(position).getWorkId()));
+      holder.pendingScreenAdapterBinding.workId.setText(": "+String.valueOf(pendingListFiltered.get(position).getWorkId()));
         if(pendingListFiltered.get(position).getTypeOfWork().equalsIgnoreCase(AppConstant.ADDITIONAL_WORK)) {
-            holder.pendingScreenAdapterBinding.cdView.setVisibility(View.VISIBLE);
+            holder.pendingScreenAdapterBinding.cdView.setVisibility(View.GONE);
             holder.pendingScreenAdapterBinding.cdWorkLayout.setVisibility(View.VISIBLE);
-            holder.pendingScreenAdapterBinding.cdWorkNo.setText(String.valueOf(pendingListFiltered.get(position).getCdWorkNo()));
+            holder.pendingScreenAdapterBinding.cdWorkNo.setText(": "+String.valueOf(pendingListFiltered.get(position).getCdWorkNo()));
         }else{
             holder.pendingScreenAdapterBinding.cdView.setVisibility(View.GONE);
             holder.pendingScreenAdapterBinding.cdWorkLayout.setVisibility(View.GONE);
         }
-        holder.pendingScreenAdapterBinding.stageName.setText(pendingListFiltered.get(position).getWorkStageName());
+        holder.pendingScreenAdapterBinding.stageName.setText(": "+pendingListFiltered.get(position).getWorkStageName());
 
         final String dcode = pendingListFiltered.get(position).getDistictCode();
         final String bcode = pendingListFiltered.get(position).getBlockCode();

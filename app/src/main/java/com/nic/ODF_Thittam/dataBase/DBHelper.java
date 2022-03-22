@@ -119,6 +119,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "community_name TEXT," +
                 "gender_text TEXT," +
                 "upd_date TEXT,"+
+                "show_hide_flag TEXT,"+
                 "image_available TEXT)");
 
         db.execSQL("CREATE TABLE " + ADDITIONAL_WORK_LIST + " ("

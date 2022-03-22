@@ -9,8 +9,8 @@ android {
         applicationId "com.nic.ODF_Thittam"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 8
-        versionName "8"
+        versionCode 1
+        versionName "1"
     }
     signingConfigs {
         release {
@@ -27,7 +27,7 @@ android {
             def version = variant.versionName
             def date = new Date()
             def formattedDate = date.format('ddMMyy')
-            outputFileName = "ODF_Thittam_${variant.buildType.name}_v${version}_${formattedDate}.apk"
+            outputFileName = "PMGSY${variant.buildType.name}_v${version}_${formattedDate}.apk"
         }
     }
     buildTypes {
@@ -54,6 +54,7 @@ android {
         }
         production {
             debuggable true
+            testCoverageEnabled true
             minifyEnabled false
             shrinkResources false
             signingConfig signingConfigs.debug

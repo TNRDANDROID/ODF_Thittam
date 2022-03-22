@@ -12,7 +12,7 @@ import android.widget.EditText;
 /**
  * Created by AchanthiSundar on 28-12-2018.
  */
-public class MyEditText extends EditText {
+public class MyEditText extends androidx.appcompat.widget.AppCompatEditText {
 
     //The image we are going to use for the Clear button
 
