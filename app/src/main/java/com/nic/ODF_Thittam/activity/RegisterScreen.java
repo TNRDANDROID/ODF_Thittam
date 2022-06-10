@@ -1039,25 +1039,32 @@ public class RegisterScreen extends AppCompatActivity implements View.OnClickLis
     }
 
     private void captureImage() {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-        File file = null;
-        PackageManager it = getPackageManager();
-        if (intent.resolveActivity(it) != null) {
-            file = CameraUtils.getOutputMediaFile(MEDIA_TYPE_IMAGE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(cameraIntent, CAMERA_CAPTURE_IMAGE_REQUEST_CODE);
         }
+        else {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+            File file = null;
+            PackageManager it = getPackageManager();
+            if (intent.resolveActivity(it) != null) {
+                file = CameraUtils.getOutputMediaFile(MEDIA_TYPE_IMAGE);
+            }
 
 //        File file = CameraUtils.getOutputMediaFile(MEDIA_TYPE_IMAGE);
-        if (file != null) {
-            imageStoragePath = file.getAbsolutePath();
+            if (file != null) {
+                imageStoragePath = file.getAbsolutePath();
+            }
+
+            Uri fileUri = CameraUtils.getOutputMediaFileUri(this, file);
+
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+
+            // start the image capture Intent
+            startActivityForResult(intent, CAMERA_CAPTURE_IMAGE_REQUEST_CODE);
         }
-
-        Uri fileUri = CameraUtils.getOutputMediaFileUri(this, file);
-
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-
-        // start the image capture Intent
-        startActivityForResult(intent, CAMERA_CAPTURE_IMAGE_REQUEST_CODE);
     }
 
 
@@ -1157,12 +1164,20 @@ public class RegisterScreen extends AppCompatActivity implements View.OnClickLis
         // if the result is capturing Image
         if (requestCode == CAMERA_CAPTURE_IMAGE_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                // Refreshing the gallery
-                CameraUtils.refreshGallery(getApplicationContext(), imageStoragePath);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    Bitmap photo = (Bitmap) data.getExtras().get("data");
+                    profile_image_preview.setVisibility(View.GONE);
+                    profile_image.setVisibility(View.VISIBLE);
+                    profile_image.setImageBitmap(photo);
+                }
+                else {
+                    // Refreshing the gallery
+                    CameraUtils.refreshGallery(getApplicationContext(), imageStoragePath);
 
-                // successfully captured the image
-                // display it in image view
-                previewCapturedImage();
+                    // successfully captured the image
+                    // display it in image view
+                    previewCapturedImage();
+                }
             } else if (resultCode == RESULT_CANCELED) {
                 // user cancelled Image capture
                 Toast.makeText(getApplicationContext(),

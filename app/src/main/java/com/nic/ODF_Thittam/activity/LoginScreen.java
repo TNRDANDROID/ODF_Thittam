@@ -47,12 +47,12 @@ import java.util.Map;
 
 
 /**
- * Created by AchanthiSundar on 28-12-2018.
+ * Created by Dileep on 28-12-2022.
  */
 
 public class LoginScreen extends AppCompatActivity implements View.OnClickListener, Api.ServerResponseListener {
 
-    private String randString;
+
 
     public static DBHelper dbHelper;
     public static SQLiteDatabase db;
@@ -100,7 +100,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
             }
         });
         loginScreenBinding.password.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Avenir-Roman.ttf"));
-        randString = Utils.randomChar();
+
 
 
         try {
@@ -184,7 +184,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
             //Utils.showAlert(this, getResources().getString(R.string.no_internet));
             AlertDialog.Builder ab = new AlertDialog.Builder(
                     LoginScreen.this);
-            ab.setMessage("Internet Connection is not avaliable..Please Turn ON Network Connection OR Continue With Off-line Mode..");
+            ab.setMessage("Internet Connection is not available...Please Turn ON Network Connection OR Continue With Off-line Mode..");
             ab.setPositiveButton("Settings",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog,

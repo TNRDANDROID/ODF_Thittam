@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ODF_Thittam</string>
+    <string name="app_name">PMGSY</string>
     <string name="hint_password">Password</string>
     <string name="hint_username">UserName</string>
     <string name="btn_login">Login</string>
