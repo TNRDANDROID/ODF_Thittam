@@ -1519,7 +1519,68 @@
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/choose_working_area_layout">
 
+                <LinearLayout
+                    android:id="@+id/working_area_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.nic.ODF_Thittam.support.MyCustomTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_left_20dp"
+                        android:layout_marginTop="@dimen/padding"
+                        android:layout_marginRight="@dimen/margin_left_20dp"
+                        android:text="@string/add_your_working_area"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/_13sdp"
+                        android:visibility="visible"
+                        customfontdemo:fontName="@string/font_circular_medium" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardElevation="@dimen/_5sdp"
+                        app:cardCornerRadius="@dimen/_7sdp"
+                        android:layout_marginLeft="@dimen/margin_left_20dp"
+                        android:layout_marginTop="@dimen/padding"
+                        android:outlineSpotShadowColor="@color/colorPrimaryDark"
+                        android:outlineAmbientShadowColor="@color/colorPrimaryDark"
+                        android:layout_marginRight="@dimen/margin_left_20dp"
+                        customfontdemo:ignore="UnusedAttribute">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="visible">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/working_area_recycler"/>
+
+                            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                                android:layout_width="wrap_content"
+                                android:layout_below="@+id/working_area_recycler"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginEnd="@dimen/_10sdp"
+                                android:id="@+id/add_btn"
+                                android:src="@drawable/ic_add_plus_icon"
+                                android:tint="@color/white"/>
+
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+            </RelativeLayout>
             <Button
                 android:id="@+id/btn_register"
                 android:layout_width="wrap_content"

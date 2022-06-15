@@ -14,6 +14,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Build;
@@ -28,6 +29,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -52,8 +54,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.DialogFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.VolleyError;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -61,6 +66,7 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.nic.ODF_Thittam.R;
 import com.nic.ODF_Thittam.adapter.CommonAdapter;
+import com.nic.ODF_Thittam.adapter.WorkingAreaListAdapter;
 import com.nic.ODF_Thittam.api.Api;
 import com.nic.ODF_Thittam.api.ApiService;
 import com.nic.ODF_Thittam.api.ServerResponse;
@@ -82,8 +88,11 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -141,13 +150,25 @@ public class RegisterScreen extends AppCompatActivity implements View.OnClickLis
     private ExifInterface exifObject;
     private Integer isMotivatorOthers;
     String selectedGender, selectedGenderId, selectedEducation, selectedEducationId;
-    String dcode, bcode, ifsc_code;
+    String dcode, bcode, pv_code,ifsc_code;
     ArrayList<ODF_Thittam> VillageList;
 
 
     String IMEINumber;
     private static final int REQUEST_CODE = 101;
 
+    RecyclerView working_area_recycler;
+    FloatingActionButton add_working_area_btn;
+    String load_alert_village="";
+    private List<ODF_Thittam> AlertBlock = new ArrayList<>();
+    private List<ODF_Thittam> AlertDistrict = new ArrayList<>();
+    private List<ODF_Thittam> AlertVillage = new ArrayList<>();
+    private List<ODF_Thittam> working_area_list = new ArrayList<>();
+    String alert_dcode, alert_bcode,alert_pv_code;
+    String alert_dname, alert_bname,alert_pv_name;
+    Spinner alert_district,alert_block,alert_village;
+    WorkingAreaListAdapter workingAreaListAdapter;
+    int  serve_villages_limit_count=0;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -208,6 +229,8 @@ public class RegisterScreen extends AppCompatActivity implements View.OnClickLis
         back_img = (ImageView) findViewById(R.id.back_img);
         motivator = (RadioButton) findViewById(R.id.motivator);
         other = (RadioButton) findViewById(R.id.others);
+        working_area_recycler = (RecyclerView) findViewById(R.id.working_area_recycler);
+        add_working_area_btn = (FloatingActionButton) findViewById(R.id.add_btn);
         arrowImage.setOnClickListener(this);
         arrowImageUp.setOnClickListener(this);
         dob_layout.setOnClickListener(this);
@@ -217,6 +240,7 @@ public class RegisterScreen extends AppCompatActivity implements View.OnClickLis
         btn_register.setOnClickListener(this);
         motivator.setChecked(true);
         other.setChecked(false);
+
 //        if (childlayout.getMeasuredHeight() > scrollView.getMeasuredHeight()) {
 //            showArrowImage();
 //        }
@@ -278,6 +302,7 @@ public class RegisterScreen extends AppCompatActivity implements View.OnClickLis
                     sp_village.setVisibility(View.VISIBLE);
                     bcode = Block.get(position).getBlockCode();
                     if (Utils.isOnline()) {
+                        load_alert_village="";
                         getVillageList();
                     } else {
                         Utils.showAlert(RegisterScreen.this, "Turn on Mobile Data!");
@@ -304,6 +329,7 @@ public class RegisterScreen extends AppCompatActivity implements View.OnClickLis
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 pref_Village = VillageList.get(position).getPvName();
+                pv_code = VillageList.get(position).getPvCode();
                 prefManager.setVillageListPvName(pref_Village);
                 prefManager.setKeySpinnerSelectedPvcode(VillageList.get(position).getPvCode());
 
@@ -359,8 +385,7 @@ public class RegisterScreen extends AppCompatActivity implements View.OnClickLis
 
         motivator.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {if (isChecked) {
                     isMotivatorOthers = 1;
                     other.setChecked(false);
                     account_layout.setVisibility(View.VISIBLE);
@@ -369,8 +394,7 @@ public class RegisterScreen extends AppCompatActivity implements View.OnClickLis
                     bank_layout.setVisibility(View.VISIBLE);
                     branch_layout.setVisibility(View.VISIBLE);
 
-                }
-            }
+                }    }
         });
         other.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -393,19 +417,59 @@ public class RegisterScreen extends AppCompatActivity implements View.OnClickLis
 
             }
         });
+
+        add_working_area_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!"Select District".equalsIgnoreCase(District.get(sp_district.getSelectedItemPosition()).getDistrictName())) {
+                    if (!"Select Block".equalsIgnoreCase(Block.get(sp_block.getSelectedItemPosition()).getBlockName())) {
+                        if (!"Select Village".equalsIgnoreCase(VillageList.get(sp_village.getSelectedItemPosition()).getPvName())) {
+                            if(serve_villages_limit_count>working_area_list.size()){
+                                addWorkingArea();
+                            }
+                            else {
+                                Utils.showAlert(RegisterScreen.this,"Limit Exceeded");
+                            }
+                        } else {
+                            Utils.showAlert(RegisterScreen.this, "உங்கள் கிராமத்தைத் தேர்ந்தெடுக்கவும்!");
+                        }
+                    } else {
+                        Utils.showAlert(RegisterScreen.this, "உங்கள் வட்டத்தைத் தேர்ந்தெடுக்கவும்!");
+                    }
+                } else {
+                    Utils.showAlert(RegisterScreen.this, "உங்கள் மாவட்டத்தைத் தேர்ந்தெடுக்கவும்!");
+                }
+
+
+            }
+        });
+
         loadOfflineDistrictListDBValues();
         loadCategoryListDBValues();
         loadGenderList();
         loadEducationList();
         textFieldValidation();
+        getCountLimit();
     }
 
     public JSONObject villageListJsonParams() throws JSONException {
         JSONObject dataSet = new JSONObject();
         dataSet.put(AppConstant.KEY_SERVICE_ID, AppConstant.KEY_VILLAGE_LIST_DISTRICT_BLOCK_WISE);
-        dataSet.put(AppConstant.DISTRICT_CODE, dcode);
-        dataSet.put(AppConstant.BLOCK_CODE, bcode);
+        if(load_alert_village.equals("Yes")){
+            dataSet.put(AppConstant.DISTRICT_CODE, alert_dcode);
+            dataSet.put(AppConstant.BLOCK_CODE, alert_bcode);
+        }
+        else{
+            dataSet.put(AppConstant.DISTRICT_CODE, dcode);
+            dataSet.put(AppConstant.BLOCK_CODE, bcode);
+        }
+
         Log.d("VillageList", "" + dataSet);
+        return dataSet;
+    } public JSONObject getCountOfWillingWork() throws JSONException {
+        JSONObject dataSet = new JSONObject();
+        dataSet.put(AppConstant.KEY_SERVICE_ID, "serve_villages_limit");
+        Log.d("serve_villages_limit", "" + dataSet);
         return dataSet;
     }
 
@@ -894,12 +958,23 @@ public class RegisterScreen extends AppCompatActivity implements View.OnClickLis
                         if (!"Select Educational Qualification".equalsIgnoreCase(educationList.get(educational_qualification_spinner.getSelectedItemPosition()).getEducationName())) {
                             if ((prefManager.getSpinnerSelectedCategoryName()).equalsIgnoreCase("others")) {
                                 if (!motivator_position_tv.getText().toString().isEmpty()) {
-                                    signUP();
+                                    if(working_area_list.size()>0){
+                                        signUP();
+                                    }
+                                    else {
+                                        Utils.showAlert(this, "Add Your Working Area List");
+                                    }
+
                                 } else {
                                     Utils.showAlert(this, "நிலையை உள்ளிடவும்!");
                                 }
                             } else {
-                                signUP();
+                                if(working_area_list.size()>0){
+                                    signUP();
+                                }
+                                else {
+                                    Utils.showAlert(this, "Add Your Working Area List");
+                                }
                             }
                         } else {
                             Utils.showAlert(this, "கல்வித் தகுதியைத் தேர்ந்தெடுக்கவும்!");
@@ -1013,7 +1088,7 @@ public class RegisterScreen extends AppCompatActivity implements View.OnClickLis
 
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
             // Do something with the date chosen by the user
-            motivator_dob_tv.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+            motivator_dob_tv.setText(dateFormet(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year));
             String start_date = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
             cldr.set(Calendar.YEAR, year);
             cldr.set(Calendar.MONTH, (monthOfYear));
@@ -1222,6 +1297,7 @@ public class RegisterScreen extends AppCompatActivity implements View.OnClickLis
 
     public JSONObject dataTobeSavedJsonParams() throws JSONException {
 
+        JSONArray willing_to_serve_villages_list = new JSONArray();
         byte[] imageInByte = new byte[0];
         String image_str = "";
         try {
@@ -1271,6 +1347,14 @@ public class RegisterScreen extends AppCompatActivity implements View.OnClickLis
         } else {
             dataSet.put(AppConstant.KEY_REGISTER_CATEGORY, prefManager.getSpinnerSelectedCategoryId());
         }
+        for(int i =0 ;i<working_area_list.size();i++){
+            JSONObject newJson = new JSONObject();
+            newJson.put("dcode",working_area_list.get(i).getDistictCode());
+            newJson.put("bcode",working_area_list.get(i).getBlockCode());
+            newJson.put("pvcode",working_area_list.get(i).getPvCode());
+            willing_to_serve_villages_list.put(newJson);
+        }
+        dataSet.put("willing_to_serve_villages_list", willing_to_serve_villages_list);
         Log.d("RegisterDataSet", "" + dataSet);
         String authKey = dataSet.toString();
         int maxLogSize = 2000;
@@ -1292,8 +1376,8 @@ public class RegisterScreen extends AppCompatActivity implements View.OnClickLis
             String response = responseObj.getString(AppConstant.KEY_RESPONSE);
             if ("Register".equals(urlType) && responseObj != null) {
                 if (status.equalsIgnoreCase("OK") && response.equalsIgnoreCase("OK")) {
-                    JSONObject jsonObject = responseObj.getJSONObject(AppConstant.JSON_DATA);
-                    String Motivatorid = jsonObject.getString(AppConstant.KEY_REGISTER_MOTIVATOR_ID);
+                    //JSONObject jsonObject = responseObj.getJSONObject(AppConstant.JSON_DATA);
+                    String Motivatorid = responseObj.getString(AppConstant.KEY_REGISTER_MOTIVATOR_ID);
                     Log.d("motivatorid", "" + Motivatorid);
                     Utils.showAlert(this, "நீங்கள் வெற்றிகரமாக பதிவு செய்யப்பட்டுள்ளீர்கள்!");
                     Runnable runnable = new Runnable() {
@@ -1302,9 +1386,15 @@ public class RegisterScreen extends AppCompatActivity implements View.OnClickLis
                             finish();
                         }
                     };
-                    handler.postDelayed(runnable, 2000);
+                    handler.postDelayed(runnable, 1500);
 
+                }
+                else if (status.equalsIgnoreCase("OK") && response.equalsIgnoreCase("NO_RECORD")) {
+                    Utils.showAlert(this, responseObj.getString("MESSAGE"));
                 } else if (status.equalsIgnoreCase("OK") && response.equalsIgnoreCase("FAIL")) {
+                    Utils.showAlert(this, responseObj.getString("MESSAGE"));
+                }
+                else {
                     Utils.showAlert(this, responseObj.getString("MESSAGE"));
                 }
             }
@@ -1313,7 +1403,12 @@ public class RegisterScreen extends AppCompatActivity implements View.OnClickLis
                 response = responseObj.getString(AppConstant.KEY_RESPONSE);
                 if (status.equalsIgnoreCase("OK") && response.equalsIgnoreCase("OK")) {
                     JSONArray jsonArray = responseObj.getJSONArray(AppConstant.JSON_DATA);
-                    loadVillageSpinner(jsonArray);
+                    if(load_alert_village.equals("")) {
+                        loadVillageSpinner(jsonArray);
+                    }
+                    else {
+                        alertLoadVillageSpinner(jsonArray);
+                    }
                 } else if (status.equalsIgnoreCase("OK") && response.equalsIgnoreCase("NO_RECORD")) {
                     Log.d("Record", responseObj.getString(AppConstant.KEY_MESSAGE));
                 }
@@ -1351,6 +1446,15 @@ public class RegisterScreen extends AppCompatActivity implements View.OnClickLis
                 }
                 Log.d("BankBranchList", "" + responseObj.getJSONObject(AppConstant.JSON_DATA));
             }
+            if ("serve_villages_limit".equals(urlType) && responseObj != null) {
+                status = responseObj.getString(AppConstant.KEY_STATUS);
+                response = responseObj.getString(AppConstant.KEY_RESPONSE);
+                if (status.equalsIgnoreCase("OK") && response.equalsIgnoreCase("OK")) {
+                    serve_villages_limit_count = Integer.parseInt(responseObj.getString("COUNT"));
+
+                }
+                Log.d("serve_villages_limit", "" + responseObj);
+            }
 
 
         } catch (JSONException e) {
@@ -1374,6 +1478,13 @@ public class RegisterScreen extends AppCompatActivity implements View.OnClickLis
     public void getVillageList() {
         try {
             new ApiService(this).makeJSONObjectRequest("VillageList", Api.Method.POST, UrlGenerator.getOpenUrl(), villageListJsonParams(), "not cache", this);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+    public void getCountLimit() {
+        try {
+            new ApiService(this).makeJSONObjectRequest("serve_villages_limit", Api.Method.POST, UrlGenerator.getRegistrationUrl(), getCountOfWillingWork(), "not cache", this);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -1437,5 +1548,282 @@ public class RegisterScreen extends AppCompatActivity implements View.OnClickLis
             }
         }
     }
+    private static String dateFormet(String dateStr) {
+        String myFormat="";
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        try {
+            Date date1 = format.parse(dateStr);
+            System.out.println(date1);
+            String dateTime = format.format(date1);
+            System.out.println("Current Date Time : " + dateTime);
+            myFormat = dateTime; //In which you need put here
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return myFormat;
+    }
 
+    public void addWorkingArea(){
+
+        try {
+            final Dialog dialog = new Dialog(this,R.style.AppTheme);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(R.layout.add_working_arae_dialog_box);
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.setCancelable(false);
+            dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+            dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+            WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
+            lp.dimAmount = 0.7f;
+            dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+            dialog.show();
+
+            ImageView close_icon = dialog.findViewById(R.id.close_icon);
+            Button btn_save = dialog.findViewById(R.id.btn_save);
+            alert_district = dialog.findViewById(R.id.district);
+            alert_block = dialog.findViewById(R.id.block);
+            alert_village = dialog.findViewById(R.id.village);
+            alertDialogDistrictList();
+            alert_district.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    if (position == 0) {
+                        alert_block.setClickable(false);
+                        alert_block.setVisibility(View.GONE);
+                        alert_dcode ="";
+                        alert_dname ="";
+                    } else {
+                        alert_block.setClickable(true);
+                        alert_block.setVisibility(View.VISIBLE);
+                        alert_dcode = AlertDistrict.get(position).getDistictCode();
+                        alert_dname = AlertDistrict.get(position).getDistrictName();
+                        alertDialogBlockFilterSpinner(alert_dcode);
+                    }
+
+
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+            alert_block.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    if (position == 0) {
+                        alert_village.setClickable(false);
+                        alert_village.setVisibility(View.GONE);
+                        alert_bcode="";
+                        alert_bname="";
+                    } else {
+                        alert_village.setClickable(true);
+                        alert_village.setVisibility(View.VISIBLE);
+                        alert_bcode = AlertBlock.get(position).getBlockCode();
+                        alert_bname = AlertBlock.get(position).getBlockName();
+                        if (Utils.isOnline()) {
+                            load_alert_village="Yes";
+                            getVillageList();
+                        } else {
+                            Utils.showAlert(RegisterScreen.this, "Turn on Mobile Data!");
+                        }
+                    }
+
+
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+            alert_village.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    if(position>0){
+                        alert_pv_code = AlertVillage.get(position).getPvCode();
+                        alert_pv_name = AlertVillage.get(position).getPvName();
+                    }
+                    else {
+                        alert_pv_code = "";
+                        alert_pv_name="";
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+            close_icon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+            btn_save.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(!alert_dcode.equals("")){
+                        if(!alert_bcode.equals("")){
+                            if(!alert_pv_code.equals("")){
+                                ODF_Thittam odf_thittam = new ODF_Thittam();
+                                odf_thittam.setDistictCode(alert_dcode);
+                                odf_thittam.setDistrictName(alert_dname);
+                                odf_thittam.setBlockCode(alert_bcode);
+                                odf_thittam.setBlockName(alert_bname);
+                                odf_thittam.setPvCode(alert_pv_code);
+                                odf_thittam.setPvName(alert_pv_name);
+                                working_area_list.add(odf_thittam);
+                                if(working_area_list.size()>0){
+                                    working_area_recycler.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                                    workingAreaListAdapter = new WorkingAreaListAdapter(RegisterScreen.this,working_area_list);
+                                    working_area_recycler.setAdapter(workingAreaListAdapter);
+                                }
+                                else {
+                                    working_area_recycler.setAdapter(null);
+                                }
+                                dialog.dismiss();
+                            }
+                            else {
+                                Utils.showAlert(RegisterScreen.this,getResources().getString(R.string.village));
+                            }
+                        }
+                        else {
+                            Utils.showAlert(RegisterScreen.this,getResources().getString(R.string.block));
+                        }
+
+                    }
+                    else {
+                        Utils.showAlert(RegisterScreen.this,getResources().getString(R.string.district));
+                    }
+
+                }
+            });
+
+
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    public void alertDialogDistrictList() {
+        Cursor DistrictList = getRawEvents("Select * from " + DISTRICT_TABLE_NAME + " WHERE dcode != 29 order by dname asc", null);
+        AlertDistrict = new ArrayList<>();
+        AlertDistrict.clear();
+        ODF_Thittam ODF_Thittam = new ODF_Thittam();
+        ODF_Thittam.setDistrictName("Select District");
+        AlertDistrict.add(ODF_Thittam);
+        if (DistrictList.getCount() > 0) {
+            if (DistrictList.moveToFirst()) {
+                do {
+                    ODF_Thittam districtList = new ODF_Thittam();
+                    String districtCode = DistrictList.getString(DistrictList.getColumnIndexOrThrow(AppConstant.DISTRICT_CODE));
+                    String districtName = DistrictList.getString(DistrictList.getColumnIndexOrThrow(AppConstant.DISTRICT_NAME));
+                    districtList.setDistictCode(districtCode);
+                    districtList.setDistrictName(districtName);
+                    AlertDistrict.add(districtList);
+                } while (DistrictList.moveToNext());
+            }
+        }
+        alert_district.setAdapter(new CommonAdapter(this, AlertDistrict, "DistrictList"));
+
+    }
+    public void alertDialogBlockFilterSpinner(String filterBlock) {
+
+        String blocksql = "SELECT * FROM " + BLOCK_TABLE_NAME + " WHERE dcode = " + filterBlock + " order by bname asc";
+        Log.d("blocksql", blocksql);
+        Cursor BlockList = getRawEvents(blocksql, null);
+        AlertBlock = new ArrayList<>();
+        AlertBlock.clear();
+        ODF_Thittam blockListValue = new ODF_Thittam();
+        blockListValue.setBlockName("Select Block");
+        AlertBlock.add(blockListValue);
+        if (BlockList.getCount() > 0) {
+            if (BlockList.moveToFirst()) {
+                do {
+                    ODF_Thittam blockList = new ODF_Thittam();
+                    String districtCode = BlockList.getString(BlockList.getColumnIndexOrThrow(AppConstant.DISTRICT_CODE));
+                    String blockCode = BlockList.getString(BlockList.getColumnIndexOrThrow(AppConstant.BLOCK_CODE));
+                    String blockName = BlockList.getString(BlockList.getColumnIndexOrThrow(AppConstant.BLOCK_NAME));
+                    blockList.setDistictCode(districtCode);
+                    blockList.setBlockCode(blockCode);
+                    blockList.setBlockName(blockName);
+                    AlertBlock.add(blockList);
+                } while (BlockList.moveToNext());
+            }
+
+        }
+        alert_block.setAdapter(new CommonAdapter(this, AlertBlock, "BlockList"));
+
+    }
+    private void alertLoadVillageSpinner(JSONArray jsonArray) {
+        try {
+            AlertVillage = new ArrayList<>();
+            ODF_Thittam villageListValue1 = new ODF_Thittam();
+            villageListValue1.setPvName("Select Village");
+            AlertVillage.add(villageListValue1);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                ODF_Thittam villageListValue = new ODF_Thittam();
+                try {
+                    String jsondcode2 = jsonArray.getJSONObject(i).getString(AppConstant.DISTRICT_CODE);
+                    String jsonbcode2 = jsonArray.getJSONObject(i).getString(AppConstant.BLOCK_CODE);
+                    String jsonpvcode2 = jsonArray.getJSONObject(i).getString(AppConstant.PV_CODE);
+                    if(!(jsondcode2.equals(dcode)&&jsonbcode2.equals(bcode)&&jsonpvcode2.equals(pv_code))){
+                        if(working_area_list.size()>0){
+                            for(int j=0;j<working_area_list.size();j++){
+                                String jsondcode = jsonArray.getJSONObject(i).getString(AppConstant.DISTRICT_CODE);
+                                String jsonbcode = jsonArray.getJSONObject(i).getString(AppConstant.BLOCK_CODE);
+                                String jsonpvcode = jsonArray.getJSONObject(i).getString(AppConstant.PV_CODE);
+                                String jsonpvname = jsonArray.getJSONObject(i).getString(AppConstant.PV_NAME);
+
+                                String wdcode = working_area_list.get(j).getDistictCode();
+                                String wbcode = working_area_list.get(j).getBlockCode();
+                                String wpvcode = working_area_list.get(j).getPvCode();
+                                if(!(jsondcode.equals(wdcode)&&jsonbcode.equals(wbcode)&&jsonpvcode.equals(wpvcode))){
+
+                                    villageListValue.setDistictCode(jsondcode);
+                                    villageListValue.setBlockCode(jsonbcode);
+                                    villageListValue.setPvCode(jsonpvcode);
+                                    villageListValue.setPvName(jsonpvname);
+                                    AlertVillage.add(villageListValue);
+
+                                }
+
+
+                            }
+                        }
+                        else {
+                            String jsondcode = jsonArray.getJSONObject(i).getString(AppConstant.DISTRICT_CODE);
+                            String jsonbcode = jsonArray.getJSONObject(i).getString(AppConstant.BLOCK_CODE);
+                            String jsonpvcode = jsonArray.getJSONObject(i).getString(AppConstant.PV_CODE);
+                            String jsonpvname = jsonArray.getJSONObject(i).getString(AppConstant.PV_NAME);
+
+                            villageListValue.setDistictCode(jsondcode);
+                            villageListValue.setBlockCode(jsonbcode);
+                            villageListValue.setPvCode(jsonpvcode);
+                            villageListValue.setPvName(jsonpvname);
+                            AlertVillage.add(villageListValue);
+                        }
+                    }
+
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            alert_village.setAdapter(new CommonAdapter(this, AlertVillage, "VillageList"));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
