@@ -713,7 +713,7 @@ public class RegisterScreen extends AppCompatActivity implements View.OnClickLis
                 } while (branchNameList.moveToNext());
             }
         } else {
-            Utils.showAlert(this, "Enter the valid IFSC!");
+            Utils.showAlert(RegisterScreen.this, "Enter the valid IFSC!");
             motivator_bank_tv.setText("");
             motivator_branch_tv.setText("");
         }
@@ -883,22 +883,22 @@ public class RegisterScreen extends AppCompatActivity implements View.OnClickLis
                                                                 if (!motivator_branch_tv.getText().toString().isEmpty()) {
                                                                     motivatorOthersValidation();
                                                                 } else {
-                                                                    Utils.showAlert(this, "வங்கி கிளை பெயரைத் தேர்ந்தெடுக்கவும்!");
+                                                                    Utils.showAlert(RegisterScreen.this, "வங்கி கிளை பெயரைத் தேர்ந்தெடுக்கவும்!");
                                                                 }
                                                             } else {
-                                                                Utils.showAlert(this, "வங்கியின் பெயரைத் தேர்ந்தெடுக்கவும்!");
+                                                                Utils.showAlert(RegisterScreen.this, "வங்கியின் பெயரைத் தேர்ந்தெடுக்கவும்!");
                                                             }
                                                         } else {
-                                                            Utils.showAlert(this, "IFSC குறியீட்டை உள்ளிடவும்!");
+                                                            Utils.showAlert(RegisterScreen.this, "IFSC குறியீட்டை உள்ளிடவும்!");
                                                         }
                                                     } else {
                                                         Utils.showAlert(RegisterScreen.this, "வங்கி கணக்கு எண் மற்றும் சரிபார்ப்பு கணக்கு எண் ஒரே மாதிரியாக இல்லை!");
                                                     }
                                                 } else {
-                                                    Utils.showAlert(this, "சரிபார்க்கும் வங்கி கணக்கு எண்ணை உள்ளிடவும்!");
+                                                    Utils.showAlert(RegisterScreen.this, "சரிபார்க்கும் வங்கி கணக்கு எண்ணை உள்ளிடவும்!");
                                                 }
                                             } else {
-                                                Utils.showAlert(this, "உங்கள் வங்கி கணக்கு எண்ணை உள்ளிடவும்!");
+                                                Utils.showAlert(RegisterScreen.this, "உங்கள் வங்கி கணக்கு எண்ணை உள்ளிடவும்!");
                                             }
 //                                            } else {
 //                                                Utils.showAlert(this, "சரியான மின்னஞ்சல் முகவரியை உள்ளிடவும்!");
@@ -921,28 +921,28 @@ public class RegisterScreen extends AppCompatActivity implements View.OnClickLis
                                             Utils.showAlert(this, "விண்ணப்பதாரர் ஊக்குவிப்பவரா/மற்றவரா என்பதை தேர்வு செய்யவும்!");
                                         }*/
                                     } else {
-                                        Utils.showAlert(this, "சரியான கைபேசி எண்ணை உள்ளிடவும்!");
+                                        Utils.showAlert(RegisterScreen.this, "சரியான கைபேசி எண்ணை உள்ளிடவும்!");
                                     }
                                 } else {
-                                    Utils.showAlert(this, "உங்கள் கைபேசி எண்ணை உள்ளிடவும்!");
+                                    Utils.showAlert(RegisterScreen.this, "உங்கள் கைபேசி எண்ணை உள்ளிடவும்!");
                                 }
                             } else {
-                                Utils.showAlert(this, "உங்கள் முகவரியை உள்ளிடவும்!");
+                                Utils.showAlert(RegisterScreen.this, "உங்கள் முகவரியை உள்ளிடவும்!");
                             }
                         } else {
-                            Utils.showAlert(this, "உங்கள் கிராமத்தைத் தேர்ந்தெடுக்கவும்!");
+                            Utils.showAlert(RegisterScreen.this, "உங்கள் கிராமத்தைத் தேர்ந்தெடுக்கவும்!");
                         }
                     } else {
-                        Utils.showAlert(this, "உங்கள் வட்டத்தைத் தேர்ந்தெடுக்கவும்!");
+                        Utils.showAlert(RegisterScreen.this, "உங்கள் வட்டத்தைத் தேர்ந்தெடுக்கவும்!");
                     }
                 } else {
-                    Utils.showAlert(this, "உங்கள் மாவட்டத்தைத் தேர்ந்தெடுக்கவும்!");
+                    Utils.showAlert(RegisterScreen.this, "உங்கள் மாவட்டத்தைத் தேர்ந்தெடுக்கவும்!");
                 }
             } else {
-                Utils.showAlert(this, "உங்கள் பெயரை உள்ளிடவும்!");
+                Utils.showAlert(RegisterScreen.this, "உங்கள் பெயரை உள்ளிடவும்!");
             }
         } else {
-            Utils.showAlert(this, "முதலில் சுயவிவரப் படத்தைப் பிடிக்கவும்!!");
+            Utils.showAlert(RegisterScreen.this, "முதலில் சுயவிவரப் படத்தைப் பிடிக்கவும்!!");
         }
     }
 
@@ -962,28 +962,28 @@ public class RegisterScreen extends AppCompatActivity implements View.OnClickLis
                                         signUP();
                                     }
                                     else {
-                                        Utils.showAlert(this, "Add Your Working Area List");
+                                        Utils.showAlert(RegisterScreen.this, getResources().getString(R.string.add_your_working_area));
                                     }
 
                                 } else {
-                                    Utils.showAlert(this, "நிலையை உள்ளிடவும்!");
+                                    Utils.showAlert(RegisterScreen.this, "நிலையை உள்ளிடவும்!");
                                 }
                             } else {
                                 if(working_area_list.size()>0){
                                     signUP();
                                 }
                                 else {
-                                    Utils.showAlert(this, "Add Your Working Area List");
+                                    Utils.showAlert(RegisterScreen.this, "Add Your Working Area List");
                                 }
                             }
                         } else {
-                            Utils.showAlert(this, "கல்வித் தகுதியைத் தேர்ந்தெடுக்கவும்!");
+                            Utils.showAlert(RegisterScreen.this, "கல்வித் தகுதியைத் தேர்ந்தெடுக்கவும்!");
                         }
                     } else {
-                        Utils.showAlert(this, "பாலினத்தைத் தேர்ந்தெடுக்கவும்!");
+                        Utils.showAlert(RegisterScreen.this, "பாலினத்தைத் தேர்ந்தெடுக்கவும்!");
                     }
                 } else {
-                    Utils.showAlert(this, "வகையைத் தேர்ந்தெடுக்கவும்!");
+                    Utils.showAlert(RegisterScreen.this, "வகையைத் தேர்ந்தெடுக்கவும்!");
                 }
             /*} else {
                 Utils.showAlert(this, "கலந்துகொண்ட தொகுதி-நிலை பயிற்சியின் எண்ணிக்கையை உள்ளிடவும்!");
@@ -992,11 +992,11 @@ public class RegisterScreen extends AppCompatActivity implements View.OnClickLis
                 Utils.showAlert(this, "கலந்துகொண்ட மாவட்ட அளவிலான பயிற்சியின் எண்ணிக்கையை உள்ளிடவும்!");
             }*/
             } else {
-                Utils.showAlert(this, "கலந்துகொண்ட மாநில அளவிலான பயிற்சியின் எண்ணிக்கையை உள்ளிடவும்!");
+                Utils.showAlert(RegisterScreen.this, "கலந்துகொண்ட மாநில அளவிலான பயிற்சியின் எண்ணிக்கையை உள்ளிடவும்!");
             }
 
         } else {
-            Utils.showAlert(this, "பிறந்த தேதியைத் தேர்ந்தெடுக்கவும்!");
+            Utils.showAlert(RegisterScreen.this, "பிறந்த தேதியைத் தேர்ந்தெடுக்கவும்!");
         }
     }
 
@@ -1058,7 +1058,7 @@ public class RegisterScreen extends AppCompatActivity implements View.OnClickLis
     @Override
     public void OnError(VolleyError volleyError) {
         volleyError.printStackTrace();
-        Utils.showAlert(this, "Login Again");
+       // Utils.showAlert(RegisterScreen.this, "Login Again");
     }
 
     public void showStartDatePickerDialog() {
@@ -1379,7 +1379,7 @@ public class RegisterScreen extends AppCompatActivity implements View.OnClickLis
                     //JSONObject jsonObject = responseObj.getJSONObject(AppConstant.JSON_DATA);
                     String Motivatorid = responseObj.getString(AppConstant.KEY_REGISTER_MOTIVATOR_ID);
                     Log.d("motivatorid", "" + Motivatorid);
-                    Utils.showAlert(this, "நீங்கள் வெற்றிகரமாக பதிவு செய்யப்பட்டுள்ளீர்கள்!");
+                    Utils.showAlert(RegisterScreen.this, "நீங்கள் வெற்றிகரமாக பதிவு செய்யப்பட்டுள்ளீர்கள்!");
                     Runnable runnable = new Runnable() {
                         @Override
                         public void run() {
@@ -1390,12 +1390,12 @@ public class RegisterScreen extends AppCompatActivity implements View.OnClickLis
 
                 }
                 else if (status.equalsIgnoreCase("OK") && response.equalsIgnoreCase("NO_RECORD")) {
-                    Utils.showAlert(this, responseObj.getString("MESSAGE"));
+                    Utils.showAlert(RegisterScreen.this, responseObj.getString("MESSAGE"));
                 } else if (status.equalsIgnoreCase("OK") && response.equalsIgnoreCase("FAIL")) {
-                    Utils.showAlert(this, responseObj.getString("MESSAGE"));
+                    Utils.showAlert(RegisterScreen.this, responseObj.getString("MESSAGE"));
                 }
                 else {
-                    Utils.showAlert(this, responseObj.getString("MESSAGE"));
+                    Utils.showAlert(RegisterScreen.this, responseObj.getString("MESSAGE"));
                 }
             }
             if ("VillageList".equals(urlType) && responseObj != null) {
@@ -1439,7 +1439,7 @@ public class RegisterScreen extends AppCompatActivity implements View.OnClickLis
                 } else if (status.equalsIgnoreCase("OK") && response.equalsIgnoreCase("NO_RECORD")) {
                     Log.d("Record", responseObj.getString(AppConstant.KEY_MESSAGE));
                     //Utils.showAlert(RegisterScreen.this,responseObj.getString(AppConstant.KEY_MESSAGE));
-                    Utils.showAlert(this, "Enter the valid IFSC!");
+                    Utils.showAlert(RegisterScreen.this, "Enter the valid IFSC!");
                     motivator_bank_tv.setText("");
                     motivator_branch_tv.setText("");
 

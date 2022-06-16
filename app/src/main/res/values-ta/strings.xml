@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 <!--    <string name="app_name">திட்டம்</string>-->
-    <string name="app_name">PMGSY</string>
+    <string name="app_name">PMAYG</string>
 
     <string name="hint_password">Password</string>
     <string name="hint_username">UserName</string>
@@ -35,7 +35,7 @@
     <string name="you_can_capture_upto_3_photos">You can Capture 3 Photos</string>
     <string name="work_list">Work List</string>
     <string name="cd_work_list">CD Work List</string>
-    <string name="pmgsy">PMGSY</string>
+    <string name="pmgsy">PMAYG</string>
     <string name="you_need_to_update_pmgsy">You need to update PMGSY</string>
     <string name="this_version_of_pmgsy_is_no_longer_supported_please_go_to_official_site_and_install_new_version">This version of PMGSY is no longer supported. Please go to Official Site and install new version</string>
     <string name="update">UPDATE</string>

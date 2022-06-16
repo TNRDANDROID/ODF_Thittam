@@ -163,8 +163,8 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
     }
 
     public void checkLoginScreen() {
-        loginScreenBinding.userName.setText("8975345345");
-        loginScreenBinding.password.setText("osms32#$");//loc
+        /*loginScreenBinding.userName.setText("8975345345");
+        loginScreenBinding.password.setText("osms32#$");//loc*/
         /*loginScreenBinding.userName.setText("9843368346");
         loginScreenBinding.password.setText("odf61#$");//live*/
 
@@ -233,7 +233,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
         Log.d("user", "" + loginScreenBinding.userName.getText().toString().trim());
 
-Log.d("params",""+params);
+        Log.d("params",""+params);
         return params;
     }
 
